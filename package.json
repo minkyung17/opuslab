@@ -1,0 +1,38 @@
+{
+  "name": "github-opuslab",
+  "version": "1.0.0",
+  "description": "git hook test",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+	"lintjs-fix": "npx eslint ./ --fix",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+	  "*.{js,jsx}": "npx eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minkyung17/opuslab.git"
+  },
+  "keywords": [
+    "git",
+    "hook",
+    "opus"
+  ],
+  "author": "me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minkyung17/opuslab/issues"
+  },
+  "homepage": "https://github.com/minkyung17/opuslab#readme",
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "eslint-plugin-react": "^7.24.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.0.1"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  }
+}
