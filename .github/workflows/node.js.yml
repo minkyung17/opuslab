@@ -31,7 +31,7 @@ jobs:
     - run: echo "npm ci was just run"
     - run: npm run build --if-present
     - run: echo "npm run build --if-present was just run"
-    - run: npm lintjs-fix
+    - run: npm run lintjs-fix
     - run: echo "npm lintjs-fix was just run"
     - run: echo "Here's a list of files in the repository. "
     - run: |
