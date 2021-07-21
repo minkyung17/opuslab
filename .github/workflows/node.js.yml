@@ -33,7 +33,7 @@ jobs:
     - run: echo "npm run build --if-present was just run"
     - run: npm lintjs-fix
     - run: echo "npm lintjs-fix was just run"
-    - run: echo "Here's a list of files in the repository: "
+    - run: echo "Here's a list of files in the repository. "
     - run: |
         ls ${{ github.workspace }}
     - run: echo "🍏 This job's status is ${{ job.status }}."
