@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "",
-	"lintjs-fix": "npx eslint ./ --fix",
+    "lintjs": "npx eslint eslint-test.js",
+    "lintjs-fix": "npx eslint --fix",
     "prepare": "husky install"
   },
   "lint-staged": {
