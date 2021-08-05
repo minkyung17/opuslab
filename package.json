@@ -6,7 +6,7 @@
   "scripts": {
     "test": "",
     "lintjs": "npx eslint ./ --ext .js,.jsx",
-    "lintjs-fix": "npx eslint ./ --fix",
+    "lintjs-fix": "npx eslint --fix ./",
     "prepare": "husky install"
   },
   "lint-staged": {
