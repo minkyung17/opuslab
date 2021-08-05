@@ -6,7 +6,7 @@ function someFunction() {
     let string1 = "one";
     let string2 = "two";
 
-    return string1 + string2 + 'three'; // 1:59
+    return string1 + string2 + 'three'; // 8/4 5:18p
 }
 
 someFunction();
