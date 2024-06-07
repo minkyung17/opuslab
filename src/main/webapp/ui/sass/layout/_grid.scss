@@ -1,0 +1,182 @@
+.page-header {
+  margin: 30px 0 20px;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 35px;
+  padding-right: 35px;
+  //min-height:400px; affecting jumbotron
+	padding: 0px 30px 0px 30px;
+	z-index:9;
+	clear:both;
+}
+
+
+/* Public pages styles for the background image and container
+-------------------------------------------------- */
+
+body.image  {
+	//background-image: url('../images/bg-optimists-takeover-white.png');
+}
+/*--------Public Pages: use as a class for main container,  to change the border to solid and have extra padding-----*/
+.public {
+	border-style: none;
+	//border-color: #2a6496;
+	border-width:  0px;
+	padding: 0px 50px 50px 50px;
+	background: #fff;
+}
+
+/* ------------main content style for non-public pages doen't have picture background or borders on body container---------- */
+//white background, no container border
+.main-content {
+	clear:both;
+	padding-right: 30px;
+	padding-left: 50px;
+	padding-bottom: 70px;
+	border-style: none;
+	border-width: 0px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+ 	box-shadow: none;
+ 	float: left;
+}
+
+
+
+
+ /* ------------borders -------------------------------------------------- */
+.left-border {
+	border-left: 1px solid $gray-lighter;
+}
+
+.right-border {
+	border-right: 1px solid $gray-lighter;
+}
+
+ /* ------------centered row style -------------------------------------------------- */
+
+.row-centered {
+    text-align: center;
+    vertical-align: top;
+    display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.center {
+	text-align: center;
+}
+
+/* ------------Vertical-align objects, align rows to the top in the home page. -------------------------------------------------- */
+
+.vtop {
+/*     display: inline-block; --*/
+    vertical-align: top;
+}
+
+.vmiddle {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+img.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ------------Float left and right -------------------------------------------------- */
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+
+/* ------------Scoot the OA left nav down -------------------------------------------------- */
+
+.scoot-down  {
+	position: relative;  
+	top: 30px;
+}
+
+/* ------------Scoot the foldie on the DA SA Dashboard h1 down -------------------------------------------------- */
+
+.scoot-down-10  {
+	position: relative;
+	top: 10px;
+}
+
+.scoot-down-30  {
+	position: relative;
+	top: 30px;
+}
+/* ——————Add space to the bottom of the profile page -------------------------------------------------- */
+
+.add-padding-bottom  {
+	padding-bottom: 70px;
+}
+
+.no-margin-top	{
+ 	margin-top: 0px;
+ }
+.margin-top-5{
+	margin-top: 5px;
+}
+
+
+/*------------RESPONSIVE DESIGN HERE -------------------------------------------------- */
+
+
+
+@media (min-width: 978px) {
+    .home-icon {
+  		padding-left:30px;
+  		padding-right:30px;
+	}
+}
+/*------------Nav Bar ------------------- */
+
+@media (min-width: 978px) {
+    .navbar-nav > li  {
+  		padding-left:30px;
+  		padding-right:30px;
+	}
+}
+
+/* ------------smaller images -------------------------------------------------- */
+
+.smaller-img  {
+	max-width: 100px;
+}
+
+div.page-header.has-icon	{
+	padding-bottom: 2px;
+    margin: 35px 0 0px;
+}
+
+.no-margin-bottom	{
+	margin-bottom: 0px;
+}
+
+.indent-50	{
+	padding-left: 50px;
+}
+
+.pad-right-5	{
+	padding-right: 5px;
+}
+
+/* ------------permissions modals -------------------------------------------------- */
+.margin-left-10	{
+		margin-left: 10px;
+
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Mismatches</title>
+
+<!--#include virtual="../common/header.html" -->
+</head>
+<body>
+	<!--#include virtual="../common/nav.html" -->
+
+	<!-- Begin page content -->
+	<div class="container-fluid" id="main">
+		<div class="row-fluid">
+			<div class="page-header tab-header">
+				<h1>Opus Primary / Additional Comparison</h1>
+			</div>
+
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation"  class="active"><a href="#opus-mismatches"
+					aria-controls="mismatches" role="tab">Mismatches</a></li>
+				<li role="presentation"><a href="opus-hidden-mismatches.shtml"
+					aria-controls="completed-cases" role="tab">Hidden</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="opusMismatchesReport">
+					<p id="instructions">Compare the appointment details between the Primary and Additional appointments in Opus. Highlighted cells show mismatched fields. Where there are mismatches, update the appropriate Opus appointment. If you see a Case icon next to the row, take a look at your Active Cases to see if an unclosed case is the cause of the disparity. The comparison report only includes faculty with joint or split appointments. The report does not include any pending (prospective) appointments. If you have a faculty member with a joint or split appointment and you don't see them listed here, contact <a href="mailto:opushelp@ucla.edu">
+                opushelp@ucla.edu</a>.</p>
+
+
+					<div id="reactFixedDataTable" data-datatable_appname='opusMismatchesReport'
+						data-datatable_config='opusMismatchesReport'>  
+						 Loading...          				
+       				</div>
+					</div>
+					<!-- development -->
+					<!--  script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development-->
+					<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production-->
+				</div>
+			</div>
+		</div>
+	<!--#include virtual="../common/footer.html" -->
+
+	<!--#include virtual="../common/js-includes.html" -->
+
+
+
+	<script src="constants.js"></script>
+	<script src="../admin/form-fields.js"></script>
+	<script src="../javascript/select-row.js"></script>
+	<script src="case-logic.js"></script>
+	<script src="case-validation.js"></script>
+
+	<!-- JavaScript Functionality -->
+	<script>
+		//Highlight the active page in the leftnav
+		function initializeTables() {
+
+			var react_selector = 'data-datatable_config', //name of key to get Datatable element by
+			reactDomElement = $('[' + react_selector + ']'), id_attr = 'id', id = reactDomElement
+					.attr(id_attr), //Id of Dom element to attach React Datatable to
+			datatable_appname = $('#' + id).data('datatable_appname'), datatable_config_name = $(
+					'#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+			if (window._initReactDataTable) {
+				window
+						._initReactDataTable(id, datatable_appname,
+								datatable_config_name, access_token, adminData, globalData);
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>UID Administration</title>
+
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body>
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container-fluid" id="main">
+			
+			
+				
+				<!-- Main page content -->
+				
+				<div class="page-header">
+					<h1>UID Administration</h1>
+				</div>
+				
+			  		<p id="instructions"></p>
+			  		<!-- <div id="table-scroll-area"	> -->	  					  		
+				  		<table id="uid-table" class="display nowrap" cellspacing="0" width="100%">
+							<thead>
+								<tr>
+							    	<th>Name</th>
+							    	<th>Date Requested</th>
+							    	<th>Department</th>
+							    	<th>DA Name</th>
+							    	<th>DA Phone</th>
+							    	<th>DA Email</th>
+							    	<th>DOB</th>
+							    	<th>Gender</th>
+							    	<th>UID</th>
+							    	<th>UID Status</th>
+							    	<th>Action</th>
+						    	</tr>
+						    	<tr>
+									<td class="column-filter"></td>
+									<td class="column-filter"></td>
+									<td class="column-filter"></td>
+									<td class="column-filter"></td>
+									<td class="column-filter"></td>
+									<td class="column-filter"></td>
+									<td class="column-filter"></td>
+									<td class="column-filter"></td>
+									<td class="column-filter"></td>
+									<td class="column-filter filter-on"></td>
+									<td class="column-filter"></td>
+								</tr>
+						    </thead>
+						</table>
+					<!-- </div> -->
+				</div>
+			</div>
+	
+		
+		<!-- Generic Error -->    
+        <div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header modal-danger">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h2 class="white">Error</h2>
+                    </div>
+                    <div class="modal-body">
+                    
+                    </div> <!-- /modal-body -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger left" data-dismiss="modal">Okay</button>
+                    </div> <!-- /modal-footer -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->  
+        
+		</body>
+
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		 <!--#include virtual="../common/jquery-datatables.html" -->
+		
+		<script language="javascript" src="../javascript/select-row.js"></script>
+		
+		<!-- JavaScript Functionality -->
+		<script>
+		
+		//responsive table height upon load
+		$("[rel=tooltip]").tooltip();
+		$('[data-toggle="popover"]').popover({trigger: 'hover'},  {container: 'body'});
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'top'}, {container: 'body'});
+	
+		 //responsive table height upon load
+        $ (document).ready(function() {
+      	  console.log($(window).height());
+      	  $('.dataTables_scrollBody').css('height', ($(window).height() - 400));
+         });
+      
+      //responsive table height upon window resize
+        $(window).resize(function() {
+        	  console.log($(window).height());
+        	  $('.dataTables_scrollBody').css('height', ($(window).height() - 400));
+        	});
+      
+			//Highlight the active page in the leftnav
+			$('#leftnav-uid').addClass('active');
+						
+			function initializeTables() {
+				//Get AJAX data
+			    populateTableData();
+			}
+			
+			function populateTableData() {
+				var userData = {};
+				userData.adminEmail = adminData.adminEmail;
+				userData.adminOpusId = adminData.adminOpusId;
+				userData.adminRoles = adminData.adminRoles;
+				userData.adminName = adminData.adminName;
+				userData.permissions = adminData.permissions;
+	  			var SendInfo = {
+	  			     adminData: userData
+	  		    }; 
+				$.ajax({ 
+					cache:false,
+				    url: "/restServices/rest/cont/adminsUidStatusList/?access_token="+access_token, 
+				    type: 'POST', 
+				    dataType: 'json', 
+				    data: JSON.stringify(SendInfo),
+				    contentType: 'application/json',
+				    mimeType: 'application/json',
+				    success: function(data) { 
+						initializeTable(data);
+				    },
+				    error:function(jqXHR, textStatus, errorThrown) { 
+                        $("#error .modal-body").empty();
+                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+                        $('#error').modal('show');
+                        console.log("Error: ", errorThrown);
+                        console.log(jqXHR); 
+                        console.log("Text Status: ", textStatus);
+				    }
+				});
+			}
+			
+			          
+			function initializeTable(inputData) {
+				var table = $('#uid-table').DataTable( {
+			        dom: 'frtiS',
+			        aaData: inputData,
+			        "orderClasses": false,
+				    pageResize: true,
+					"sScrollY": ($(window).height() - 400),
+					scrollX: true, //Allows horizontal scrolling of the table when there are many columns
+			       // scrollCollapse: true, //Part of the Fixed Column initialization
+			        "autoWidth": true,
+			        sAjaxDataProp: "",
+			        order: [1, 'desc'],
+			        bSortCellsTop: true,
+				    
+				    scroller: true,
+			 
+			        columns: [
+			            {data: "applicantFullName"},
+			            {data: "dateRequested", 
+			            	mRender:	function (data, type, full) {
+			            					return formatDateTime(full.dateRequested);
+				            	  	},
+				      		name: "dateRequested", 
+				      		defaultContent: ""
+				       	},
+			            {data: "applicantDeptName"},
+			            {data: "departmentAdminName", bVisible: false},
+			            {data: "departmentAdminPhone", bVisible: false},
+			            {data: "departmentAdminEmail", bVisible: false},
+			            {data: "applicantDOB", 
+			            	mRender:	function (data, type, full) {	
+			            					return formatDate(full.applicantDOB);
+				            	  	},
+				      		name: "applicantDOB", 
+				      		defaultContent: ""
+				       	},
+			            {data: "applicantGender"},
+			            {data: "applicantUID"},
+			            {data: "applicantUIDStatus"},
+				       	{data: "action", 
+			            	sDefaultContent:"",
+			            	mRender:	function (data, type, full) {
+						            		if (full.applicantUIDStatus == 'UID Purge Requested' || full.applicantUIDStatus == 'UID Recorded') {
+						            			return '<button type="button" class="btn btn-default btn-purge" data-appid="' + full.applicantId + '" data-uid="' + full.applicantUID + '">Purge UID</button>';
+						            		}
+			        					}
+				 		}
+			        ],
+			    
+			    	<!--  ifixedColumns: {leftColumns: 1}, -->
+			        fnInitComplete: function(oSettings, json) { 
+			        	//For some reason, we have to re-initialize the table or it gives an 'undefined' error
+				    	var table = $('#uid-table').DataTable();
+					    $(".column-filter").each( function ( i ) {
+					    	if ($(this).hasClass('filter-on')) {
+					    		//Have to use index() otherwise "i" only indexes visible columns, and will pull the hidden column's data into the dropdown
+					    		var index = table.column.index('fromVisible', $(this).index());
+						        
+					    		//This does the filtering and redraws the table
+					    		var select = $('<select><option value="">All</option></select>')
+						            .appendTo( $(this).empty() )
+						            .on( 'change', function () {
+						                var val = $(this).val();
+
+						                table.column( index )
+						                    .search( val ? '^'+$(this).val()+'$' : val, true, false )
+						                    .draw();
+						            } );
+						 
+						        //This populates the dropdown
+						        table.column( index ).data().unique().sort().each( function ( d, j ) {
+						            select.append( '<option value="'+d+'">'+d+'</option>' )
+						        } );
+					    	}
+					    } );
+				    }
+			    });
+			    		
+				//Fixed left column
+			//	new $.fn.dataTable.FixedColumns(table,{
+               //     iLeftColumns:1
+             //   }); //needed to fix double header issue
+               	table.columns.adjust(); // fixes misaligned header on first load
+				
+			    //Hide and show columns
+			  //  var colvis = new $.fn.dataTable.ColVis(table);
+			  //  $(colvis.button()).insertAfter('#instructions');	
+			    
+			    changeDTstyles();
+			}	
+			
+			var button;
+			
+			//Purge UID
+			$(window).load(function(){
+				$("#uid-table").on("click", ".btn-purge", function() {
+
+					var appId = this.getAttribute("data-appid");
+					var newUid = this.getAttribute("data-uid");
+										
+					purgeButton = $(this);
+					button = this;
+					
+					var userData = {};
+					userData.adminEmail = adminData.adminEmail;
+					userData.adminOpusId = adminData.adminOpusId;
+					userData.adminRoles = adminData.adminRoles;
+					userData.adminName = adminData.adminName;
+					userData.permissions = adminData.permissions;
+					
+		  			var SendInfo = {
+		  					applicantId: appId,
+		  					applicantUID: newUid,
+		  					adminData: userData
+		  		    }; 
+					
+					$.ajax({ 
+						cache:false,
+	 			    	url: "/restServices/rest/cont/uidPurge/?access_token="+access_token, 
+	 			    	type: 'POST', 
+	 			    	dataType: 'json', 
+	 			    	data: JSON.stringify(SendInfo),
+	 			    	contentType: 'application/json',
+	 			    	mimeType: 'application/json',
+	 			    	success: function(data) { 
+					    	if (data.errored != true) {
+					    		//Cancel request was successful, update the table					      		
+					    		var table = $('#uid-table').DataTable();
+					    		table.row(purgeButton.parents("tr")).data(data).draw();
+					    		
+					      		button.remove();
+					      		
+					      		updateColumnFilter();
+					    	}
+					    	else {
+					    		//Do nothing because the cancel request was not successful
+					    		alert(this.errorMessage);
+					    	}
+	 			    	},
+	 			    	error:function(jqXHR, textStatus, errorThrown) { 
+	                         $("#error .modal-body").empty();
+	                         $("#error .modal-body").append(jqXHR.responseJSON.message);
+	                         $('#error').modal('show');
+	                         console.log("Error: ", errorThrown);
+	                         console.log(jqXHR); 
+	                         console.log("Text Status: ", textStatus);
+	 				    }
+					});
+ 				});
+			});
+															
+			function updateColumnFilter() {
+				var table = $('#uid-table').DataTable();
+				
+				$(".column-filter").each( function ( i ) {
+			    	if ($(this).hasClass('filter-on')) {
+			    		//Have to use index() otherwise "i" only indexes visible columns, and will pull the hidden column's data into the dropdown
+			    		var index = table.column.index('fromVisible', $(this).index());
+				        var select = $('<select><option value="">All</option></select>')
+				            .appendTo( $(this).empty() )
+				            .on( 'change', function () {
+				                var val = $(this).val();
+
+				                table.column( index )
+				                    .search( val ? '^'+$(this).val()+'$' : val, true, false )
+				                    .draw();
+				            } );
+				 
+				        table.column( index ).data().unique().sort().each( function ( d, j ) {
+				            select.append( '<option value="'+d+'">'+d+'</option>' )
+				        } );
+			    	}
+			    } );	
+			}
+			
+		</script>
+  	</body>
+</html>

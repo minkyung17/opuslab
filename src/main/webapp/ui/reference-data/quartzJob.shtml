@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<title>Quartz Jobs</title>
+<!--#include virtual="../common/header.html" -->
+</head>
+
+<body>
+	<!--#include virtual="../common/nav.html" -->
+	<!-- Begin page content -->
+	<div class="container-fluid public" id="main">
+
+		<div class="row-fluid">
+			<div class="page-header">
+				<h1>Quartz Jobs</h1>
+			</div>
+
+			<h2></h2>
+			<div id="reactFixedDataTable" data-datatable_appname='quartzJob' data-datatable_config='quartzJob'>
+			Loading...
+			</div>
+        	<!-- script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development -->
+            <script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production -->
+			
+		</div>
+	</div>
+
+
+
+	<!--#include virtual="../common/footer.html" -->
+
+	<!--#include virtual="../common/js-includes.html" -->
+	
+	<!-- JavaScript Functionality -->
+	<script> 
+        function initializeTables() {
+    				    				
+            var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+                reactDomElement = $('[' + react_selector + ']'),
+                id_attr = 'id',
+                id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+                datatable_appname = $('#' + id).data('datatable_appname'),
+                datatable_config_name = $('#' + id).data('datatable_config');//Datatable name - in this case 'quartzJob'
+
+            window._initReactQuartzJob(id, datatable_appname, datatable_config_name, 
+                    access_token, adminData, globalData);
+        }
+	</script>
+</body>
+
+</html>

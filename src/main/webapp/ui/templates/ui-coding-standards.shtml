@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>UI Coding Standards</title>
+				
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body>
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container main-content" id="main">
+			<div class="page-header">
+				<h1>UI Coding Standards</h1>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h1>General</h1>
+					<h2>Naming conventions</h2>
+					<table class="table table-hover">
+						<tr>
+							<th>Rule</th>
+							<th>Example</th>
+						</tr>
+						<tr>
+							<td>Use lower case and hyphens</td>
+							<td><div class="alert alert-success" role="alert">Good:<br>
+				  					my-new-file.html
+								</div>	 
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				
+					<h1>JavaScript</h1>			  		
+				  	<h2>Syntax</h2>
+					<table class="table table-hover">
+						<tr>
+							<th>Rule</th>
+							<th>Example</th>
+						</tr>
+						<tr>
+							<td>Use === instead of ==.  The same goes for !== instead of !=.</td>
+							<td><div class="alert alert-success" role="alert">if (blah === "foo") {</div></td>
+						</tr>
+						<tr>
+							<td>Use double quotes for strings.</td>
+							<td><div class="alert alert-success" role="alert">if (test === "success")</div></td>
+						</tr>
+					</table>
+					
+					<h2>Whitespacing and Formatting</h2>
+					<table class="table table-hover">
+						<tr>
+							<th>Rule</th>
+							<th>Example</th>
+						</tr>
+						<tr>
+							<td>Use spaces before and after parentheses, comparators, etc.</td>
+							<td><div class="alert alert-success" role="alert">Good:<br>
+				  					if (blah === "foo") {<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foo("bar");<br>
+									}
+								</div>	
+								<div class="alert alert-danger" role="alert">Bad:<br>
+				  					if(blah==="foo"){<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foo("bar");<br>
+									}
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Same line braces</td>
+							<td><div class="alert alert-success" role="alert">Good:<br>
+				  					if (foo) {<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bar();<br>
+									}
+								</div>	
+								<div class="alert alert-danger" role="alert">Bad:<br>
+				  					if (foo)<br>
+									{<br>
+	    								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bar();<br>
+									}
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Always use braces</td>
+							<td><div class="alert alert-success" role="alert">Good:<br>
+				  				if (foo) {<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bar();<br>
+								}
+								</div>	
+								<div class="alert alert-danger" role="alert">Bad:<br>
+				  					if (foo)<br>
+	    								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bar();<br>
+								</div>	
+							</td>
+						</tr>
+						<tr>
+							<td>Don't mix tabs and spaces</td>
+							<td><div class="alert alert-success" role="alert">Good:<br>
+				  				if (foo) {<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bar();<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;baz();<br>
+								}
+								</div>	
+								<div class="alert alert-danger" role="alert">Bad:<br>
+				  					if (foo) {<br>
+	    								&nbsp;&nbsp;&nbsp;bar();<br>
+	    								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;baz();<br>
+	    							}
+								</div>	
+							</td>
+						</tr>
+						<tr>
+							<td>Line breaks - use the "+" at the end of the line, not at the beginning of the next
+							</td>
+							<td><div class="alert alert-success" role="alert">Good:<br>
+				  					"foo()"+<br>
+									"bar()"
+								</div>	
+								<div class="alert alert-danger" role="alert">Bad:<br>
+				  					"foo()"<br>
+									+"bar()"
+								</div>	
+							</td>
+						</tr>
+						<tr>
+							<td>Consistent indentation - line up opening and closing tags, curly braces, etc.
+							</td>
+							<td><div class="alert alert-success" role="alert">Good:<br>
+				  				if (foo) {<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bar();<br>
+								}
+								</div>	
+								<div class="alert alert-danger" role="alert">Bad:<br>
+				  					if (foo) {<br>
+	    								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bar();<br>
+	    							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+								</div>	
+							</td>
+						</tr>
+					</table>
+					
+					<h2>Variables</h2>
+					<table class="table table-hover">
+						<tr>
+							<th>Rule</th>
+							<th>Example</th>
+						</tr>
+						<tr>
+							<td>Use camel case</td>
+							<td><div class="alert alert-success" role="alert">
+				  					var xPosition = 1;
+								</div>	
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+					
+					<h1>CSS</h1>
+					<h2>Spacing</h2>
+					<table class="table table-hover">
+						<tr>
+							<th>Rule</th>
+							<th>Example</th>
+						</tr>
+						<tr>
+							<td>Use proper spacing</td>
+							<td><div class="alert alert-success" role="alert">Good:<br>
+				  					.selector {<br>
+	    								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
+	    								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #ff0000;<br>
+	    								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #000000;<br>
+									}
+								</div>	
+								<div class="alert alert-danger" role="alert">Bad:<br>
+				  					.selector {display:none;background:#ff0000;color:#000000;}
+								</div>	 
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+			
+		<!-- JavaScript Functionality -->
+		<script>		
+			
+		</script>
+  	</body>
+</html>

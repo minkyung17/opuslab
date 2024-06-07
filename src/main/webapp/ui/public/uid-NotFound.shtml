@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html lang="en">
+        <head>
+                <title>Opus Error</title>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="description" content="UCLA Opus">
+                <meta name="author" content="UCLA Opus">
+        </head>
+
+        <body>
+                <h1 style="font-family: verdana; color:#347bad;">OpusId does not exist.</h1>                <p style="font-family: verdana;">Sorry, Opus Id does not exist for you. Please contact <a href='mailto:opushelp@ucla.edu'>opushelp@ucla.edu</a> to get access to Opus.
+                </p>
+        </body>
+</html>

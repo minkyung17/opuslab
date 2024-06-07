@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Governance</title>
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body class="image">
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container public" id="main">
+			<div class="page-header">
+				<h1>Opus Governance</h1>
+			</div>
+	
+				
+				<!-- Main page content -->
+						
+					<h2>Sponsors</h2>
+			  		<p> 
+			  			<ul class="none">
+			  				<li class="bodytextli">Mike Levine, Vice Chancellor, Academic Personnel </li>
+			  				<li class="bodytextli">Carole Goldberg, Jonathan D. Varat Distinguished Professor of Law</li>
+							<li class="bodytextli">Jim Davis, Vice Provost, Information Technology </li>
+							<li class="bodytextli">Steve Olsen, Vice Chancellor and Chief Financial Officer </li>
+							<li class="bodytextli">Michael Beck, Administrative Vice Chancellor</li>
+ 							<li class="bodytextli">Jonathan Hiatt, Vice Dean for Faculty, David Geffen School of Medicine</li>
+						</ul>
+					</p>
+
+					<h2>Opus Oversight Committee</h2>
+					<p>
+						<ul class="none">
+							<li class="bodytextli">Mike Levine, Vice Chancellor, Academic Personnel </li>
+							<li class="bodytextli">Erika Chau, Executive Director, Academic Personnel</li>
+							<li class="bodytextli">Carole Goldberg, Jonathan D. Varat Distinguished Professor of Law</li>
+    						<li class="bodytextli">Kathleen Komar, Special Assistant to the Vice Chancellor, Academic Personnel</li>
+    						<li class="bodytextli">Omar Noorzai, Executive Director, Business Transformation Office</li>
+    						<li class="bodytextli">Michael Van Norman, Interim Associate Vice Chancellor, IT Services</li>
+    						<li class="bodytextli">Frederick Zimmerman, Professor, Health Services, Fielding School of Public Health </li>
+    						
+<!--     						<li class="bodytextli">Jean-Francois Blanchette, Associate Professor, Information Studies</li> -->
+<!--    						<li class="bodytextli">Ferdinand Coroniti, Associate Dean, Physical Sciences</li> -->
+<!--     						<li class="bodytextli">Marsha Fractor, Executive Director, Academic Personnel Office</li> -->
+<!--     						<li class="bodytextli">Albert Glover, Director of Academic Affairs, David Geffen School of Medicine</li> -->
+<!--     						<li class="bodytextli">Todd Grappone, Associate University Librarian, Digital Initiatives and IT </li> -->
+<!--     						<li class="bodytextli">Jack Hughes, Professor, Anderson School of Management</li> -->
+<!--     						<li class="bodytextli">Ann Karagozian, Professor, Mechanical and Aerospace Engineering</li> -->
+<!--     						<li class="bodytextli">Michael Levine, Professor, Psychiatry and Biobehavioral Science</li> -->
+<!--     						<li class="bodytextli">Michael Lofchie, Associate Dean, Social Sciences</li> -->
+<!--     						<li class="bodytextli">David Delgado Shorter, Professor, World Arts &amp; Cultures</li> -->
+<!--     						<li class="bodytextli">Julie Sina, Assistant Vice Chancellor and Vice President-Finance/CFO and Treasurer, The UCLA Foundation </li> -->
+<!--     						<li class="bodytextli"> Mary Territo, Professor, Medicine</li> -->
+<!--     						<li class="bodytextli">Kent Wada, Chief Privacy Officer and Director, Strategic IT Policy, Office of Information Technology, Ex. Officio</li> -->
+<!--     						<li class="bodytextli">Andrew Wissmiller, Associate Vice Chancellor Information Technology Services, Ex. Officio</li> -->
+						</ul>			  	
+					</p>
+				</div>
+		
+
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		
+		
+  	</body>
+</html>

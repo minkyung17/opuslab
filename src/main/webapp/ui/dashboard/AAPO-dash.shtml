@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>APO Dashboard</title>
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body class="image">
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container fluid public main" id='main'>
+		
+			<div class="row">
+			
+		
+			<!-- Left hand navigation -->
+			
+				<div class="col-xs-4 col-md-2 leftnav scoot-down left-side-nav">
+					<!--#include virtual="../common/apo-leftnav.html" -->
+				</div>	
+				
+				<!-- Page content -->
+				
+				<div class="col-xs-8 col-md-10 scoot-down"> 
+					<div class="page-header">
+						<div class="row">
+							<div class="col-md-2 flush-top">
+								<img src="../images/superfolder.png" alt="superman filey!">
+							</div>
+							<div class="col-md-10">
+								<h1 class=" black">Welcome to Opus, AAPO! </h1>	
+								<p>Any questions? We're happy to help. Please contact <u><a target="blank" href="https://uclaopus.freshdesk.com/support/solutions">UCLA Opus Support.</a></u></p>
+							</div>
+						</div>
+					</div>	
+					
+					<div id="alerts" class="alert light-blue" role="alert" hidden>
+						<h4 class=" black" id="dashboardTitle"></h4>
+						<p id="dashboardText"></p>
+					</div>
+				
+					<div class="row">
+
+						<!-- Column 1 -->
+						<div class="col-md-6">
+							
+							<!-- Cases -->
+							<div class="row">
+	
+								<div class="col-md-2 center align-md-left">
+									<img src="../images/activecase-tiny.jpg" alt="an active case">
+								</div>
+								<div class="col-md-10">
+									<h1 class=" black flush-top ">Cases</h1>
+								</div>
+	
+								<!-- Start a Case -->
+								<!-- <div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/active-cases.shtml">
+										<h3><u>Start a Case</u></h3>
+									</a>
+									<button type="button" id="start-new-case-button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#choose-person">
+								</div> -->
+								
+								<!-- Cases -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/active-cases.shtml">
+										<h3><u>Case Reports</u></h3>
+									</a>
+									<p>Cases in your queue and reports of active, completed, or withdrawn cases.</p>
+								</div>
+								
+								<!-- Go to Interfolio -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="#" onclick="connectToByC();">
+										<h>Go to Interfolio</u></h3>
+									</a>
+									<p>Dossier content and review workflow.</p>
+								</div>
+	
+							</div>
+
+							<!-- Eligibility and Clocks -->
+							<div class="row">
+	
+								<div class="col-md-2 center align-md-left">
+									<img src="../images/gears-color.png" alt="gears">
+								</div>
+								<div class="col-md-10">
+									<h1 class=" black flush-top ">Eligibility and Clocks</h1>
+								</div>
+	
+								<!-- Eligibility -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/eligibility.shtml">
+										<h3><u>Eligibility</u></h3>
+									</a>
+									<p>Forecast of mandatory and optional actions for academic appointees.</p>
+								</div>
+								
+								<!-- Eight Year Clocks-->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/eight-year-clock-summary.shtml">
+										<h3><u>Eight Year Clocks</u></h3>
+									</a>
+									<p>Aggregate summary of all assistant rank appointees' years of service and time on/off the clock.</p>
+								</div>
+								
+								<!-- Excellence Clocks-->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/excellence-review-clock-summary.shtml">
+										<h3><u>Excellence Review Clocks</u></h3>
+									</a>
+									<p>Aggregate summary of all Unit 18 appointees' years of service and time on the clock.</p>
+								</div>
+	
+							</div>
+	
+							<!-- Compensation -->
+							<div class="row">
+	
+								<div class="col-md-2 center align-md-left">
+									<img src="../images/salary-report.png" alt="report icon">
+								</div>
+								<div class="col-md-10">
+									<h1 class=" black flush-top ">Compensation</h1>
+								</div>
+	
+								<!-- Salary -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/salary-report.shtml">
+										<h3><u>Salary Report</u></h3>
+									</a>
+									<p>Current and proposed salaries for academic
+										appointees, including off-scale analyses.</p>
+								</div>
+
+								<!-- UCPath Compensation Report -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/salary-report-UCPath.shtml">
+										<h3><u>UCPath Compensation Report</u></h3>
+									</a>
+									<p>Salary plans and components from UCPath.</p>
+								</div>
+								
+								<!-- Administrative Compensation -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/admin-comp-proposals.shtml">
+										<h3><u>Administrative Compensation</u></h3>
+									</a>
+									<p>Campus allocations for administrative appointments. Submit administrative compensation requests.</p>
+								</div>
+	
+							</div>
+	
+						</div>
+	
+						<!-- Column 2 -->
+						<div class="col-md-6">
+							
+							<!-- Profile and Appointments -->
+							<div class="row">
+	
+								<div class="col-md-2 center align-md-left">
+									<img src="../images/profile.png" alt="profile pic">
+								</div>
+								<div class="col-md-10">
+									<h1 class=" black flush-top ">Profiles and Appointments</h1>
+								</div>
+	
+								<!-- Profile -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/profile.shtml">
+										<h3><u>Profiles</u></h3>
+									</a>
+									<p>Active and inactive appointment details per appointee:
+										Appointment sets, clocks, and academic history.</p>
+								</div>
+								
+								<!-- Appointments -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/roster.shtml">
+										<h3><u>Appointments</u></h3>
+									</a>
+									<p>Roster of active and inactive academic appointments.</p>
+								</div>
+
+								<!-- Endowed Chairs -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/active-endowed-chairs.shtml">
+										<h3><u>Endowed Chairs</u></h3>
+									</a>
+									<p>Current and past Endowed Chairs and Chair Holders.</p>
+								</div>
+								
+								<!-- Link UCPath Position -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/link-path-position.shtml">
+										<h3><u>Link UCPath Position</u></h3>
+									</a>
+									<p>Link UCPath Positions to Opus appointments.</p>
+								</div>
+
+								<!-- Request a UID -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/request-uid.shtml">
+										<h3><u>Request a UID</u></h3>
+									</a>
+									<p>Request early UID creation to onboard new faculty and to match the Opus person record with UCPath.</p>
+								</div>
+
+								<!-- Comparison Appointments -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<h3 class=" black ">Mismatch Reports</u></h3>
+									<ul>
+										<!-- UCPath/Opus Comparison -->
+										<li>
+											<a href="../admin/mismatches.shtml">
+												<h3><u>UCPath / Opus Comparison</u></h3>
+											</a>
+											<p>Report of discrepancies between Opus appointments and linked UCPath Positions.</p>
+										</li>
+										<!-- Opus Primary / Additional Comparison Report -->
+										<li>
+											<a href="../admin/opus-mismatches.shtml">
+												<h3><u>Opus Primary / Additional Comparison</u></h3>
+											</a>
+											<p>Report of discrepancies between primary and additional Opus appointments.</p>
+										</li>
+									</ul>
+									
+								</div>
+	
+							</div>
+	
+	
+						</div>
+	
+						
+	
+	
+					</div>
+	
+					<!-- Administrative Actions -->
+					<div class="row">
+	
+						<div class="row">
+							<div class="col-md-6">
+								<br>
+								<div class="col-md-2 center align-md-left">
+									<a href="../admin/permissions.shtml"><img src="../images/certificate.png" alt="certificate"></a>
+								</div>
+								<div class="col-md-10">
+									<h1 class=" black flush-top ">Administrative Actions</h1>
+								</div>
+							</div>
+							<div class="col-md-6"></div>
+						</div>
+	
+	
+						<!-- Column 1 -->
+						<div class="col-md-6">
+							<div class="row">
+		
+								<!-- Mandatory UC Training Compliance -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/compliance-report.shtml">
+										<h3><u>Mandatory UC Training Compliance</u></h3>
+									</a>
+									<p>Training certification status for academic appointees.</p>
+								</div>
+
+								<!-- Manage Opus and Interfolio Access -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../admin/permissions-users.shtml">
+										<h3><u>Manage Opus and Interfolio Access</u></h3>
+									</a>
+									<p>People assigned staff and Chair roles for Opus and Interfolio.</p>
+								</div>
+
+								<!-- UID Administration -->
+								<div class="col-md-2 center align-md-left"></div>
+								<div class="col-md-10">
+									<a href="../opus-admin/uid-admin.shtml">
+										<h3><u>UID Administration</u></h3>
+									</a>
+									<p>Report of UID requests and their corresponding status.</p>
+								</div>
+	
+							</div>
+						</div>
+	
+						<!-- Column 2 -->
+						<div class="col-md-6">
+							<div class="row">
+	
+							</div>
+						</div>
+					</div>
+					<br>
+					<br>
+			</div>
+		</div>
+							
+	</div>
+</div>
+</div>
+
+
+
+
+		
+		<!-- JavaScript Functionality -->
+		
+	<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		
+		<!-- JavaScript Functionality -->
+		<script>
+		//If the role is not apo_director, redirect user to the access-error page.  Borrowing the initializeTables function here
+		//because it is called in the success block of the ajax function inside opus.js that retrieves adminData
+		function initializeTables() { 
+				if (adminData.alertTitle != null && adminData.alertTitle != ''
+						&& adminData.alertText != null && adminData.alertText != '') {
+					document.getElementById("alerts").style.display = "block";
+					document.getElementById("dashboardTitle").innerHTML = adminData.alertTitle;
+					document.getElementById("dashboardText").innerHTML = adminData.alertText;
+				}
+		}
+		
+		//tooltip
+		$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'top'});
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'top'});
+
+		$('#my-affix').affix({
+		    offset: {
+		      top: 25
+		    , bottom: function () {
+		        return (this.bottom = $('.footer').outerHeight(true))
+		      }
+		    }
+		  })
+		
+		$('#nav-home').addClass('active');	// make "home" navbar link active	
+		</script>
+		
+	<script type='text/javascript'>
+	var  fc_CSS=document.createElement('link');fc_CSS.setAttribute('rel','stylesheet');
+	var fc_isSecured = (window.location && window.location.protocol == 'https:');
+	var fc_lang = document.getElementsByTagName('html')[0].getAttribute('lang'); 
+	var fc_rtlLanguages = ['ar','he']; var fc_rtlSuffix = (fc_rtlLanguages.indexOf(fc_lang) >= 0) ? '-rtl' : '';
+	fc_CSS.setAttribute('type','text/css');fc_CSS.setAttribute('href',((fc_isSecured)? 'https://d36mpcpuzc4ztk.cloudfront.net':'http://assets1.chat.freshdesk.com')+'/css/visitor'+fc_rtlSuffix+'.css');
+	document.getElementsByTagName('head')[0].appendChild(fc_CSS);var fc_JS=document.createElement('script'); 
+	fc_JS.type='text/javascript'; fc_JS.defer=true;fc_JS.src=((fc_isSecured)?'https://d36mpcpuzc4ztk.cloudfront.net':'http://assets.chat.freshdesk.com')+'/js/visitor.js';
+	(document.body?document.body:document.getElementsByTagName('head')[0]).appendChild(fc_JS);
+	window.livechat_setting= 'eyJ3aWRnZXRfc2l0ZV91cmwiOiJ1Y2xhb3B1cy5mcmVzaGRlc2suY29tIiwicHJvZHVjdF9pZCI6bnVsbCwibmFtZSI6IlVDTEEgT3B1cyBTdXBwb3J0Iiwid2lkZ2V0X2V4dGVybmFsX2lkIjpudWxsLCJ3aWRnZXRfaWQiOiI4Y2YzNWI4YS0wMDc0LTQ1NjQtOTRmMS05MTA4ODkzZTkwNWMiLCJzaG93X29uX3BvcnRhbCI6dHJ1ZSwicG9ydGFsX2xvZ2luX3JlcXVpcmVkIjpmYWxzZSwibGFuZ3VhZ2UiOiJlbiIsInRpbWV6b25lIjoiUGFjaWZpYyBUaW1lIChVUyAmIENhbmFkYSkiLCJpZCI6NjAwMDA1MDI5MiwibWFpbl93aWRnZXQiOjEsImZjX2lkIjoiMDU1ZDM1YzI4NTk5ZjI3ZTY1YmE0ZTU2MTY4NmVjMzgiLCJzaG93IjoxLCJyZXF1aXJlZCI6MiwiaGVscGRlc2tuYW1lIjoiVUNMQSIsIm5hbWVfbGFiZWwiOiJOYW1lIiwibWVzc2FnZV9sYWJlbCI6Ik1lc3NhZ2UiLCJwaG9uZV9sYWJlbCI6IlBob25lIiwidGV4dGZpZWxkX2xhYmVsIjoiVGV4dGZpZWxkIiwiZHJvcGRvd25fbGFiZWwiOiJEcm9wZG93biIsIndlYnVybCI6InVjbGFvcHVzLmZyZXNoZGVzay5jb20iLCJub2RldXJsIjoiY2hhdC5mcmVzaGRlc2suY29tIiwiZGVidWciOjEsIm1lIjoiTWUiLCJleHBpcnkiOjAsImVudmlyb25tZW50IjoicHJvZHVjdGlvbiIsImVuZF9jaGF0X3RoYW5rX21zZyI6IlRoYW5rIHlvdSEhISIsImVuZF9jaGF0X2VuZF90aXRsZSI6IkVuZCIsImVuZF9jaGF0X2NhbmNlbF90aXRsZSI6IkNhbmNlbCIsInNpdGVfaWQiOiIwNTVkMzVjMjg1OTlmMjdlNjViYTRlNTYxNjg2ZWMzOCIsImFjdGl2ZSI6MCwicm91dGluZyI6bnVsbCwicHJlY2hhdF9mb3JtIjoxLCJidXNpbmVzc19jYWxlbmRhciI6bnVsbCwicHJvYWN0aXZlX2NoYXQiOjAsInByb2FjdGl2ZV90aW1lIjoxMDUsInNpdGVfdXJsIjoidWNsYW9wdXMuZnJlc2hkZXNrLmNvbSIsImV4dGVybmFsX2lkIjpudWxsLCJkZWxldGVkIjowLCJtb2JpbGUiOjEsImFjY291bnRfaWQiOm51bGwsImNyZWF0ZWRfYXQiOiIyMDE3LTA1LTE5VDIzOjU3OjE5LjAwMFoiLCJ1cGRhdGVkX2F0IjoiMjAxNy0wOC0yM1QxMzo0NzoxMy4wMDBaIiwiY2JEZWZhdWx0TWVzc2FnZXMiOnsiY29icm93c2luZ19zdGFydF9tc2ciOiJZb3VyIHNjcmVlbnNoYXJlIHNlc3Npb24gaGFzIHN0YXJ0ZWQiLCJjb2Jyb3dzaW5nX3N0b3BfbXNnIjoiWW91ciBzY3JlZW5zaGFyaW5nIHNlc3Npb24gaGFzIGVuZGVkIiwiY29icm93c2luZ19kZW55X21zZyI6IllvdXIgcmVxdWVzdCB3YXMgZGVjbGluZWQiLCJjb2Jyb3dzaW5nX2FnZW50X2J1c3kiOiJBZ2VudCBpcyBpbiBzY3JlZW4gc2hhcmUgc2Vzc2lvbiB3aXRoIGN1c3RvbWVyIiwiY29icm93c2luZ192aWV3aW5nX3NjcmVlbiI6IllvdSBhcmUgdmlld2luZyB0aGUgdmlzaXRvcuKAmXMgc2NyZWVuIiwiY29icm93c2luZ19jb250cm9sbGluZ19zY3JlZW4iOiJZb3UgaGF2ZSBhY2Nlc3MgdG8gdmlzaXRvcuKAmXMgc2NyZWVuLiIsImNvYnJvd3NpbmdfcmVxdWVzdF9jb250cm9sIjoiUmVxdWVzdCB2aXNpdG9yIGZvciBzY3JlZW4gYWNjZXNzICIsImNvYnJvd3NpbmdfZ2l2ZV92aXNpdG9yX2NvbnRyb2wiOiJHaXZlIGFjY2VzcyBiYWNrIHRvIHZpc2l0b3IgIiwiY29icm93c2luZ19zdG9wX3JlcXVlc3QiOiJFbmQgeW91ciBzY3JlZW5zaGFyaW5nIHNlc3Npb24gIiwiY29icm93c2luZ19yZXF1ZXN0X2NvbnRyb2xfcmVqZWN0ZWQiOiJZb3VyIHJlcXVlc3Qgd2FzIGRlY2xpbmVkICIsImNvYnJvd3NpbmdfY2FuY2VsX3Zpc2l0b3JfbXNnIjoiU2NyZWVuc2hhcmluZyBpcyBjdXJyZW50bHkgdW5hdmFpbGFibGUgIiwiY29icm93c2luZ19hZ2VudF9yZXF1ZXN0X2NvbnRyb2wiOiJBZ2VudCBpcyByZXF1ZXN0aW5nIGFjY2VzcyB0byB5b3VyIHNjcmVlbiAiLCJjYl92aWV3aW5nX3NjcmVlbl92aSI6IkFnZW50IGNhbiB2aWV3IHlvdXIgc2NyZWVuICIsImNiX2NvbnRyb2xsaW5nX3NjcmVlbl92aSI6IkFnZW50IGhhcyBhY2Nlc3MgdG8geW91ciBzY3JlZW4gIiwiY2Jfdmlld19tb2RlX3N1YnRleHQiOiJZb3VyIGFjY2VzcyB0byB0aGUgc2NyZWVuIGhhcyBiZWVuIHdpdGhkcmF3biAiLCJjYl9naXZlX2NvbnRyb2xfdmkiOiJBbGxvdyBhZ2VudCB0byBhY2Nlc3MgeW91ciBzY3JlZW4gIiwiY2JfdmlzaXRvcl9zZXNzaW9uX3JlcXVlc3QiOiJBZ2VudCBzZWVrcyBhY2Nlc3MgdG8geW91ciBzY3JlZW4gIn19';</script>
+	
+  	</body>
+</html>

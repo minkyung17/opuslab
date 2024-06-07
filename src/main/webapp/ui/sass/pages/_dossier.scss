@@ -1,0 +1,174 @@
+
+ /*  folder - for dossier
+-------------------------------------------------- */
+.folder	{
+	border: 4px;
+	border-color: $gray-lighter;
+	border-style: solid;
+}
+
+/* Main page content
+-------------------------------------------------- */
+.case-button-start {
+	float: right;
+	margin-right: 160px;
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+
+.case-button-next {
+	float: right;
+	margin-right: 160px;
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+.case-button-back {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+/* Case location tracker
+-------------------------------------------------- */
+#case-location-tracker {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	height: 100px;
+	white-space: nowrap;	/*Keeps text from wrapping to the next line*/
+	border: 1px solid $gray-lighter;
+}
+
+#case-location-tracker ul {
+	margin: 50px 0px;
+	padding: 0;
+	list-style-type: none;
+}
+
+#case-location-tracker ul li {
+	display: inline;
+	padding: 0px 20px;
+	max-width: 50%;
+}
+
+#case-location-tracker .active {
+	background-image: url('../images/check.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 20px 20px;
+	padding-top: 50px;
+}
+
+/* Add note
+-------------------------------------------------- */
+#add-note input{
+	margin-left: 30px;
+	margin-right: 5px;
+}
+
+#add-note input:first-child {
+	margin-left: 0px;
+}
+
+#add-note textarea {
+	margin: 30px 0px;
+}
+
+/* Courses taught
+-------------------------------------------------- */
+
+#courses-taught {
+	list-style-type: none;
+}
+
+/* Education table
+-------------------------------------------------- */
+.edit-row {
+	color: blue;
+	background-color: $gray-lighter;
+}
+
+.saved-row {
+	color: $gray-dark; 
+	background-color: white;
+}
+
+.add-new-row-element {
+	border-style: none;
+}
+
+.add-new-row-parent {
+	border-top: 1px solid $gray-lighter;
+}
+
+#degree-flags, #other-flags {
+	list-style-type: none;
+	li {
+		margin-left: -40px;
+	}
+	input[type='checkbox'] {
+		margin-right: 5px;
+	}
+}
+
+.education-table {
+	margin-top: 20px;
+}
+
+.education-header {
+	margin-top: 50px;
+}
+
+/* S&CW
+-------------------------------------------------- */
+
+#published-works {
+	
+	li {
+		list-style-type: none;
+	}
+	
+	li.details {
+		margin-top: 15px;
+	}	
+	
+	#sort-dropdown {
+		float: right;
+	}
+
+	.name {
+		margin-top: 20px;
+		font-weight: bold;
+	}
+	
+	.title {
+		font-style: italic;
+	}
+	
+	.pubtitle {
+	
+	}
+	
+	.date {
+	
+	}
+	
+	.editor {
+	
+	}
+	
+	.description {
+		margin: 20px 0px;
+	}
+}
+
+.info { //TODO: Use the instructions class inside typography.scss
+	margin-right: 50px;
+}
+
+#published-works {
+	margin-bottom: 20px;
+}
+
+#info {
+	float: right;
+}

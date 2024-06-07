@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Error</title>
+			
+	
+		<!--#include virtual="/common/header.html" -->
+  	</head>
+
+  	<body >
+		<!--#include virtual="/common/nav-no-logout.html" -->
+
+		<!-- Begin page content -->
+		<div class="container-fluid" id="main">
+			<div class="page-header">
+				<h1>Sorry, you do not have access to Opus.</h1>
+			</div>
+			<div class="row">
+				
+				<!-- Main page content -->
+				<div class="col-xs-8 col-md-10">
+				
+			  	<p class="bodytext">Currently you do not have permission to access the system.  If you would like to request access, email <a href="mailto:opushelp@ucla.edu">opushelp@ucla.edu</a>
+			  	</p>
+			  		
+				</div>
+			</div>
+		</div>
+
+		<!--#include virtual="/common/footer.html" -->
+
+		<!--#include virtual="/common/js-includes.html" -->
+		
+	
+  	</body>
+</html>

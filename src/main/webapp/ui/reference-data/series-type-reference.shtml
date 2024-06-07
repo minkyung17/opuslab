@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Series Type Reference</title>
+                
+        <!--#include virtual="../common/header.html" -->
+        <!--        http://www.datatables.net/blog/2012-05-31 -->
+        <!-- pace CSS (this is only used on DataTable pages) -->
+<!--         <link rel="stylesheet" href="../stylesheets/site.css">    -->
+
+              
+        
+        <!--#include virtual="relevance-modals.html" -->
+                
+        <!--#include virtual="../common/footer.html" -->
+
+        <!--#include virtual="../common/js-includes.html" -->
+        <!--#include virtual="../common/jquery-datatables.html" -->
+
+      <script src="relevance-logic.js"></script>
+                             
+        <!-- JavaScript Functionality -->
+        <script> 
+        
+   	 //responsive table height upon load
+        $ (document).ready(function() {
+      	  console.log($(window).height());
+      	  $('.dataTables_scrollBody').css('height', ($(window).height() - 400));
+         });
+      
+      //responsive table height upon window resize
+        $(window).resize(function() {
+        	  console.log($(window).height());
+        	  $('.dataTables_scrollBody').css('height', ($(window).height() - 400));
+        	}); 
+      
+      
+        var seriesTypeDataRows ;
+        var table;
+        var pageName = 'seriestype';
+            function initializeTables() { 
+            	if (adminData.dashboardRole = "OA" && adminData.adminRoles.indexOf("opus_admin")>=0) {
+	                populateTableData();
+            	} else {
+            		 window.location.assign("/opusWeb/ui/error/access-error.shtml");
+            	}
+            }
+            
+            function populateTableData() {
+                console.log("Before call: " + new Date($.now()));
+                var SendInfo = {
+                
+                }; 
+                $.ajax({
+                    cache:false,
+                    url: "/restServices/rest/admin/getSeriesTypeRef/?access_token="+access_token, 
+                    type: 'GET',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    mimeType: 'application/json',
+                    success: function(adminScreenData) {
+                        if (adminScreenData == "") {                    
+                            window.location.assign("/opusWeb/ui/error/access-error.shtml");       
+                        }
+                        
+                        var aName = adminData.adminName;     
+                        if (aName > "") {  
+                            $('#adminName').html(aName);
+                            $("#nav-logout").show();
+                        }  
+                        seriesTypeDataRows = adminScreenData;                        
+                        initializeTable(seriesTypeDataRows); 
+                    },
+                    error:function(jqXHR, textStatus, errorThrown) {
+                        if (jqXHR.responseText !== "") {  
+                                $("#error .modal-body").empty();
+                                $("#error .modal-body").append(jqXHR.responseText);
+                                $('#error').modal('show');
+                                console.log("Error: ", errorThrown);
+                                console.log(jqXHR); 
+                                console.log("Text Status: ", textStatus);
+                        } else {                            
+                                console.log("Error: ", errorThrown);
+                                console.log(jqXHR); 
+                                console.log("Text Status: ", textStatus);              
+                                window.location.assign("/opusWeb/ui/error/access-error.shtml");     
+                        }  
+                    } 
+                });
+            }
+                                    
+            function initializeTable(inputData) {
+                table = $('#seriestype-table').DataTable( {
+                    aaData: inputData,
+                    dom: 'frtiS',
+                   // bPaginate: false, // include if no pagination
+                    "sScrollY": ($(window).height() - 400),
+                    scrollX:        true, // allow horizontal scrolling
+                    "orderClasses": false, // Always turn this off.  It highlights the sorted column.  Causes slowness.
+                    //scrollCollapse: true, // if have Fixed Columns
+                    columns: [
+					{data: "edit", 
+					sDefaultContent:"",
+						mRender:	function (data, type, full) {
+											return '<a role="button" data-container="body" aria-label="help tip" trigger="hover" data-trigger="hover" tabindex="0" class="ttip" data-placement="top" data-toggle="popover" white-space="pre-wrap" data-html="true" data-content="View/Edit"><button type="button" class="btn btn-default edit-case-button" data-toggle="modal" data-target="#edit-ref-modal" onclick="setEditRefValues('+ full.seriesTypeId + ',\'\',\'' + full.seriesTypeCode +'\',\'' + full.seriesTypeDescription +'\',\''+full.seriesTypeDisplayText+'\',\''+full.isActive+'\',\''+'edit' + '\',\'\',\'\')"> <span aria-label="View/Edit" title="View/Edit" class="icon-pencil ttip"></span></button></a>';
+									},
+									name: "edit"
+						}, 
+                        {data: "seriesTypeId"},
+                        {data: "seriesTypeCode"},
+                        {data: "seriesTypeDescription"},
+                        {data: "seriesTypeDisplayText"},
+                        {data: "isActive"}  
+                    ],
+                    columnDefs: [{
+                        "targets": 'nosort',
+                        "orderable": false
+                    }],
+                    order: [[1, 'asc'],[0, 'asc']],
+                    bSortCellsTop: true, //Sort on the top header cell (not the bottom)
+                    sAjaxDataProp: "", //Use blank instead of aaData as array name
+                    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]], //Show # of entries
+                    iDisplayLength: 25, //Show # of entries default
+                    fnInitComplete: function(oSettings, json) { 
+                        //For some reason, we have to re-initialize the table or it gives an 'undefined' error
+                        var table = $('#seriestype-table').DataTable();
+                                                              
+                    }
+                });
+                
+               //  new $.fn.dataTable.FixedColumns( table); //needed to fix double header issue
+         
+            }
+            
+	        
+        </script>
+
+    </head>
+
+    <body>
+        <!--#include virtual="../common/nav.html" -->
+        <!-- Begin page content -->
+        <div class="container-fluid" id="main">
+            
+            <div class="row-fluid">
+                    <div class="page-header"> 
+                          <h1>Series Reference</h1>
+                    </div>
+                 
+                    
+					<button type="button" class="btn btn-primary" id="add-new-button" data-toggle="modal" data-target="#edit-ref-modal" onclick="setEditRefValues('','','','','','','new','','')">&nbsp;Add New Series</button>
+                 	<br><br>	
+                    <div id="table-scroll-area">
+                        <table id="seriestype-table" class="display nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr> 
+                                    <th>Edit</th>
+                                    <th>Series Type Id</th>
+                                    <th>Series Type Code</th>
+                                    <th>Series Type Description</th>
+                                    <th>Series Type Display Text</th>
+                                    <th>IsActive</th>
+                                </tr>
+                                <tr> 
+                                	<td class="column-filter"></td>
+                                    <td class="column-filter"></td>
+                                    <td class="column-filter"></td>
+                                    <td class="column-filter"></td>
+                                    <td class="column-filter"></td>
+                                    <td class="column-filter"></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="infoModalLabel">Please Note</h4>
+                    </div>                     
+                </div>
+            </div>
+        </div>
+                
+        <!-- Generic Error -->    
+        <div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header modal-danger">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h2 class="white">Error</h2>
+                    </div>
+                    <div class="modal-body">                    
+                    </div> <!-- /modal-body -->
+                    <div class="modal-footer">                    
+                        <button type="button" class="cancel btn btn-link left" data-dismiss="modal">OK</button>
+                    </div> 
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->  
+        
+
+
+        
+    </body>
+</html>

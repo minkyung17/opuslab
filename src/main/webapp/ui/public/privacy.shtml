@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Privacy</title>
+
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body class="image">
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container public" id="main">
+			<div class="page-header">
+				<h1>Privacy</h1>
+			</div>
+		
+				
+				<!-- Main page content -->
+				
+				<!-- 	<h2>UCLA Data Governance Task Force</h2>			
+			  	
+					<p class="bodytext">Good data governance gives assurance to the UCLA community that the campus is acting with credibility 
+						and trust with respect to data about its faculty, students, and staff. This joint Academic Senate Administration 
+						task force is charged with defining those principles and recommending how institutional data governance should be structured 
+						and operated for UCLA, including mechanisms to address new data requests, resolve conflicts, and align policy and practice 
+						among data stewards.</p>
+
+					<ul style="list-style-type:none">
+ 						<li class="bodytextli">Co-Chair: Kent Wada, Chief Privacy Officer  </li>
+ 						<li class="bodytextli">Co-Chair: Christine Borgman, Professor, Information Studies </li>
+ 						<li class="bodytextli">Amy Blum, Senior Campus Counsel</li>
+ 						<li class="bodytextli">Meg Buzzi, Director, Opus Project</li>
+ 						<li class="bodytextli">Christina Christie, Professor, Graduate School of Education and Information Studies </li>
+ 						<li class="bodytextli">Mike Lee, Director, School of Medicine</li>
+ 						<li class="bodytextli">Vickie Mays, Professor, Psychology</li>
+ 						<li class="bodytextli ">Kristen McKinney, Director, Student Affairs Information and Research Office (SAIRO) </li>
+ 						<li class="bodytextli">Kelly Wahl, Director, UCLA Office of Analysis and Information Management</li>
+ 						<li class="bodytextli">Neil Wenger, Professor, School of Medicine</li>
+ 						<li class="bodytextli">Student representatives (TBD)</li>
+					</ul>
+-->
+
+					<h2>Workgroup on Access and Use of Faculty Data</h2>
+
+					<p class="bodytext">
+					This workgroup addresses data fidelity, security, and ethical and appropriate use of data consistent with the mission and values of UCLA.<br>
+					Email: <a href="mailto:opushelp@ucla.edu"><span aria-hidden="true" class="icon-mail"></span>opushelp@ucla.edu</a>.</p>
+
+					<ul style="list-style-type:none">
+     					<li class="bodytextli">  Chair: Kent Wada, Chief Privacy Officer  </li>
+    					<li class="bodytextli"> Robert Baldridge, Manager, Information Practices</li>
+   						<li class="bodytextli"> Amy Blum, Senior Campus Counsel </li>
+  						<li class="bodytextli"> Heather Small, Opus Project Lead </li>
+  						<li class="bodytextli"> Todd Grappone, Associate University Librarian, Digital Initiatives and IT </li>
+   						<li class="bodytextli"> Leah Lievrouw, Professor, Information Studies</li>
+   						<li class="bodytextli"> Scott Monatlik, Director, Tax Services</li>
+   						<li class="bodytextli"> Julie Sina, Assistant Vice Chancellor and Vice President-Finance/CFO and Treasurer, The UCLA Foundation</li>
+   						<li class="bodytextli"> Burton Swanson, Professor, Anderson School and Chair, UCLA Board on Privacy and Data Protection </li>
+   						<li class="bodytextli"> Frederick Zimmerman, Professor, Health Services, Fielding School of Public Health</li>
+					</ul>
+	
+					<h2>Use of Opus Data </h2>
+
+					<p class="bodytext">
+						The heart of the Opus system is the data that it aggregates and integrates from many disparate campus sources 
+						(as well as from faculty themselves) to build more holistic representations of individual faculty members' work. 
+						These higher-level representations ('Opus data') are a valuable institutional asset beyond the value of its component data, 
+						leveraged by individual faculty for academic review purposes and curated public exposure and by the institution for academic 
+						review, reporting, and analysis.
+					</p>
+
+					<p class="bodytext ">
+						From a functional perspective, the value of the Opus data depends on a consistent set of expectations about data fidelity, 
+						security, and access. Data fidelity and security is assured for component data by each authoritative book of record office, 
+						augmented by an Opus-defined error resolution process faculty can use to make corrections at the source. The Opus system 
+						itself does the same for data it is authoritative for as well as depending on individual faculty for those data components 
+						entered directly.
+					</p>
+					
+					<p class="bodytext">
+						Opus data is valuable not only to individual faculty and to UCLA, but in external contexts as well 
+						(e.g. accreditation, and federal and state regulatory requirements).
+					</p>
+
+					<p class="bodytext">
+						The <a href="http://www.ucop.edu/academic-personnel-programs/academic-personnel-policy/index.html" target="blank">Academic Personnel Manual</a>, Data Summary guidance, and <a href="https://apo.ucla.edu/policies-forms/the-call" target="blank">Summary 2 
+						of the UCLA CALL</a> specify that certain kinds of faculty data must or should be divulged as part of the academic personnel 
+						process. Policies around confidentiality of faculty data are summarized in <a href="http://www.ucop.edu/academic-personnel-programs/_files/apm/apm-020.pdf" target="blank">
+						Section 20</a> of the Academic Personnel manual.
+						A new Delegation of Authority from the executive vice chancellor and provost will grant the vice chancellor, academic 
+						personnel to use the Opus system and Opus data consistent with the needs of the Academic Personnel Office, 
+						including the ability to temporarily grant Deans the authority to use Opus data for such purposes during 
+						the academic review process.
+					</p>
+					
+					<p class="bodytext">
+						Use of Opus data by senior campus management for legitimate University purposes outside of academic review. 
+						Existing Academic Senate, University, and campus policies specify many aspects of how faculty data whether 
+						in Opus or previously on paper can be appropriately used, including Sections 20, 158, and 160 of the 
+						<a href="http://www.ucop.edu/academic-personnel-programs/academic-personnel-policy/index.html" target="blank">Academic Personnel Manual</a>, and the California Public Records Act.
+					</p>
+					
+					<p class="bodytext">
+						A new Delegation of Authority from the executive vice chancellor and provost will grant authority to 
+						Deans, Vice Chancellors, Vice Provosts and the University librarian to use the Opus system and Opus data. 
+						The Delegation will articulate intent, typical appropriate uses, and known prohibited uses of the Opus system and Opus data.
+					</p>
+
+					<h2>Identified Risks </h2>
+					<ul>
+						<li class="bodytextli">Data can be misused and/or the limits of the data misunderstood.</li>
+						<li class="bodytextli">The transparency required of public institutions can be in tension with the privacy of records about individuals 
+							and research even as it remains an important cornerstone of the University;</li>
+						<li class="bodytextli">New uses of the data and new syntheses of the data made possible by Opus
+							need a mechanism by which they are considered in the context of the University's mission and values;</li>
+						<li class="bodytextli">Security of the Opus system; and
+							The very nature of systematizing and recording information creates categories and names that can 
+							unintentionally influence perception or privilege certain ways of looking over others;</li>
+					</ul>
+						
+					<p class="bodytextli">The Senate will be cognizant of any potential impact of Opus on the academic review process. 
+						UCLA is taking action to minimize these risks to the extent possible.</p>
+
+					<h2>California Public Records Act</h2> 
+					<p class="bodytext ">
+						As a public institution, transparency is an important principle: public access laws 
+						are an important component of the democratic process in our society, and UCLA's scholars themselves frequently benefit 
+						from this legal framework. Yet there is always a risk that Opus data obtained through a <a href="http://ag.ca.gov/publications/summary_public_records_act.pdf" target="blank">California Public Records Act </a>
+						(CPRA) request could result in a framing of the data inconsistent with its intended use and/or the campus' mission and values.
+						Faculty should be aware of the current reach of the CPRA (including the 
+						<a href="https://www.apo.ucla.edu/policies-forms/academic-freedom" target="blank">Statement on the Principles of Scholarly Research 
+						and Public Records Requests</a>
+						) and also of its implications with respect to Opus. A statement regarding UCLA's position on 
+						intended use of Opus data and CPRA requests, akin to the Statement on scholarly research, is being developed.		  	
+					</p>
+			  	
+					<h2>Data Security</h2>
+
+					<h3>UCLA Logon ID</h3>
+					<p class="bodytext ">
+ 					Per 
+ 					<a href="http://www.adminpolicies.ucla.edu/app/Default.aspx?&id=403" target="blank">UCLA Policy 403, UCLA Logon ID Security Standards</a>
+ 					, a UCLA Logon ID will be used as the authentication mechanism for 
+					access to Opus.  The UCLA Logon ID and associated password serve to electronically identify an individual, enabling access 
+					to campus electronic services or resources that are restricted to that individual or to the UCLA community. 
+					The UCLA Logon ID also satisfies the standards of the InCommon Federation and the University of California's 
+					UCTrust, and can therefore be used to identify an individual as a member of the UCLA community.
+					</p>
+
+					<h3>SSL/HTTPS Encryption</h3>
+					<p class="bodytext">
+					As recommended by the IT Services Security Office, SSL/HTTPS (a cryptographic protocol designed to provide communication 
+					security over the Internet) is enforced for accessing Opus. Files uploaded to Opus will be encrypted and stored in a secure 
+					database.
+					</p>
+
+				<h3>Secure Hosting</h3>
+				<p class="bodytext">
+					The system is hosted at IT Services, on servers stored in a secure location with restricted physical access.
+				</p>
+		  	
+			  		
+				</div>
+			
+	
+
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		
+			
+  	</body>
+</html>

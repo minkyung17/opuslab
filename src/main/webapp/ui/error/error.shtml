@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Error</title>
+
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body >
+		<!--#include virtual="../common/nav-no-logout.html" -->
+
+		<!-- Begin page content -->
+		<div class="container-fluid" id="main">
+			<div class="page-header">
+				<h1>Something is technically wrong.</h1>
+			</div>
+			<div class="row">
+				
+				<!-- Main page content -->
+				<div class="col-xs-8 col-md-10">
+					<img src="../images/error.jpg" class="textcenter" alt="sad error picture">
+			  		<p>Thanks for noticing - we're going to fix it up and have things back to normal soon.</p>
+			  		<p>In the meantime, you can try:
+			  			<ul>
+			  				<li>Hitting the "back" button on your browser.</li>
+							<li>Closing your browser and logging in again.</li>
+							<li>Using a different browser.</li>
+						</ul>
+						For help, please contact <a href="mailto:opushelp@ucla.edu">opushelp@ucla.edu</a>.
+			  		</p><br><br><br>
+			
+				</div>
+			</div>
+		</div>
+
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		
+
+  	</body>
+</html>

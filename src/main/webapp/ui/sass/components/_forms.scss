@@ -1,0 +1,235 @@
+/* forms
+-------------------------------------------------- */
+.form-group, .modal-body	{
+	label	{
+	font-weight: normal;
+	}
+}
+/* overrides bootstrap gems  */
+.form-horizontal .form-group {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+/*
+.form-group, .modal-body	{
+	label.control-label	{
+	font-weight: bold;
+	}
+}
+*/
+/* overrides bootstrap gems  */
+.form-group {
+    margin-bottom: 10px;
+}
+
+/* error messages  */
+
+.form-group label, .has-error .control-label	{
+	color: #000000;
+}
+
+/* checkboxes
+-------------------------------------------------- */
+
+.checkboxgroup{
+    width: 300px;
+    overflow: auto;
+
+	p {
+    	width: 300px;
+	}
+
+	label {
+    	width: 300px;
+	}
+
+	input[type="checkbox"] {
+		margin-right: 15px;
+	}
+}
+
+.checkbox-list-item {
+	margin-left: -15px;
+}
+
+.checkbox-item {
+	margin-right: 5px;
+}
+
+.search-field	{
+    border-radius: 13px;
+    margin-left: 5px;
+}
+
+.dataTables_filter  {
+	input[type="search"]	{
+		@extend .input-sm;
+		@extend .search-field;
+	}
+}
+
+/* profile page - fixes text area left alignment */
+.comment-modal-field	{
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 70%;
+}
+
+/* react-generated modals put space before h4s  */
+.form-subtitle	{
+	 padding-top: 5px;
+}
+
+/* Bootstrap accordian  - move to own scss page eventually
+-------------------------------------------------- */
+/*
+.panel-title	{
+	color: $link-color;
+	font-size: floor(($font-size-base * .95)) !important;
+}
+
+.panel-default, .panel-heading {
+    background-color: transparent;
+    border: none;
+}
+
+.panel-default > .panel-heading {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+*/
+
+//overrides ruby gems bootstrap
+.radio,
+.checkbox {
+   min-height: none;
+ }
+
+
+.form-horizontal .control-label {
+    text-align: left;
+}
+
+
+.width-med	{
+	max-width: 500px;
+}
+
+//overrides semantic ui
+/* .ui.input input	{
+	padding: .2em 1em !important;
+}
+
+.search-round	{
+	border-radius: 13px;
+} */
+
+//overrides form-group which makes margin -15 for specific search fields in a form
+
+.margin-right-fifteen	{
+	margin-left:15px;
+	max-width: 350px; // to make sure it doesn't overlap on the right
+}
+
+.ui-autocomplete-loading { background:url('../images/spinner-autocomplete.gif') no-repeat right center !important }
+
+.ui-autocomplete-loading 	{
+	margin-right: 5px;
+	background-color: none;
+}
+
+//Makes the above label <p> (used for the emeriti title code on start a case - end appointment) - have zero padding
+
+.blank1	{
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+//scoots the labels down so they align with the form field - on all forms
+
+.form-horizontal .control-label	{
+	padding-top: 14px;
+}
+
+//makes comment text areas 100% on the comment modals only.
+
+.comment-wide	{
+	width:95%;
+}
+
+textarea  {
+	resize: none;
+}
+
+//fixes small react datepicker
+
+.react-datepicker {
+  font-size: 1.3rem !important;
+  font-family: $font-family-sans-serif !important;
+}
+
+.react-datepicker__current-month {
+  font-size: 1.5rem !important;
+}
+
+.react-datepicker__header {
+  padding-top: 6px !important;
+}
+
+.react-datepicker__navigation {
+  top: 13px !important;
+}
+
+.react-datepicker__day-name, .react-datepicker__day {
+  margin: 0.5rem !important;
+}
+
+.react-datepicker__navigation {
+  top: 13px !important;
+}
+
+
+//Completed Cases drop down menu at the top of the datatable
+
+.padding-right-10	{
+	padding-right: 10px;
+}
+
+.margin-left-15	{
+	margin-left: 15px !important;
+}
+
+
+.margin-right-15	{
+	margin-right: 15px !important;
+}
+
+//Active Cases search drop down, no bold in order to keep the bold from having items go to two lines when hovering
+
+ .ui-state-focus	{
+	 font-weight: normal !important;
+ }
+
+
+ .checkbox input[type="checkbox"]		{
+	 position: relative !important;
+ }
+
+//Appointment Sets , style drop down button
+.small-dropdown 	{
+ 	font-size: 12px;
+ 	padding: 5px 15px;
+} 
+//Permission Page modal 
+.permissions-search-width	{
+	width: 600px !important;
+}
+.permissions-unit-search-width	{
+	width: 350px !important;
+}
+
+//Filters
+.filtered-view	{ 
+	width: 520px;
+}

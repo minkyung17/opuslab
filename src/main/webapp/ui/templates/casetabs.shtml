@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Case Summary</title>
+	
+		<!--#include virtual="../common/header.html" -->
+	</head>
+	
+	<body>
+		<!--#include virtual="../common/nav.html" -->
+	
+		<!-- Begin page content -->
+		<div class="container-fluid" id="main">
+			<div class="row-fluid case-padding-top">
+				<ul class="nav nav-tabs case-no-bottom-border" role="tablist"> 
+					<li role="presentation">
+						<a role="tab" class=" color-gray case-round-top">
+							<ul class="case-tab">
+								<li>
+									<img src="../images/case-med.png" /> &nbsp; &nbsp; 
+									<span class="med-gray black">Lollipop BlingBling</span>
+								</li>
+							</ul>
+                 		</a>
+                 	</li>
+                 </ul>
+              </div>
+              
+              <div class="row-fluid color-gray case-padding-left case-round-right-top">
+              	Merit<br>
+              	UID
+              </div>
+              <div class="row case-border">
+             
+              	 <div class="col-md-2 leftnav left-side-nav" role="navigation">
+          			<ul id="leftnav" class="nav nav-pills nav-stacked">
+            			<li><a class="strong" href="#">Case Summary</a></li>
+            			<li><a href="#" >Recommendations</a></li>
+          			</ul>
+          			</div>
+          			<div class="col-md-10 borderLeft">
+            			<h1 class="no-margin-top">Case Summary</h1>
+            			<hr></hr>
+            			<ul class="noBullet caseSummaryHeaderDetails">
+              				<li class="small">Case #: </li>
+              				<li class="small">Years at Rank: </li>
+              				<li class="small">Years at Step: </li>
+              				<li class="small">APO Analyst: 
+              					<a data-toggle="popover" role="button" tabindex="0" data-container="body" data-html="true" data-trigger="hover" class=" ttip" data-content="Edit" id="edit-apo-analyst" {...modalButtonProps} >
+                					<span aria-hidden="true" class=" icon-pencil ttip"></span>
+              					</a>
+              				</li>
+              			</ul>
+          			</div>
+				</div>
+
+			</div>
+
+	
+		<!--#include virtual="../common/footer.html" -->
+	
+		<!--#include virtual="../common/js-includes.html" -->
+	
+		<!-- script src="case-logic.js"></script -->
+		<script src="../admin/constants.js"></script>
+	
+		<!-- JavaScript Functionality -->
+		<script>
+			
+		</script>
+	</body>
+</html>

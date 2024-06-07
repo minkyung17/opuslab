@@ -1,0 +1,147 @@
+/* Eligibility 
+-------------------------------------------------- */
+
+#year {
+	width: 200px;
+	display: inline-block;
+	margin-right: 50px;
+}
+
+#case-type {
+	width: 200px;
+	display: inline-block;
+}
+
+.eligibility-year-filter {
+	margin-top: 20px;
+	display: inline-block;
+}
+
+.eligibility-type-filter {
+	margin-top: 20px;
+	display: inline-block;
+}
+/***checkbox filters at the top of the table***/
+#action-filters {
+	list-style-type: none;
+	margin-top: -25px;
+	margin-left: 50px;
+	li {
+		display: inline;
+		margin-right: 20px;
+	}
+	.filter-checkbox {
+		margin-right: 5px;
+	}
+}
+
+#year-filter {
+	width: 150px;
+}
+
+#actions-dropdown {
+	margin-bottom: 15px;
+	margin-left: 20px;
+}
+
+#instructions {
+	margin-top: 15px;
+}
+
+#table-scroll-area {
+	overflow: auto;
+}
+
+.fullName {
+	text-transform: capitalize;
+}
+
+/* Pre-Onboard UID
+-------------------------------------------------- */
+
+#pob-table {
+	margin-top: 30px;
+}
+
+#job-candidates li, #job-candidates-info li {
+	list-style-type: none;
+}
+
+#gender {
+	width: 200px;
+}
+
+.uid-pending {
+	color: $gray-light;
+	margin-left: 5px;
+}
+
+.uid-status {
+	float: right;
+	margin-top: -19px;
+	margin-right: 105px;
+}
+
+#filters li {
+	list-style-type: none;
+}
+
+.candidate-record {
+	margin-left: -45px;
+}
+
+.gender-info {
+	margin-top: 5px;
+}
+
+.dob-info, .first-name-info, .last-name-info, .middle-initial-info, .name-suffix-info {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#instructions { //TODO: use the typography style for instructions
+	margin-bottom: 20px;
+}
+
+#request-uid-button {
+	margin-bottom: 20px;
+}
+
+/* Active Cases
+-------------------------------------------------- */
+
+#start-new-case-button {
+	margin-top: 0px;
+  	margin-bottom: 10px;
+}
+
+.start-case-menu {
+	margin-top: -11px;
+}
+
+.large-modal-text {
+	font-size: 120%;
+}
+
+/* Lesser of two evils?  Without the !important, the generic overriding of the radio styles will mess up all other radio buttons everywhere */
+.appointment-choice {
+  	margin-left: 0px !important;
+  	margin-right: 10px !important;
+}
+
+.appointment-list {
+  	margin-left: 10px !important;
+  	margin-right: 10px !important;
+}
+
+.appointment-label {
+	font-weight: bold;
+}
+
+.displayName {
+	font-size: 125%;	
+}
+
+#appointment-list .indent {
+	margin-left: 23px;
+}

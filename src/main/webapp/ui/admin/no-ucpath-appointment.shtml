@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>No UCPath Appointment</title>
+
+<!--#include virtual="../common/header.html" -->
+</head>
+<body>
+	<!--#include virtual="../common/nav.html" -->
+
+	<!-- Begin page content -->
+	<div class="container-fluid" id="main">
+		<div class="row-fluid">
+			<div class="page-header tab-header">
+				<h1>UCPath / Opus Comparison</h1>
+			</div>
+
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation"><a href="mismatches.shtml"
+					aria-controls="mismatches" role="tab">Mismatches</a></li>
+				<li role="presentation"><a href="hidden-mismatches.shtml"
+					aria-controls="hidden-mismatches" role="tab">Hidden Mismatches</a></li>
+				<li role="presentation"  class="active"><a href="#no-ucpath-appointment"
+					aria-controls="no-ucpath-appointment" role="tab">No UCPath Appointment</a></li>
+				<li role="presentation"><a href="no-opus-appointment.shtml"
+					aria-controls="no-opus-appointment" role="tab">No Opus Appointment</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="noUCPathAppointmentReport">
+					<p id="instructions">This table shows active Opus Appointments that have not been linked to a UCPath Position. Unlinked appointments do not show on the Mismatches table. To link an Opus appointment to a UCPath Position, go to the <a target="blank" href="link-path-position.shtml">Link UCPath Position</a> page.</p>
+
+
+					<div id="reactFixedDataTable" data-datatable_appname="noUCPathAppointmentReport"
+						data-datatable_config="noUCPathAppointmentReport">
+						Loading...
+       					 </div>
+       					 
+					</div>
+					<!-- development -->
+					<!--  script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development-->
+					<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production-->
+				</div>
+			</div>
+		</div>
+	<!--#include virtual="../common/footer.html" -->
+
+	<!--#include virtual="../common/js-includes.html" -->
+
+
+
+	<script src="constants.js"></script>
+	<script src="../admin/form-fields.js"></script>
+	<script src="../javascript/select-row.js"></script>
+	<script src="case-logic.js"></script>
+	<script src="case-validation.js"></script>
+
+	<!-- JavaScript Functionality -->
+	<script>
+		//Highlight the active page in the leftnav
+		function initializeTables() {
+
+			var react_selector = 'data-datatable_config', //name of key to get Datatable element by
+			reactDomElement = $('[' + react_selector + ']'), id_attr = 'id', id = reactDomElement
+					.attr(id_attr), //Id of Dom element to attach React Datatable to
+			datatable_appname = $('#' + id).data('datatable_appname'), datatable_config_name = $(
+					'#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+			if (window._initReactDataTable) {
+				window
+						._initReactDataTable(id, datatable_appname,
+								datatable_config_name, access_token, adminData, globalData);
+			}
+		}
+	</script>
+</body>
+</html>

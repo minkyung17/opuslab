@@ -1,0 +1,17 @@
+
+/* jumbotron
+-------------------------------------------------- */
+
+.jumbotron h1,
+  .jumbotron .h1 {
+    font-size: ceil(($font-size-base * 2.5));
+    //font-size: 43px;/*----- convert these to ems for better mobile display-----*/
+  }
+  
+.jumbotron 	{
+	background-color: transparent;
+}
+
+.home-page	{
+	padding-top: 5px;
+}

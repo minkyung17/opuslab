@@ -1,0 +1,91 @@
+
+.big-icon {
+	size: 230% !important;
+	font-size: 230% !important;
+	color: $gray-light !important;
+	line-height: 1em !important;
+}
+
+.super-big-icon {
+	size: 460% !important;
+	font-size: 460% !important;
+	color: $gray-light !important;
+}
+
+
+.modal-icon	{
+	color: black;
+	size:100%;
+}
+
+.table-icon	{
+	color: $gray;
+	size:110%;
+}
+
+
+.help	{
+	color: $ucla-blue;
+	size:140%;
+}
+
+.help:hover	{
+	color: darken($ucla-blue, 10%);
+}
+
+.arrow {
+	color: $light-blue;
+	font-size: 380%;
+}
+
+.gray	{
+	color: $gray;
+}
+
+
+
+/*  S&CW icons -------------------------------------------------- */
+
+.interdisciplinary-icon, .file-icon, .materials-icon, .diversity-icon {
+	float: right;
+}
+
+.scholarly-icons {
+	float: right;
+}
+
+/*  Dashboard icons -------------------------------------------------- */
+
+.circle {
+	border-radius: 50%;
+	width: 21px;
+	height: 21px;
+}
+
+.merit-icon {
+	background: green;
+	color: white;
+	padding-left: 5px;
+}
+
+.sabbatical-icon {
+	background: purple;
+	color: white;
+	padding-left: 5px;
+}
+
+/* Icon font - Entypo pictograms by Daniel Bruce www.entypo.com
+-------------------------------------------------- */
+/*@font-face {
+	font-family: 'EntypoRegular';
+  	src: url('fonts/entypo.woff') format('woff'), url('fonts/entypo.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[data-icon]:before {
+	font-family: 'EntypoRegular';
+	content: attr(data-icon);
+	speak: none;
+	font-size: 48px;
+}*/

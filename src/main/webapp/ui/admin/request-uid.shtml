@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>UID Request</title>
+				
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body>
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container-fluid" id="main">
+			<div class="page-header">
+				<h1>Request a UID</h1>
+			</div>
+			<div class="row">
+				<!-- Main page content -->
+				<div class="col-md-12">
+			  		<p id="instructions">
+			  		Hiring a new faculty member? Do they need access to UCLA services before their official hire date? Request a UID (University ID) here so they can create a UCLA logon and access course management, email, and library services.
+			  		</p>
+			  		
+			  		<button type='button' id='request-uid-button' class='btn btn-primary' data-toggle='modal' data-target='#requestUidModal'>Request a UID</button>
+			  		
+			  		<table id="uid-table" class="display nowrap stripe" cellspacing="0" width="100%">
+						<thead>
+							<tr>
+						    	<th>Name</th>
+						    	<th>Department</th>
+						    	<th>Date Requested</th>
+						    	<th>UID
+						    		<a data-toggle="popover" role="button" tabindex="0" data-container="body" data-trigger="hover" 
+						    			data-content="This is the candidate's UCLA ID #.  When entering this candidate onto the campus payroll system, be sure that they are assigned this UID.  Please alert opushelp@ucla.edu if you see any mismatched UIDs.">
+						    		<span aria-hidden="true" class="icon-help-circled help"></span></a>
+						    	</th>
+						    	<th>UID Status</th>
+						    	<th>Action</th>
+					    	</tr>
+					    	<tr>
+								<td class="column-filter"></td>
+								<td class="column-filter filter-on"></td>
+								<td class="column-filter"></td>
+								<td class="column-filter"></td>
+								<td class="column-filter"></td>
+								<td class="column-filter"></td>
+							</tr>
+					    </thead>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Generic Error -->    
+        <div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header modal-danger">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h2 class="white">Error</h2>
+                    </div>
+                    <div class="modal-body">
+                    
+                    </div> <!-- /modal-body -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger left" data-dismiss="modal">Okay</button>
+                    </div> <!-- /modal-footer -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->  
+        
+        <!-- Modal -->
+		<div class="modal fade" id="requestUidModal" tabindex="-1" role="dialog" aria-labelledby="requestUidModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="clearForm()">&times;</button>
+						<h4 class="modal-title" id="requestUidModalLabel">Request a UID</h4>
+					</div>
+					<div class="modal-body">
+						<form id="job-number-form" role="form" onsubmit="return submitJobNumber()">
+  							<div class="form-group">
+    							<p>You can request a UID for candidates whose status is "Accepted Offer" in UC Academic Recruit AND who has a position in a Series with teaching responsibilities.  Please enter the job number from Recruit to select a candidate.</p>
+ 								<label for="job-number-field">Enter Recruit Tracking Number:</label>
+ 								<div class="input-group">
+     								<input type="text" id="job-number-field" title="Please enter valid Job/Waiver Number field" class="form-control" required>
+     								<span class="input-group-btn">
+       									<button id="submit-job-number-button" class="btn btn-default">Go</button>
+     								</span>
+   								</div>
+  							</div>
+  						</form>
+  						<form id="candidate-info-form" role="form" onsubmit="return submitUIDRequest()">
+  							<div id="job-candidates" class="group">
+								<div class="form-group">
+									<ul id="job-candidate-list">
+									</ul>
+								</div>
+	 						</div>
+	 						<div id="job-candidates-info" class="group">
+								<div class="form-group">
+									<label for="job-candidate-info-list">Please enter the gender and birth date for each person you need a UID for.</label>
+									<ul id="job-candidate-info-list">
+									</ul>
+								</div>
+	 						</div>
+	 					</div><!--/modal-body-->
+	 					<div class="modal-footer">
+	 						<div class="modal-buttons-left">
+	 							<button id="submit-uid-request-button" class="btn btn-primary">Submit</button>
+	 							<button type="button" class="btn btn-link" data-dismiss="modal" onclick="clearForm()">Cancel</button>
+							</div><!-- /modal-footer -->
+						</div>
+						</form>
+				</div><!-- /modal-content -->
+			</div><!-- /modal-dialogue-->
+		</div><!-- /modal -->	
+
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		 <!--#include virtual="../common/jquery-datatables.html" -->
+		
+		<script language="javascript" src="../javascript/select-row.js"></script>
+			
+		<!-- JavaScript Functionality -->
+		<script>	
+		
+		//tooltip
+		$("[rel=tooltip]").tooltip();
+		$('[data-toggle="popover"]').popover({trigger: 'hover'},  {container: 'body'});
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'top'}, {container: 'body'});
+		
+		//responsive table height upon load
+        $ (document).ready(function() {
+      	  console.log($(window).height());
+      	  $('.dataTables_scrollBody').css('height', ($(window).height() - 500));
+         });
+      
+      //responsive table height upon window resize
+        $(window).resize(function() {
+        	  console.log($(window).height());
+        	  $('.dataTables_scrollBody').css('height', ($(window).height() - 500));
+        	});
+										
+			function initializeTables() {
+				//Get AJAX data
+			    populateTableData();			    
+			}
+				
+			function populateTableData() {
+				var userData = {};
+				userData.adminEmail = adminData.adminEmail;
+				userData.adminOpusId = adminData.adminOpusId;
+				userData.adminRoles = adminData.adminRoles;
+				userData.adminName = adminData.adminName;
+				userData.permissions = adminData.permissions;
+				
+	  			var SendInfo = {
+	  					adminData: userData
+	  		    }; 
+				$.ajax({
+					cache:false,
+				    url: "/restServices/rest/cont/adminsUidStatusList?access_token="+access_token, 
+				    type: 'POST', 
+				    dataType: 'json', 
+				    data: JSON.stringify(SendInfo),
+				    contentType: 'application/json',
+				    mimeType: 'application/json',
+				    success: function(data) { 
+						initializeTable(data);
+				    },
+				    error:function(jqXHR, textStatus, errorThrown) { 
+				    	$('#requestUidModal').modal('hide');
+				    	 $("#error .modal-body").empty();
+	                     $("#error .modal-body").append(jqXHR.responseJSON.message);
+	                     $('#error').modal('show');
+	                     console.log("Error: ", errorThrown);
+	                     console.log(jqXHR); 
+	                     console.log("Text Status: ", textStatus);
+				    }
+				});
+			}
+			
+			function initializeTable(inputData) {				
+				var SendInfo = {
+	  				
+	  		    }; 
+	  			
+				var table = $('#uid-table').DataTable( {
+			        dom: 'frtiS',
+			        "orderClasses": false,
+			       // bPaginate: false, // include if no pagination
+			        aaData: inputData,
+			        pageResize: true,
+			        scroller: true,
+			       // scrollCollapse: true,
+			        "autoWidth": true,
+					"sScrollY": ($(window).height() - 500),
+					scrollX: true,
+			        columns: [
+			            {data: "applicantFullName", name: "applicantFullName"},
+			            {data: "applicantDeptCode", name: "applicantDeptCode"},
+			            {data: "dateRequested", 
+			            	mRender:	function (data, type, full) {
+			            					return formatDateTime(full.dateRequested);
+				            	  	},
+				      		name: "dateRequested",
+				      		defaultContent: ""
+				       	},
+			            {data: "applicantUID", name: "applicantUID"},
+			            {data: "applicantUIDStatus", name: "applicantUIDStatus"},
+			            {data: "edit", 
+			            	sDefaultContent:"",
+			            	mRender:	function (data, type, full) {
+					            	    if (full.applicantUIDStatus == 'UID Recorded') { 
+					            			return '<button type="button" class="btn btn-default btn-purge" data-appid="' + full.applicantId + '">Request UID Purge</button>';
+
+					            	    }
+				            	  	},
+				      		name: "edit"
+				       	}
+			        ],
+			        sAjaxDataProp: "",
+			        orderClasses: false,
+			        order: [2, 'desc'],
+			        bSortCellsTop: true,
+			        fnInitComplete: function(oSettings, json) { 
+			        	//For some reason, we have to re-initialize the table or it gives an 'undefined' error
+				    	var table = $('#uid-table').DataTable();
+					    $(".column-filter").each( function ( i ) {
+					    	if ($(this).hasClass('filter-on')) {
+					    		//Have to use index() otherwise "i" only indexes visible columns, and will pull the hidden column's data into the dropdown
+					    		var index = table.column.index('fromVisible', $(this).index());
+						        var select = $('<select><option value="">All</option></select>')
+						            .appendTo( $(this).empty() )
+						            .on( 'change', function () {
+						                var val = $(this).val();
+
+						                table.column( index )
+						                    .search( val ? '^'+$(this).val()+'$' : val, true, false )
+						                    .draw();
+						            });
+						 
+						        table.column( index ).data().unique().sort().each( function ( d, j ) {
+						            select.append( '<option value="'+d+'">'+d+'</option>' )
+						        });
+					    	}
+					    });
+				    }
+			    });
+				
+				table.columns.adjust(); // fixes misaligned header on first load  
+			    
+			    //Hide and show columns
+			    //var colvis = new $.fn.dataTable.ColVis(table);
+			    //$(colvis.button()).insertAfter('#request-uid-button');
+			    
+			    changeDTstyles();
+			   
+			}
+
+			//Hide sections for modal - HTML still shows when hidden
+			$(document).ready(function () {		
+			    $('.group').hide();
+			    $('.modal-buttons-left').hide();
+			});	
+						
+			function submitJobNumber() {
+				
+				var userData = {};
+				userData.adminEmail = adminData.adminEmail;
+				userData.adminOpusId = adminData.adminOpusId;
+				userData.adminRoles = adminData.adminRoles;
+				userData.adminName = adminData.adminName;
+				userData.permissions = adminData.permissions;
+				var jobNo = document.forms["job-number-form"]["job-number-field"].value; 
+	  			var SendInfo = {
+	  				jobNumber: jobNo,
+	  				adminData: userData
+	  		    }; 
+	  			
+				$.ajax({ 
+					cache:false,
+				    url: "/restServices/rest/cont/offerAcceptedApplicants/?access_token="+access_token,
+				    type: 'POST', 
+				    dataType: 'json', 
+				    data: JSON.stringify(SendInfo),
+				    contentType: 'application/json',
+				    mimeType: 'application/json',
+				    success: function(data) { 
+				    	//Don't call clearForm() because we need to retain the job number for reference at this stage
+ 			    		$('#job-candidate-list').empty();
+						$('.modal-buttons-left').hide();
+ 			    		$('#job-candidate-list').append("<p>Please select the candidates you would like to create a UID for.</p>");
+ 			    		
+ 			    		//List the applicant names here along with checkboxes
+ 			    		$.each(data, function(index) {
+ 			    			var className = "candidate-info-" + index;
+ 			    			var recordName = "candidate-" + index;
+ 			    			var appId;
+ 			    			
+ 			    			//Check to see if the candidate is already has a pending UID request
+ 			    			if (this.applicantUIDStatus == 'UID Eligible') {
+ 			    				appId = this.applicantId;
+ 			    				 			    				
+ 			    				//Show the name and checkbox
+	 			    			$('#job-candidate-list').append("<li class=candidate-record><ul class=" + recordName + ">"	
+	 			    				+ "<li><input type=checkbox title='Candidate checkbox' id=checkbox-" + index + ' data-appid="' + appId + '" onclick="displayInfo(\'' + className + '\', this)">'	
+	 			    				+ this.applicantFullName + "</li><li>"
+	 			    				+ "<ul class=" + className + "><li class='first-name-info'>"
+	 			    				+ "<label for='first-name'>First Name <span class='required-field'>(Required field)</span></label><br>"
+	 								+ "<input type='text' title='First Name' id='first-name' class='first-name form-control' maxlength='25' /></li>"
+	 								+ "<li class='middle-initial-info'>"
+	 			    				+ "<label for='middle-initial'>Middle Initial (Enter only the initial; do not add a period.)</label><br>"
+	 								+ "<input type='text' title='Middle Initial' id='middle-initial' class='middle-initial form-control' maxlength='20'/></li>"
+	 								+ "<li class='last-name-info'>"
+	 			    				+ "<label for='last-name'>Last Name <span class='required-field'>(Required field)</span></label><br>"
+	 								+ "<input type='text' title='Last Name' id='last-name' class='last-name form-control' maxlength='25' /></li>"
+	 								+ "<li class='name-suffix-info'>"
+	 			    				+ "<label for='name-suffix'>Name Suffix</label><br>"
+	 								+ "<input type='text' title='Name Suffix' id='name-suffix' class='name-suffix form-control' maxlength='10' /></li>"
+	 								+ "<li class='ssn-info'>"
+	 			    				+ "<label for='ssn'>SSN <span class='required-field'>(Required field)</span></label><br>"
+	 								+ "<input type='text' title='SSN' id='ssn' class='ssn form-control' pattern='[0-9]{9}' /></li>"
+	 			    				+ "<li class='gender-info'>"
+	 								+ "<label for='gender'>Gender <span class='required-field'>(Required field)</span></label>"
+	 								+ "<select title='Gender' id='gender' class='gender form-control'>"
+	 								+ "<option value='' selected='selected'>Select One</option>"
+	 								+ "<option value='male'>Male</option>"
+	 								+ "<option value='female'>Female</option>"
+	 								+ "</select></li><li class='dob-info'>"
+	 								+ "<label for='dob'>Birth Date (MM/DD/YYYY) <span class='required-field'>(Required field)</span></label><br>"
+	 								+ "<input type='text' title='Candidate DOB' id='dob' class='dob form-control'/></li></ul></li></ul></li>"
+	 			    			);
+ 			    				
+ 			    				//Set up input mask
+ 			    				$.mask.definitions['a'] = "[0-1]";
+ 			    				$.mask.definitions['b'] = "[0-9]";
+ 			    				$.mask.definitions['c'] = "[0-3]";
+ 			    				$.mask.definitions['d'] = "[0-9]";
+ 			    				$.mask.definitions['e'] = "[0-9]";
+ 			    				$.mask.definitions['f'] = "[0-9]";
+ 			    				$.mask.definitions['g'] = "[0-9]";
+ 			    				$.mask.definitions['h'] = "[0-9]";
+ 			    				$('.' + className + " #dob").mask("ab/cd/efgh");
+	 			    			
+	 			    			$('.' + className).hide();
+ 			    			}
+ 			    			else {
+ 			    				//Grey out the name and display the status
+ 			    				$('#job-candidate-list').append("<li class='candidate-record'><ul><li class='uid-pending'>"	
+ 			    					+ this.applicantFullName + " - " + this.applicantUIDStatus
+ 			    					+ "</li></ul></li>"
+ 			    				);
+ 			    			}
+ 			    		});
+				    },
+				    error:function(jqXHR, textStatus, errorThrown) {
+				    	$('#requestUidModal').modal('hide');
+                        $("#error .modal-body").empty();
+                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+                        $('#error').modal('show');
+                        console.log("Error: ", errorThrown);
+                        console.log(jqXHR); 
+                        console.log("Text Status: ", textStatus);
+				    }
+				});
+				
+				$('#job-candidates').show();
+				
+				//Required so that the form submit doesn't reload the page
+				return false;
+			}
+			
+			//Display fields for gender and DOB for each candidate that is checked
+			function displayInfo(className, checkbox) {
+				//If checkbox is checked, then show DOB and gender fields, and show job-candidates-info and modal-buttons-left
+				if (checkbox.checked) {					
+		    		$('.' + className).show();
+					$('.modal-buttons-left').show();
+					
+					//Make sure the input fields are required
+					$('.' + className + ' #gender').prop('required', true);
+					$('.' + className + ' #dob').prop('required', true);
+					$('.' + className + ' #first-name').prop('required', true);
+					$('.' + className + ' #last-name').prop('required', true);
+					$('.' + className + ' #ssn').prop('required', true);
+				} 
+				//Otherwise, clear the form fields, and hide job-candidates-info and modal-buttons-left
+				else {
+					var gender = '.' + className + ' #gender';
+					var dob = '.' + className + ' #dob';
+					var firstName = '.' + className + ' #first-name';
+					var middleInitial = '.' + className + ' #middle-initial';
+					var lastName = '.' + className + ' #last-name';
+					var nameSuffix = '.' + className + ' #name-suffix';
+					var ssn = '.' + className + ' #ssn';
+					
+					$(gender).prop('selectedIndex',0);
+					$(dob).val("");
+					$(firstName).val("");
+					$(middleInitial).val("");
+					$(lastName).val("");
+					$(nameSuffix).val("");
+					$(ssn).val("");
+					$('.' + className).hide();
+					
+					//Make sure the input fields are no longer required
+					$('.' + className + ' #gender').prop('required', false);
+					$('.' + className + ' #dob').prop('required', false);
+					$('.' + className + ' #first-name').prop('required', false);
+					$('.' + className + ' #last-name').prop('required', false);
+					$('.' + className + ' #ssn').prop('required', false);
+					
+					//Only hide the modal-buttons-left if there are no checkboxes checked
+					var anyChecked = false;
+					$("#requestUidModal input").each(function(index) {
+						if (this.type == 'checkbox' && this.checked == true) {
+							anyChecked = true;	
+						}
+					});
+					if (!anyChecked) {
+						$('.modal-buttons-left').hide();
+					}
+				}
+			}
+			
+			//Clear form and reset if user clicks Cancel button or X in top right corner of modal
+			function clearForm() {
+				document.forms["job-number-form"]["job-number-field"].value = "";
+				$('#job-candidate-list').empty();
+				$('.modal-buttons-left').hide();
+			}
+			
+			function submitUIDRequest() {					
+				$('#requestUidModal').modal('hide');
+												
+				var uidRequests = [];		//Holds all UID requests
+				var currentUidRequest = {};	//Holds the current UID request
+				var arrayIndex = 0;
+				
+				var userData = {};
+				userData.adminEmail= adminData.adminEmail;
+				userData.adminOpusId= adminData.adminOpusId;
+				userData.adminRoles= adminData.adminRoles;
+				userData.adminName= adminData.adminName;
+				userData.permissions= adminData.permissions;
+				
+				
+				$('.candidate-record').each(function(index) {
+					
+					var checkboxValue = "checkbox-" + index;
+					var recordName = "candidate-" + index;
+					
+
+					
+					//Must check for null - in the case of a person who already has a UID ISSUED, they will show up in the list greyed out with no checkbox
+					if (document.getElementById(checkboxValue) != null) {
+						if (document.getElementById(checkboxValue).checked) {														
+
+							//Construct the UID request object and place it into the 2D array uidRequests
+							var currentUidRequestObject = {
+								"applicantId":"", 
+								"applicantDOB":"", 
+								"applicantGender":"",
+								"adminData":"",
+								"firstName":"",
+								"middleInitial":"",
+								"lastName":"",
+								"nameSuffix":"",
+								"socialSecurity":""
+							}
+							
+							currentUidRequestObject.applicantId = document.getElementById(checkboxValue).getAttribute("data-appid");
+							currentUidRequestObject.applicantDOB = $("." + recordName + " .dob").val();
+							currentUidRequestObject.applicantGender = $("." + recordName + " .gender").val();
+							currentUidRequestObject.firstName = $("." + recordName + " .first-name").val();
+							currentUidRequestObject.middleInitial = $("." + recordName + " .middle-initial").val();
+							currentUidRequestObject.lastName = $("." + recordName + " .last-name").val();
+							currentUidRequestObject.nameSuffix = $("." + recordName + " .name-suffix").val();
+							currentUidRequestObject.socialSecurity = $("." + recordName + " .ssn").val();
+							currentUidRequestObject.adminData = userData;
+							
+							uidRequests[arrayIndex] = currentUidRequestObject;
+							arrayIndex++;
+						}
+					}
+				});
+								
+				$.ajax({
+					cache:false,
+			    	url: "/restServices/rest/cont/uidRequests/?access_token="+access_token, 
+			    	type: 'POST', 
+			    	dataType: 'json',
+			    	data: JSON.stringify(uidRequests),
+			    	//data: {preOnboardJSONs: JSON.stringify(preOnboardJSONs), userData: JSON.stringify(userData)},
+			    	//data: JSON.stringify({ preOnboardJSONs: preOnboardJSONs, userData: userData }),
+			    	contentType: 'application/json',
+			    	mimeType: 'application/json',
+			    	success: function(data) { 
+			    		var table = $('#uid-table').DataTable();
+			    		
+			    		$.each(data, function() {
+				    		if (this.errored != true) {
+								var newRow = table.row.add(this).draw();	    		
+				    		}
+				    		else {
+				    			alert(this.errorMessage);
+				    		}
+			    		});
+			    		
+			    		//Reset the modal
+			    		clearForm();
+			    		
+			    		updateColumnFilter();
+			    	},
+			    	error:function(jqXHR, textStatus, errorThrown) { 
+			    		$('#requestUidModal').modal('hide');
+			    		
+                        $("#error .modal-body").empty();
+                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+                        $('#error').modal('show');
+                        console.log("Error: ", errorThrown);
+                        console.log(jqXHR); 
+                        console.log("Text Status: ", textStatus);
+				    	
+				    	clearForm();
+				    }
+				});
+				
+				//Required so that the form submit doesn't reload the page
+				return false;
+			}
+			
+			//Handle the Purge Request
+			$(window).load(function(){
+				$("#uid-table").on("click", ".btn-purge", function() {
+						    	
+					var purgeButton = $(this);
+					var button = this;
+					
+					var appId = this.getAttribute("data-appid");
+					var userData = {};
+					userData.adminEmail = adminData.adminEmail;
+					userData.adminOpusId = adminData.adminOpusId;
+					userData.adminRoles = adminData.adminRoles;
+					userData.adminName = adminData.adminName;
+					userData.permissions = adminData.permissions;
+		  			var SendInfo = {
+		  					applicantId: appId,
+		  					adminData: userData
+		  		  	}; 
+		  					  			
+					$.ajax({ 
+						cache:false,
+					    url: "/restServices/rest/cont/uidPurgeRequest?access_token="+access_token, 
+					    type: 'POST', 
+					    dataType: 'json', 
+					    data: JSON.stringify(SendInfo),
+					    contentType: 'application/json',
+					    mimeType: 'application/json',
+					    success: function(data) {
+					    	if (data.errored != true) {
+					    		//Purge request was successful, update the table
+								var table = $('#uid-table').DataTable();
+					    		table.row(purgeButton.parents("tr")).data(data).draw();
+								
+					      		button.remove();
+					      		
+					      		updateColumnFilter();
+					    	}
+					    	else {
+					    		//Do nothing because the purge request was not successful
+					    		alert(this.errorMessage);
+					    	}
+					    },
+					    error:function(jqXHR, textStatus, errorThrown) {
+					    	$('#requestUidModal').modal('hide');
+	                         $("#error .modal-body").empty();
+	                         $("#error .modal-body").append(jqXHR.responseJSON.message);
+	                         $('#error').modal('show');
+	                         console.log("Error: ", errorThrown);
+	                         console.log(jqXHR); 
+	                         console.log("Text Status: ", textStatus);
+					    }
+					});
+				});
+			});
+			
+			function updateColumnFilter() {
+				var table = $('#uid-table').DataTable();
+				
+				$(".column-filter").each( function ( i ) {
+			    	if ($(this).hasClass('filter-on')) {
+			    		//Have to use index() otherwise "i" only indexes visible columns, and will pull the hidden column's data into the dropdown
+			    		var index = table.column.index('fromVisible', $(this).index());
+				        var select = $('<select><option value="">All</option></select>')
+				            .appendTo( $(this).empty() )
+				            .on( 'change', function () {
+				                var val = $(this).val();
+
+				                table.column( index )
+				                    .search( val ? '^'+$(this).val()+'$' : val, true, false )
+				                    .draw();
+				            } );
+				 
+				        table.column( index ).data().unique().sort().each( function ( d, j ) {
+				            select.append( '<option value="'+d+'">'+d+'</option>' )
+				        } );
+			    	}
+			    } );	
+			}
+			
+		</script>
+  	</body>
+</html>

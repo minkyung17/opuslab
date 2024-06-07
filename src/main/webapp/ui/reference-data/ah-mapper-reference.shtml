@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Academic Hierarchy & Dept Code Mapper</title>
+
+<!--#include virtual="../common/header.html" -->
+<!--        http://www.datatables.net/blog/2012-05-31 -->
+<!-- pace CSS (this is only used on DataTable pages) -->
+<!--         <link rel="stylesheet" href="../stylesheets/site.css">    -->
+</head>
+
+<body>
+	<!--#include virtual="../common/nav.html" -->
+	<!-- Begin page content -->
+	<div class="container-fluid" id="main">
+
+		<div class="row-fluid">
+			<div class="page-header">
+				<h1>Academic Hierarchy & Dept Code Mapper Details</h1>
+			</div>
+			<div id="table-scroll-area">
+				<table id="academicHierarchy-table" class="display">
+					<thead>
+						<tr>
+
+							<th>AH PathId</th>
+							<th>View</th>
+							<th>Grouper Path Text</th>
+							<th>Dept Code</th>
+							<th>Dept Display Name</th>
+							<th>Dept Title</th>
+							<th>School Code</th>
+							<th>Is Preferred Dept</th>
+						</tr>
+						<tr>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel" aria-hidden="true" id="update-row"
+		data-backdrop="static">
+
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header modal-info">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h1 class="modal-title">
+						<span aria-hidden="true" class="icon-save modal-icon"></span>&nbsp;&nbsp;Academic
+						Hierarchy ID: <span id="acadHID"> </span>
+					</h1>
+				</div>
+				<div class="modal-body">
+					<form id="update-academic-form" role="form" class="form-horizontal">
+
+						<div class="grouper-details">
+						
+							<div class="form-group">
+								<label for="grouper-path" class="strong col-md-3"><Strong>Grouper Path: </Strong></label>
+								<div class="col-md-9">
+									<span id="grouper-path"> </span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="is-preferred" class="strong col-md-3"><Strong>Preferred Department Code: </Strong></label>
+									<div class="col-md-9">
+										<span id="is-preferred"> </span>
+									</div>
+							</div>
+
+							<div class="form-group">
+								<label for="dept-cd" class="strong col-md-3"><Strong>Department Code:</Strong></label>
+								<div class="col-md-9">
+									<span id="dept-cd"> </span> 
+									<span id="inst-opus-name"> </span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="school-code" class="strong col-md-3"><Strong>School Code:</Strong></label>
+								<div class="col-md-9">
+									<span id="school-code"> </span> 
+									<span id="div-opus-name"></span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="dept-disp" class="strong col-md-3"><Strong>Department Display Name: </Strong></label>
+								<div class="col-md-9">
+									<span id="dept-disp"> </span> 
+									<span id="dept-opus-name"></span>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="dept-title" class="strong col-md-3"><Strong>Department Title:</Strong></label>
+								<div class="col-md-9">
+									<span id="dept-title"> </span>
+								</div>
+							</div>
+							
+						</div>
+					</div> <!-- /modal-body -->
+				</div> <!-- /.modal-content -->
+			</form>
+		</div> <!-- /.modal-dialog -->
+	</div> <!-- /.modal -->
+			
+	
+	<!--#include virtual="relevance-modals.html" -->
+
+	<!--#include virtual="../common/footer.html" -->
+
+	<!--#include virtual="../common/js-includes.html" -->
+	<!--#include virtual="../common/jquery-datatables.html" -->
+
+	<!-- JavaScript Functionality -->
+	<script> 
+	
+	   //responsive table height upon load
+    $ (document).ready(function() {
+  	  console.log($(window).height());
+  	  $('.dataTables_scrollBody').css('height', ($(window).height() - 400));
+     });
+  
+  //responsive table height upon window resize
+    $(window).resize(function() {
+    	  console.log($(window).height());
+    	  $('.dataTables_scrollBody').css('height', ($(window).height() - 400));
+    	}); 
+  
+        var table;
+        var dCodeAHMapper;
+        var pageName = 'ahpathGrouperText';
+        
+        function initializeTables() { 
+        	if (adminData.dashboardRole = "OA" && adminData.adminRoles.indexOf("opus_admin")>=0) {
+                populateTableData();
+        	} else {
+        		 window.location.assign("/opusWeb/ui/error/access-error.shtml");
+        	}
+        }
+			
+            function populateTableData() {
+                console.log("Before call: " + new Date($.now()));
+                var SendInfo = {
+                
+                }; 
+                $.ajax({
+                    cache:false,
+                    url: "/restServices/rest/admin/ahDeptMappers/?access_token="+access_token, 
+                    type: 'GET',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    mimeType: 'application/json',
+                    success: function(dataRows) {
+                        if (dataRows == "") {                    
+                            window.location.assign("/restServices/ui/error/access-error.shtml");       
+                        }            
+                        dCodeAHMapper = dataRows.departmentAHMappers;
+                        initializeTable(dCodeAHMapper); 
+                    },
+                    error:function(jqXHR, textStatus, errorThrown) {
+                        if (jqXHR.responseText !== "") {  
+                                $("#error .modal-body").empty();
+                                $("#error .modal-body").append(jqXHR.responseText);
+                                $('#error').modal('show');
+                                console.log("Error: ", errorThrown);
+                                console.log(jqXHR); 
+                                console.log("Text Status: ", textStatus);
+                        } else {                            
+                                console.log("Error: ", errorThrown);
+                                console.log(jqXHR); 
+                                console.log("Text Status: ", textStatus);              
+                                window.location.assign("/opusWeb/ui/error/access-error.shtml");     
+                        }  
+                    } 
+                });
+            }
+                                    
+            function initializeTable(inputData) {
+            	var otable = $('#academicHierarchy-table').DataTable( {
+                    aaData: inputData,
+                    dom: 'frtiS',
+                    // bPaginate: false, // include if no pagination
+                     "sScrollY": ($(window).height() - 400),
+                     scrollX:        true, // allow horizontal scrolling
+                     "orderClasses": false, // Always turn this off.  It highlights the sorted column.  Causes slowness.
+                     //scrollCollapse: true, // if have Fixed Columns
+                    columns: [
+					{data: "ahPathId"}, 
+					{data: "edit", 
+					sDefaultContent:"",
+						mRender:	function (data, type, full) {
+								return '<button type="button" id="update-row-button" class="btn btn-primary" data-toggle="modal" data-target="#update-row"><span aria-hidden="true" class="icon-plus"></span>View</button>';
+							},
+							name : "view",
+							defaultContent : ""
+						}, 
+                {					data : "grouperPath"
+				}, {
+					data : "deptCode"
+				}, {
+					data : "deptDisplayName"
+				}, {
+					data : "deptTitle"
+				}, {
+					data : "schoolCode"
+				}, {
+					data : "isPreferredDept"
+				}  
+                    ],
+                    columnDefs: [{
+                        "targets": 'nosort',
+                        "orderable": false
+                    }],
+                    order: [[1, 'asc'],[0, 'asc']],
+                    bSortCellsTop: true, //Sort on the top header cell (not the bottom)
+                    sAjaxDataProp: "", //Use blank instead of aaData as array name
+                    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]], //Show # of entries
+                    iDisplayLength: 25, //Show # of entries default
+                    fnInitComplete: function(oSettings, json) { 
+                        //For some reason, we have to re-initialize the table or it gives an 'undefined' error
+                        var table = $('#academicHierarchy-table').DataTable();
+                                                              
+                    }
+                });
+    			
+    			$('#academicHierarchy-table tbody').on('click', 'tr', function() {
+    				$(this).toggleClass('selected');				
+    				 var iPos = otable.row( this ).index(); 
+    				 var rowData = otable.row( this ).data();
+    				// alert( 'Row index: '+ iPos + rowData.academicHierarchyPathId);
+    				 $('#acadHID').html(rowData.ahPathId); 
+    				 $('#grouper-path').html(rowData.grouperPath); 
+      				 $('#dept-cd').html(rowData.deptCode); 
+     				 $('#dept-disp').html(rowData.deptDisplayName); 
+      				 $('#dept-title').html(rowData.deptTitle)+'<br/>'; 
+      				 $('#school-code').html(rowData.schoolCode);  
+                     $('#is-preferred').html(rowData.isPreferredDept); 
+                     
+    			}); 
+
+    			//new $.fn.dataTable.FixedColumns(otable); //needed to fix double header issue
+            }
+            
+	        
+        </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Hidden Mismatches</title>
+
+<!--#include virtual="../common/header.html" -->
+</head>
+<body>
+	<!--#include virtual="../common/nav.html" -->
+
+	<!-- Begin page content -->
+	<div class="container-fluid" id="main">
+		<div class="row-fluid">
+			<div class="page-header tab-header">
+				<h1>UCPath / Opus Comparison</h1>
+			</div>
+
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation"><a href="mismatches.shtml"
+					aria-controls="mismatches" role="tab">Mismatches</a></li>
+				<li role="presentation" class="active"><a href="#hidden-mismatches"
+					aria-controls="completed-cases" role="tab">Hidden Mismatches</a></li>
+				<li role="presentation"><a href="no-ucpath-appointment.shtml"
+					aria-controls="withdrawn-cases" role="tab">No UCPath Appointment</a></li>
+				<li role="presentation"><a href="no-opus-appointment.shtml"
+					aria-controls="cases-at-my-office" role="tab">No Opus Appointment</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="hiddenMismatchesReport">
+					<p id="instructions">Compare Opus appointment details with the linked UCPath Position to ensure both systems are up to date. Highlighted cells show mismatched fields. Rows on this table have been hidden because the mismatch was not relevant. To move it back to the Mismatches tab, click "Unhide".</p>
+
+					<div id="reactFixedDataTable" data-datatable_appname='hiddenMismatchesReport'
+						data-datatable_config='hiddenMismatchesReport'>
+						Loading...
+       					 </div>
+       					 
+					</div>
+					<!-- development -->
+					<!--  script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development-->
+					<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production-->
+				</div>
+			</div>
+		</div>
+	<!--#include virtual="../common/footer.html" -->
+
+	<!--#include virtual="../common/js-includes.html" -->
+
+
+
+	<script src="constants.js"></script>
+	<script src="../admin/form-fields.js"></script>
+	<script src="../javascript/select-row.js"></script>
+	<script src="case-logic.js"></script>
+	<script src="case-validation.js"></script>
+
+	<!-- JavaScript Functionality -->
+	<script>
+		//Highlight the active page in the leftnav
+		function initializeTables() {
+
+			var react_selector = 'data-datatable_config', //name of key to get Datatable element by
+			reactDomElement = $('[' + react_selector + ']'), id_attr = 'id', id = reactDomElement
+					.attr(id_attr), //Id of Dom element to attach React Datatable to
+			datatable_appname = $('#' + id).data('datatable_appname'), datatable_config_name = $(
+					'#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+			if (window._initReactDataTable) {
+				window
+						._initReactDataTable(id, datatable_appname,
+								datatable_config_name, access_token, adminData, globalData);
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Active Endowed Chairs</title>
+                
+        <!--#include virtual="../common/header.html" -->
+    </head>
+
+    <body>
+        <!--#include virtual="../common/nav.html" -->
+        
+        <!-- Begin page content -->
+        <div class="container-fluid" id="main">        
+            <div class="row-fluid"> 
+	            <div class="page-header tab-header">
+	                <h1>Endowed Chairs</h1>
+	            </div>
+	            
+	            <!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation"  class="active"><a href="#activeEndowedChairs"
+						aria-controls="active" role="tab">Active</a></li>
+					<li role="presentation"><a href="pending-endowed-chairs.shtml"
+						aria-controls="pending" role="tab">Pending</a></li>
+					<li role="presentation"><a href="modification-request.shtml"
+						aria-controls="modification" role="tab">Modification Request</a></li>
+					<li role="presentation"><a href="disestablished-endowed-chairs.shtml"
+						aria-controls="diestablished" role="tab">Disestablished</a></li>
+					<li role="presentation"><a href="inactive-endowed-chairs.shtml"
+						aria-controls="inactive" role="tab">Inactive</a></li>	
+					<li role="presentation"><a href="incomplete-endowed-chairs.shtml"
+						aria-controls="incomplete" role="tab">Incomplete</a></li>														
+				</ul>			
+	            
+	            <div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="activeEndowedChairs">	
+						<div id="reactFixedDataTable" data-datatable_appname='activeEndowedChairs'
+							data-datatable_config='activeEndowedChairs'>
+							Loading...
+						</div>
+					<!-- development -->
+					 <!--<script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development-->
+					<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production-->
+					</div>
+				</div>                 
+            </div>  
+        </div>   
+        
+        <!--#include virtual="../common/footer.html" -->
+
+        <!--#include virtual="../common/js-includes.html" -->
+
+       <script language="javascript" src="../javascript/select-row.js"></script>
+                                
+        <!-- JavaScript Functionality -->
+        <script> 
+        function initializeTables() {
+						
+        	var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+			    reactDomElement = $('[' + react_selector + ']'),
+			    id_attr = 'id',
+			    id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+	    		datatable_appname = $('#' + id).data('datatable_appname'),
+	    		datatable_config_name = $('#' + id).data('datatable_config');//Datatable name
+
+			window._initReactDataTable(id, datatable_appname, datatable_config_name,
+            	access_token, adminData, globalData);
+		}
+          
+        
+    	//tooltip
+		$("[rel=tooltip]").tooltip();
+		$('[data-toggle="popover"]').popover({trigger: 'hover'},  {container: 'body'});
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'right', 'data-placement': 'right'}, {container: 'body'});
+
+</script>
+    </body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Staff Permissions</title>
+
+<!--#include virtual="../common/header.html" -->
+</head>
+
+<body>
+	<!--#include virtual="../common/nav.html" -->
+	<!--#include virtual="../common/js-includes.html" -->
+<!--#include virtual="../common/jquery-datatables.html" -->
+
+	<!-- Begin page content -->
+	<div class="container-fluid" id="main">
+
+		<!-- Main page content -->
+
+		<div class="page-header">
+			<h1>Staff Permissions</h1>
+		</div>
+		
+		<button type='button' id='grp-add-button' class='btn btn-primary' data-toggle='modal' data-target='#grouperAddRoleModal'>Add a Role</button> 
+
+	<br><br>
+		<!-- <div id="table-scroll-area"	> -->
+		<table id="uid-table" class="display nowrap" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>Opus ID</th>
+					<th>Interfolio Person ID</th>
+					<th>Name</th>
+					<th>Official Email</th>
+					<th>AHPath ID</th>
+					<th>Grouper Path Text</th>
+					<th>Grouper Role</th>
+					<th>Grouper Role's Limit</th>
+					<th>Interfolio Unit ID</th>
+					<th>Interfolio Roles</th>
+					<th>Opus IsActive</th>
+					<th>Interfolio Role Chngd</th>
+					<th>Grouper Role Changed</th>	
+					<th>Delete</th>
+				</tr>
+				<tr>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td class="column-filter"></td>
+					<td></td>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+	<!-- Generic Error -->
+	<div class="modal" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h2 class="white">Error</h2>
+				</div>
+				<div class="modal-body"></div>
+				<!-- /modal-body -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger left"
+						data-dismiss="modal">OK</button>
+				</div>
+				<!-- /modal-footer -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<div class="modal fade" id="grouperAddRoleModal" tabindex="-1" role="dialog" aria-labelledby="grouperAddRoleModalLabel" aria-hidden="true">
+	 <div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header  modal-info">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="clearForm()">&times;</button>
+						<h1 class="modal-title" id="grouperAddRoleModalLabel">Add a Role in Interfolio</h1>
+					</div>
+					<div class="modal-body">
+						<p> You should have already added this role in Grouper.</p>
+						<form id="grouper-add-form" role="form" onsubmit="return submitPersonName()">
+  							<div class="form-group">
+ 								<label for="grouper-add-field">Person's Name:</label>
+ 								<div class="input-group">
+     								<input type="text" id="grouper-add-field" title="Please enter person name in LName, FName MName format" class="form-control" required>
+     								<span class="input-group-btn">
+       									<button id="submit-person-name-button" class="btn btn-default">Go</button>
+     								</span>
+   								</div>
+  							</div>
+  							
+  						</form>
+  						<form id="grouper-role-form" role="form" onsubmit="return submitApptSetRequest()">
+  							<div id="role-info" class="group">
+								<div class="form-group">
+									<ul id="role-list">
+									</ul>
+								</div>
+	 						</div>
+	 					
+	 					<div class="modal-footer">
+	 						<div class="modal-buttons-left">
+	 							<button id="submit-appt-set-request-button" class="btn btn-primary left">Submit</button>
+	 							<button type="button" class="btn btn-link left" data-dismiss="modal" onclick="clearForm()">Cancel</button>
+							</div><!-- /modal-footer -->
+						</div>
+						</form>
+					</div>
+				</div><!-- /modal-content -->
+			</div><!-- /modal-dialogue-->
+		</div><!-- /modal -->	
+		
+		<!--Delete Role Modals-->
+  		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="delete-warning" data-backdrop="static">
+ 			<div class="modal-dialog">
+   				<div class="modal-content">
+     				<div class="modal-header modal-danger">
+       					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      					<h1 class="white">Delete Role</h1>
+     				</div>
+     				<div class="modal-body">
+     				<p> This will only delete the role in Interfolio and Opus.  Please delete the role in Grouper first. </p> 
+     				<p><span class="name"></span><br>
+     				<span class="grouperRole"></span><br>
+     				<span style="display:none" class="committeeMemDetails"></span><br>
+     				<span style="display:none" class="opusPersonId"></span><br>
+     				<span style="display:none" class="bycPersonId"></span>
+     				<span style="display:none" class="ahPathId"></span>
+     				<span style="display:none" class="bycUnitId"></span>
+     				</p>
+					<p>Are you sure you want to delete this role of the person?  You won't be able to undo this.
+					</div> <!-- /modal-body -->
+   					<div class="modal-footer">
+         				<button type="button" class="submit btn btn-danger left">Delete</button>
+         				<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+         			</div> <!-- /modal-footer -->
+   				</div><!-- /.modal-content -->
+ 			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->	
+		
+		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="delete-role">
+ 			<div class="modal-dialog">
+   				<div class="modal-content modal-sm">
+     				<div class="modal-header modal-success">
+       					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      					<h1 class="white">Success!</h1>
+     				</div>
+     				<div class="modal-body">
+     				<img src="../images/happydossier2.png" alt="happy dossier">
+     					<p>You have deleted this role.</p>   					
+     				</div> <!-- /modal-body -->
+   					<div class="modal-footer hidden-print">
+         				<button type="button" class="btn btn-success left" data-dismiss="modal">Okay</button>
+         			</div> <!-- /modal-footer -->
+   				</div><!-- /.modal-content -->
+ 			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+<!--#include virtual="../common/footer.html" -->
+
+
+
+<script language="javascript" src="../javascript/select-row.js"></script>
+
+<!-- JavaScript Functionality -->
+<script>
+		
+		$("[rel=tooltip]").tooltip();
+		$('[data-toggle="popover"]').popover({trigger: 'hover'},  {container: 'body'});
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'top'}, {container: 'body'});
+	
+		 //responsive table height upon load
+        $ (document).ready(function() {
+      	  console.log($(window).height());
+      	  $('.dataTables_scrollBody').css('height', ($(window).height() - 550));
+         });
+      
+      //responsive table height upon window resize
+        $(window).resize(function() {
+        	  console.log($(window).height());
+        	  $('.dataTables_scrollBody').css('height', ($(window).height() - 550));
+        	});
+      
+			//Highlight the active page in the leftnav
+			//$('#leftnav-uid').addClass('active');
+						
+			function initializeTables() {
+				//Get AJAX data
+			    populateTableData();
+			}
+			
+			function populateTableData() {
+				
+				$.ajax({ 
+					cache:false,
+				    url: "/restServices/rest/admin/getStaffRoles/?access_token="+access_token, 
+				    type: 'GET', 
+				    dataType: 'json',  
+				    contentType: 'application/json',
+				    mimeType: 'application/json',
+				    success: function(data) { 
+						initializeTable(data);
+				    },
+				    error:function(jqXHR, textStatus, errorThrown) { 
+                        $("#error .modal-body").empty();
+                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+                        $('#error').modal('show');
+                        console.log("Error: ", errorThrown);
+                        console.log(jqXHR); 
+                        console.log("Text Status: ", textStatus);
+				    }
+				});
+			}
+			
+			          
+			function initializeTable(inputData) {
+				var table = $('#uid-table').DataTable( {
+			        dom: 'frtiS',
+			        aaData: inputData,
+			        "orderClasses": false,
+				    pageResize: true,
+					"sScrollY": ($(window).height() - 550),
+					scrollX: true, //Allows horizontal scrolling of the table when there are many columns
+			       // scrollCollapse: true, //Part of the Fixed Column initialization
+			        "autoWidth": true,
+			        sAjaxDataProp: "",
+			        order: [1, 'desc'],
+			        bSortCellsTop: true,
+				    
+				    scroller: true,
+			 
+			        columns: [
+			              {data: "opusPersonId"},
+			              {data: "bycPersonId"},
+			            {data: "fullName"},
+			            {data: "contactValue"},
+			            {data: "academicHierarchyPathId"},
+			            {data: "grouperPathText"},
+			            {data: "adminsRole"},
+			            {data: "adminsRoleLimit"},
+			            {data: "bycUnitId"},
+			            {data: "roles"},
+			            {data: "active"},
+			            {data: "bycRoleChange"},
+			            {data: "grouperRoleChange"},
+			            {data: "delete", 
+							sDefaultContent:"",
+								mRender:	function (data, type, full) {
+										return '<a role="button" data-container="body" aria-label="help tip" trigger="hover" '
+										+ 'data-trigger="hover" tabindex="0" class="ttip" data-placement="top" '
+										+ 'data-toggle="popover" white-space="pre-wrap" data-html="true" data-content="Delete Role"> '
+										+ '<button type="button" title="Delete" class="btn btn-default delete-case-button" '
+										+ 'data-name="' + full.fullName + '"  '
+										+ 'data-grouperRole="' + full.adminsRole + '" '
+										+ 'data-committeeMemDetails="' + full.committeeMemDetails + '" '
+										+ 'data-opusPersonId="' + full.opusPersonId + '" ' 
+										+ 'data-bycPersonId="' + full.bycPersonId + '" '
+										+ 'data-ahPathId="' + full.academicHierarchyPathId + '" ' 
+										+ 'data-bycUnitId="' + full.bycUnitId + '" ' 
+										+ 'data-toggle="modal" data-target="#delete-warning" ' 
+										+ 'onclick="setDeleteValues(\'' + full.fullName + '\',\'' + full.adminsRole + '\',\'' + full.committeeMemDetails + '\',' + full.opusPersonId + ',' + full.bycPersonId + ',' + full.academicHierarchyPathId + ',' +full.bycUnitId +')"><span aria-hidden="true" class="icon-trash ttip"></span></button></a>';
+											},
+								name: "delete"
+						}
+			        ],
+			    
+			    	<!--  ifixedColumns: {leftColumns: 1}, -->
+			        fnInitComplete: function(oSettings, json) { 
+			        	//For some reason, we have to re-initialize the table or it gives an 'undefined' error
+				    	var table = $('#uid-table').DataTable();
+					    $(".column-filter").each( function ( i ) {
+					    	if ($(this).hasClass('filter-on')) {
+					    		//Have to use index() otherwise "i" only indexes visible columns, and will pull the hidden column's data into the dropdown
+					    		var index = table.column.index('fromVisible', $(this).index());
+						        
+					    		//This does the filtering and redraws the table
+					    		var select = $('<select><option value="">All</option></select>')
+						            .appendTo( $(this).empty() )
+						            .on( 'change', function () {
+						                var val = $(this).val();
+
+						                table.column( index )
+						                    .search( val ? '^'+$(this).val()+'$' : val, true, false )
+						                    .draw();
+						            } );
+						 
+						        //This populates the dropdown
+						        table.column( index ).data().unique().sort().each( function ( d, j ) {
+						            select.append( '<option value="'+d+'">'+d+'</option>' )
+						        } );
+					    	}
+					    } );
+				    }
+			    });
+			    		
+				//Fixed left column
+			//	new $.fn.dataTable.FixedColumns(table,{
+               //     iLeftColumns:1
+             //   }); //needed to fix double header issue
+               	table.columns.adjust(); // fixes misaligned header on first load
+				
+			    //Hide and show columns
+			  //  var colvis = new $.fn.dataTable.ColVis(table);
+			  //  $(colvis.button()).insertAfter('#instructions');	
+			    
+			    changeDTstyles();
+			    
+                //Set a listener for deleting role
+                $('#delete-warning .submit').off('click').on('click', function() {
+                	deleteRoles($('#delete-warning .opusPersonId').text(), $('#delete-warning .bycPersonId').text(),
+                			$('#delete-warning .grouperRole').text(), $('#delete-warning .committeeMemDetails').text(),
+                			$('#delete-warning .ahPathId').text(), $('#delete-warning .bycUnitId').text());
+                });
+                
+                $('#delete-warning .cancel').off('click').on('click', function() {  
+                	$('#delete-warning .name').html('');
+                	$('#delete-warning .grouperRole').html('');
+                	$('#delete-warning .committeeMemDetails').html('');
+                	$('#delete-warning .opusPersonId').html(''); 
+                	$('#delete-warning .bycPersonId').html('');
+            		$('#delete-warning .ahPathId').html('');
+            		$('#delete-warning .bycUnitId').html('');
+                });
+                
+                $('#delete-warning .close').off('click').on('click', function() {
+                	$('#delete-warning .name').html('');
+                	$('#delete-warning .grouperRole').html('');
+                	$('#delete-warning .committeeMemDetails').html('');
+                	$('#delete-warning .opusPersonId').html(''); 
+                	$('#delete-warning .bycPersonId').html('');
+            		$('#delete-warning .ahPathId').html('');
+            		$('#delete-warning .bycUnitId').html('');
+                }); 
+			}
+			
+			
+			function setDeleteValues(name, grouperRole, committeeMemDetails,opusPersonId,bycPersonId,ahPathId,bycUnitId) {    
+				$('#delete-warning .name').html(name);
+            	$('#delete-warning .grouperRole').html(grouperRole);
+            	$('#delete-warning .committeeMemDetails').html(committeeMemDetails);
+            	$('#delete-warning .opusPersonId').html(opusPersonId); 
+            	$('#delete-warning .bycPersonId').html(bycPersonId);
+        		$('#delete-warning .ahPathId').html(ahPathId);
+        		$('#delete-warning .bycUnitId').html(bycUnitId);
+			    
+			}
+			
+			function deleteRoles(opusPersonId, bycPersonId, grouperRole,committeeMemDetails, ahPathId, bycUnitId) {
+				
+				var sendInfo = {
+					opusPersonId:Number(opusPersonId),
+					bycPersonId:Number(bycPersonId),
+					ahPathId:Number(ahPathId),
+					bycUnitId:Number(bycUnitId),
+					grouperRole:grouperRole,
+					committeeMemDetails:committeeMemDetails
+				}
+				$.ajax({ 
+					cache: false,
+					url: '/restServices/rest/wfm/removeUserRole/?access_token='+access_token,
+					type: 'POST',
+					data: sendInfo,
+					success: function(success) { 
+						$('#delete-warning').modal('hide');
+						
+						//Reload the page
+						location.reload();
+						
+						$('#delete-case').modal('show');
+					},
+					error: function(jqXHR, textStatus, errorThrown) { 
+						console.log("Error:", errorThrown);
+						console.log(jqXHR); 
+						console.log("Text Status:",textStatus);
+					}
+				});	
+			}
+			
+			//Hide sections for modal - HTML still shows when hidden
+			$(document).ready(function () {		
+			    $('.group').hide();
+			    $('.modal-buttons-left').hide();
+			});	
+			
+			function submitPersonName() {
+				
+				var searchStr = document.forms["grouper-add-form"]["grouper-add-field"].value; 
+	  			var SendInfo = {
+	  					searchString: searchStr
+	  		    }; 
+	  			
+				$.ajax({ 
+					cache:false,
+				    url: "/restServices/rest/wfm/personNameSearchResults/?access_token="+access_token,
+				    type: 'GET', 
+				    dataType: 'json', 
+				    data: SendInfo,
+				    success: function(data) { 
+				    	//Don't call clearForm() because we need to retain the job number for reference at this stage
+ 			    		$('#role-list').empty();
+						$('.modal-buttons-left').hide();
+ 			    		$('#role-list').append("<p>Please select a role you would like to add.</p>");
+ 			    		var opusId;
+ 			    		var bycUserId;
+ 			    		var name;
+ 			    		//List the roles available
+ 			    		$.each(data, function(index) {
+ 			    			var className = "role-info-" + index;
+ 			    			var recordName = "role-" + index;
+ 			    			opusId = this.opusPersonId;
+ 			    			bycUserId = this.bycUserId
+							name = this.Name;
+ 			    				 			    				
+ 			    				//Show the name and checkbox
+	 			    			$('#role-list').append("<li class=role-record class='noBullet'><ul class=" + recordName + ">"	
+	 			    				+ "<input type=checkbox title='role checkbox' id=checkbox-" + index + ' data-ahPathId="' + this.ahPathId + '" onclick="displayInfo(\'' + className + '\', this)">'
+	 			    				+ this.Name + " - " + this.grouperRole+  " - " +this.grouperpathLimit+""
+	 			    				+ "<input type='hidden' title='Grouper Path Limit' id='grouperpathLimit' value='"+this.grouperpathLimit+ "' class='grouperpathLimit form-control'/>"
+	 			    				+ "<input type='hidden' title='Grouper Resource' id='grouperResource' value='"+this.grouperResource+ "' class='grouperResource form-control'/>"
+	 			    				+ "<input type='hidden' title='Grouper Role' id='grouperRole' value='"+this.grouperRole+ "' class='grouperRole form-control'/>"
+	 								+ "<input type='hidden' title='Ah Path Id' id='ahPathId' value="+this.ahPathId+ " class='ahPathId form-control'/>"
+	 								+ "<input type='hidden' title='ByC Unit Id' id='bycUnitId' value="+this.bycUnitId+ " class='bycUnitId form-control'/>"
+	 								+ "<input type='hidden' title='Committee Details' id='committeeDetails' value='"+this.committeeDetails+ "' class='committeeDetails form-control'/>"
+	 								+ "</ul></li>"
+	 			    			);
+ 			    				
+	 			    			
+	 			    			//$('.' + className).hide();
+ 			    		});
+ 			    		$('#role-list').append("<div class='appointeeInfo'><input type='hidden' title='Opus Person Id' id='opusId' value="+opusId+ " class='opusId form-control'/>"
+ 			    		+"<input type='hidden' title='Byc User Id' id='bycUserId' value="+bycUserId+ " class='bycUserId form-control'/></div>");
+				    },
+				    error:function(jqXHR, textStatus, errorThrown) {
+				    	$('#grouperAddRoleModal').modal('hide');
+                        $("#error .modal-body").empty();
+                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+                        $('#error').modal('show');
+                        console.log("Error: ", errorThrown);
+                        console.log(jqXHR); 
+                        console.log("Text Status: ", textStatus);
+				    }
+				});
+				
+				$('#role-info').show();
+				
+				//Required so that the form submit doesn't reload the page
+				return false;
+			}
+			
+			//Clear form and reset if user clicks Cancel button or X in top right corner of modal
+			function clearForm() {
+				document.forms["grouper-add-form"]["grouper-add-field"].value = "";
+				$('#role-list').empty();
+				$('.modal-buttons-left').hide();
+			}
+			
+			function submitApptSetRequest() {					
+				//$('#grouperAddRoleModal').modal('hide');
+				var opusId = $(".appointeeInfo .opusId").val();
+				var bycUserId = $(".appointeeInfo .bycUserId").val();
+				var orgDetails = '';
+				var committeeDetails = '';
+				$('.role-record').each(function(index) {
+					
+					var checkboxValue = "checkbox-" + index;
+					var recordName = "role-" + index;
+					
+
+					
+					//Must check for null - in the case of a person who already has a UID ISSUED, they will show up in the list greyed out with no checkbox
+					if (document.getElementById(checkboxValue) != null) {
+						if (document.getElementById(checkboxValue).checked) {
+							
+							if(orgDetails != '') {
+								orgDetails = orgDetails+","+$("." + recordName + " .ahPathId").val()+"@"+$("." + recordName + " .bycUnitId").val()+"@"+$("." + recordName + " .grouperRole").val()
+								+"@"+$("." + recordName + " .grouperResource").val()+"@"+$("." + recordName + " .grouperpathLimit").val();	
+							} else {
+								orgDetails = $("." + recordName + " .ahPathId").val()+"@"+$("." + recordName + " .bycUnitId").val()+"@"+$("." + recordName + " .grouperRole").val()
+								+"@"+$("." + recordName + " .grouperResource").val()+"@"+$("." + recordName + " .grouperpathLimit").val();
+							}
+							if(committeeDetails != '') {
+								committeeDetails = committeeDetails+","+$("." + recordName + " .committeeDetails").val();	
+							} else {
+								committeeDetails = $("." + recordName + " .committeeDetails").val();
+							}
+						}
+					}
+				});
+					var sendInfo = {
+							opusId:Number(opusId),
+							bycUserId:Number(bycUserId),
+							orgDetails:orgDetails+",",
+							committeeDetails:committeeDetails+",",
+							adminName: adminData.adminName
+		    		}; 
+					$.ajax({
+						cache:false,
+				    	url: "/restServices/rest/wfm/addGrouperRole/?access_token="+access_token, 
+				    	type: 'POST', 
+				    	data: sendInfo,
+				    	success: function(success) { 
+				    		if(success) {
+				    			location.reload();
+				    		} else {
+				    			$('#grouperAddRoleModal').modal('hide');
+					    		
+		                        $("#error .modal-body").empty();
+		                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+		                        $('#error').modal('show');
+		                        console.log("Error: ", errorThrown);
+		                        console.log(jqXHR); 
+		                        console.log("Text Status: ", textStatus);
+				    		}
+				    		
+				    	},
+				    	error:function(jqXHR, textStatus, errorThrown) { 
+				    		$('#grouperAddRoleModal').modal('hide');
+				    		
+	                        $("#error .modal-body").empty();
+	                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+	                        $('#error').modal('show');
+	                        console.log("Error: ", errorThrown);
+	                        console.log(jqXHR); 
+	                        console.log("Text Status: ", textStatus);
+					    	
+					    	//clearForm();
+					    }
+					});
+				
+				//location.reload();
+				//clearForm();						
+				//Required so that the form submit doesn't reload the page
+				return false;
+			}
+			
+			//Display fields for gender and DOB for each candidate that is checked
+			function displayInfo(className, checkbox) {
+				//If checkbox is checked, then show DOB and gender fields, and show job-candidates-info and modal-buttons-left
+				if (checkbox.checked) {					
+		    		$('.' + className).show();
+					$('.modal-buttons-left').show();
+					
+					
+				} 
+			}
+
+			
+		</script>
+</body>
+</html>

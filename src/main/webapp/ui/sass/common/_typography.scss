@@ -1,0 +1,224 @@
+/* Headings & Typography
+-------------------------------------------------- */
+//fixes font issue - should work by changing font in variables, but it didn't work
+body {
+font-family: ProximaNova;
+}
+
+//overrides semantic css
+/*  h2, h2:last-child	{
+	margin-bottom: 10px !important;
+} */
+
+//for log out in navbar
+.smaller {
+	font-size: floor(($font-size-base * .75));
+}
+.no-bold {
+	    font-weight: normal !important;
+}
+
+//slightly smaller p for less important info
+.text-smaller {
+	font-size: floor(($font-size-base * .9));
+}
+
+.h2	{
+ 	margin-top: 30px;
+ }
+ 
+ .flush-top  {
+ 	margin-top: 0px;
+ }
+
+
+.strong {
+	font-weight: bold;
+}
+
+.instructions {
+	font-size: floor(($font-size-base * .95));
+	text-color: $gray;
+	}
+	
+.small-space	{
+	margin-top: 5px;
+}
+
+.bottom-space	{
+    margin-bottom: 10px;
+}
+
+.infoincorrect {
+	font-color: $gray-lighter;
+	float: right;
+	border: none;
+	background: transparent;
+}
+
+.header-image {
+    display: inline;
+}
+
+//big gray text for home page
+.big-gray {
+	color: $gray;
+	font-size: floor(($font-size-base * 2.9));
+} 
+
+//medium gray text for dashboard(s)
+.med-gray {
+	font-size: floor(($font-size-base * 1.5));
+	color: $gray;
+
+} 
+
+
+.black	{
+	color: black;
+}
+	
+.tagline {
+	color: black;
+	margin-top: 5px;
+	text-align: center;
+}
+
+.inactive-text {
+	color: $gray-light;
+}
+
+pre, xmp {
+  tab-size: 2px;
+  font-family: 'ProximaNova';
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-break: normal;
+  padding-left : 5px !important;
+  max-width: 500px;
+}
+
+//use to communicate with developers
+.red {
+	color: red;
+}
+
+.white {
+	color:white;
+}
+
+.blue	{
+	color: $brand-primary;
+}
+
+.required-field {
+	color: red;
+}
+
+.numbercircle   {
+	width: 100%;
+	height: 100%; 
+	background-color:$green;
+	color: black;
+	-moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    vertical-align: bottom;
+    align: center;
+    display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+  	line-height: 100%;
+}
+
+
+/* Use for long paragraphs of text, set max width of column 
+-------------------------------------------------- */
+.bodytext {
+	font-color: $gray-darker;
+	max-width:740px;
+}
+
+/* Use for bullet lists within long paragraphs of text, so it lines up on the right 
+-------------------------------------------------- */	
+.bodytextli {
+	max-width:720px;
+    padding-bottom: 5px;
+}
+
+ /* indent paragraph left
+-------------------------------------------------- */
+.indent {
+ 	margin-left: 20px;
+}
+
+ /* used in choose an appointment modal
+-------------------------------------------------- */
+.indent-45	{
+    margin-left: 45px;
+ }
+
+ /*  lists, no bullet points
+-------------------------------------------------- */
+ul.none	{
+	list-style-type:none
+}
+
+
+.noBullet {
+	list-style-type: none;
+	margin-bottom: 20px;
+	padding-left: 0px;
+}
+
+.shiftListLeft {
+	margin-left: -40px;
+} 
+
+  
+    
+//view and hide details
+.toggle-message {
+	margin-bottom: 20px;
+	color: $link-color;
+	text-decoration: underline;
+	font-size: floor(($font-size-base * .9));
+}
+
+.underline	{
+	text-decoration: underline;
+}
+ 
+.no-underline a:hover {
+	text-decoration: none !important;
+}
+
+.help-block	{
+	margin-left: 15px;	
+}
+//overrides ruby gems/bootstrap-sass styles making this dark red when there is a validation error
+ 
+.has-error .help-block	{
+	color: $gray-dark !important;
+}
+
+ /*  Styles from UCLA Gateway
+-------------------------------------------------- */
+
+@font-face { 
+	font-family:'ProximaNova'; src:url('fonts/proximanova-light.eot'); src:url('fonts/proximanova-light.eot?#iefix') format('embedded-opentype'),url('fonts/proximanova-light.woff') format('woff'),url('fonts/proximanova-light.ttf') format('truetype'); 
+	font-weight:300; 
+	font-style:normal; 
+}
+
+@font-face { 
+	font-family:'ProximaNova'; src:url('fonts/proximanova-regular.eot'); src:url('fonts/proximanova-regular.eot?#iefix') format('embedded-opentype'),url('fonts/proximanova-regular.woff') format('woff'),url('fonts/proximanova-regular.ttf') format('truetype'); 
+	font-weight:400; 
+	font-style:normal; 
+}
+
+@font-face { 
+	font-family:'ProximaNova'; src:url('fonts/proximanova-semibold.eot'); src:url('fonts/proximanova-semibold.eot?#iefix') format('embedded-opentype'),url('fonts/proximanova-semibold.woff') format('woff'),url('fonts/proximanova-semibold.ttf') format('truetype'); 
+	font-weight:600; 
+	font-style:normal; 
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Opus</title>
+<!--#include virtual="/common/header-no-walkme.html" -->
+<!--get rid of .. before all virtual includes and images before you deploy -->
+</head>
+
+<body class="image">
+	<!--#include virtual="/common/nav.html" -->
+
+	<!-- Begin page content -->
+	<div class="container public" id="main">
+
+		<!-- Main page content -->
+		<br>
+
+		<div class="jumbotron home-page">
+			<div class="text-center">
+				<img src="/images/blueOpus2.png" alt="Opus Logo" class="responsive">
+			</div>
+			<h1 class="tagline">
+				Making the academic review process <br>easier for everyone.
+			</h1>
+			<div class="text-center">
+				<a href="/opusWeb/index.jsp">
+					<button type="button" class="btn btn-primary btn-xlg small-space"
+						alt="sign in">Sign In</button>
+				</a><br>
+				<br>
+				<h2 class="tagline">
+					Faculty, <a href="https://iam-api.interfolio.com/Shibboleth.sso/Login?entityID=urn:mace:incommon:ucla.edu">Sign In Here</a>.
+				</h2>
+			</div>
+		</div>
+
+		<hr>
+		<br>
+
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-4 center white">
+				<div class="well well-lg">
+					<img src="/images/workshops-icon.gif" alt="workshop icon"
+						class="img-responsive center">
+					<h2>
+						<a
+							href="https://uclaopus.freshdesk.com/support/solutions/articles/24000000378-workshops-events"
+							target="_blank">Workshops & Events</a>
+					</h2>
+				</div>
+			</div>
+			<div class="col-md-4 center">
+				<div class="well well-lg">
+					<img src="/images/rocket-icon.gif" alt="rocket ship icon"
+						class="img-responsive center">
+					<h2>
+						<a
+							href="https://uclaopus.freshdesk.com/support/solutions/articles/24000008028-new-in-opus"
+							target="_blank">New in Opus</a>
+					</h2>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+
+		<hr>
+
+		<div class="row">
+			<div class="jumbotron center">
+				<h1>Need Help?</h1>
+				<br>
+				<p class="text-center">
+					<a href="https://uclaopus.freshdesk.com/support/home"
+						target="blank">UCLA Opus Support Knowledge Base</a><br>
+					<br> <a href=mailto: "opushelp@ucla.edu">opushelp@ucla.edu</a></br>
+					<br> (310) 825-1696
+				</p>
+
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="row">
+			<div class="jumbotron center">
+				<h1>What can you do in Opus?</h1>
+				<br>
+				<br> <img src="/images/case-management.jpg"
+					alt="a traveling case">
+				<h1>
+					<small>Route cases electronically.</small>
+				</h1>
+				<br>
+				<br> <br>
+				<br> <img src="/images/activecase.jpg" alt="an active case">
+				<h1>
+					<small>View active and completed cases.</small>
+				</h1>
+				<br>
+				<br> <img src="/images/eligibility.jpg" alt="an active case">
+				<h1>
+					<small>See which actions academic appointees are eligible
+						for.</small>
+				</h1>
+				<br>
+				<br> <img src="/images/graph.jpg" alt="graph">
+				<h1>
+					<small>See current and proposed salaries.</small>
+				</h1>
+				<br>
+				<br> <img src="/images/profile-big.png" alt="profile pic">
+				<h1>
+					<small>View and edit appointments, excellence clock and
+						eight year clock information.</small>
+				</h1>
+				<br>
+				<br> <span aria-hidden="true"
+					class="icon-flow-tree super-big-icon flush-top"></span>
+				<h1>
+					<small>See which academic appointees are in your
+						organization.</small>
+				</h1>
+				<br>
+				<br> <img src="/images/uidkey.jpg" alt="key">
+				<h1>
+					<small>Request a UID.</small>
+				</h1>
+
+
+			</div>
+		</div>
+	</div>
+
+	<!--#include virtual="/common/footer.html" -->
+	<!--#include virtual="/common/js-includes.html" -->
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manage Permissions</title>
+  <!--#include virtual="../common/header.html" -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $('[data-toggle="tabajax"]').click(function(e) {
+	    var $this = $(this),
+	        loadurl = $this.attr('href'),
+	        targ = $this.attr('data-target');
+
+	    $.get(loadurl, function(data) {
+	        $(targ).html(data);
+	    });
+
+	    $this.tab('show');
+	    return false;
+	});
+  </script>
+</head>
+<body>
+<!--#include virtual="../common/nav.html" -->
+<!-- Begin page content -->
+<div class="container-fluid public" id="main">
+	<div id="tabs">
+	  <ul class="nav nav-tabs tabs-up" id="friends">
+	      <li><a href="manage-permissions-by-users.shtml" data-target="#users" class="media_node active span" id="users_tab" data-toggle="tabajax" rel="tooltip"> Users </a></li>
+	      <li><a href="manage-permissions-by-units.shtml" data-target="#units" class="media_node span" id="units_list_tab" data-toggle="tabajax" rel="tooltip"> Units</a></li>
+	  </ul>
+
+		<div class="tab-content">
+			<div class="tab-pane active" id="users"></div>
+      		<div class="tab-pane" id="units"></div>
+    	</div>
+	</div>
+ </div>
+ <!--#include virtual="../common/footer.html" -->
+
+ <!--#include virtual="../common/js-includes.html" -->
+ 
+</body>
+</html>

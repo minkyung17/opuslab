@@ -1,0 +1,50 @@
+
+  
+.case-tab	{
+  	padding-left: 0px;
+  	list-style-type: none;
+}
+  
+.color-gray 	{
+  background-color: $gray-lighter;
+ }
+ 
+ .case-padding-top	{
+ 	padding-top: 30px;
+ }
+ 
+ .case-padding-left	{
+ 	padding-left: 70px;
+ }
+ 
+ .case-round-right-top	{
+ 	border-radius: 0px 10px 0px 0px;
+ }
+ 
+.case-round-top	{
+ 	border-radius: 10px 10px 0px 0px !important;
+ 	padding-bottom: 0px !important;
+ }
+ 
+ .case-border	{
+ 	border-style: solid;
+ 	border-width: 20px;
+ 	border-color: $gray-lighter;
+ 	border-radius: 0px 0px 10px 10px;
+ 	margin-left: 0px;
+   	margin-right: 0px;
+   	padding-top: 15px;
+ }
+ 
+ .case-no-bottom-border	{
+ 	border-bottom: 0px;
+ 	 
+ }
+
+
+.briefcaseIcon {
+	position: absolute;
+    margin-top: 5px;
+}
+
+

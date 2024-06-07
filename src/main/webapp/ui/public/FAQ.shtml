@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Opus FAQ</title>
+	
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body class="image">
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container public" id="main">
+			<div class="page-header">
+				<h1>FAQ</h1>
+			</div>
+		
+				
+				<!-- Main page content -->
+				
+				
+				<p>
+				<ul>
+					<li><a href="#what">What is Opus?</a></li>
+					<li><a href="#prepare">What can faculty do now to prepare?</a></li>
+					<li><a href="#start">When will the campus start using Opus?</a></li>
+					<li><a href="#series">What series will be included in Opus?</a></li>
+					<li><a href="#change">Will Opus change the way academics are evaluated?</a></li>
+					<li><a href="#input">What input did faculty have in designing Opus?</a></li>
+					<li><a href="#work">How much work will be involved in transitioning to Opus?</a></li>
+					<li><a href="#stand">What does Opus stand for?</a></li>
+					<li><a href="#browsers">What browsers can I use?</a></li>
+					<!--   <li><a href="#phone">Can I use Opus on tablets and phones?</a></li>-->
+					<li><a href="#accessibility">Is Opus accessible for people with disabilities?</a></li>
+				</ul>
+				</p>
+				
+				<a id="what"></a>
+				<h2>What is Opus?</h2>
+				<p class="indent bodytext text-justify">Opus is the information system of record for academic appointees at UCLA. Opus improves the academic review process by replacing current paper files with a secure electronic profile, and a convenient and automated review process. For more information see our <a href="about.shtml">About</a> page. </p>
+				
+				<a id="prepare"></a>
+				<h2>What can faculty do now to prepare?</h2>
+				<p class="indent bodytext text-justify">Get your publications list ready now!  The UC Publication Management tool, provided by the California Digital Library, searches external databases to find publications that may belong to you.  All you have to do is click 'claim as mine' to add items to your publications list.  Opus will import these automatically so you won't have to type them in.
+				Log in here, with your UCLA logon: <a href="http://oapolicy.universityofcalifornia.edu">oapolicy.universityofcalifornia.edu</a> (currently available to Senate faculty).
+				Once you've logged in, watch your campus email inbox for notifications about new publications.</p>
+				
+					
+				<a id="start"></a>
+				<h2>When will the campus start using Opus?</h2>
+				<p class="indent bodytext text-justify">As of 2016, every personnel coordinator and Dean’s office is using Opus 1.4.1 to track faculty eligibility, current actions, and make sure the appointment histories for all academics are accurate and complete in our database. In the fall of 2017, appointees themselves, as well as reviewing bodies, will be required to use the system for tracking the actual case files for merits, promotions, and 4th year appraisals. During this initial transition, dossiers will be uploaded as PDFs sent along an automated workflow. In the future, these PDFs will be replaced by integration with campus and other data sources to provide the data directly to the necessary data summary forms.</p>
+							
+				<a id="series"></a>
+				<h2>What series will be included in Opus?</h2>
+				<p class="indent bodytext text-justify">All academic appointees are included in Opus. </p>
+				
+				<a id="change"></a>
+				<h2>Will Opus change the way academics are evaluated?</h2>
+				<p class="indent bodytext text-justify">Opus will not affect the evaluative aspect of academic review: review is still governed by the policies set forth in the Academic Personnel Manual and the UCLA CALL. Instead, it is a tool to increase the efficiency and transparency of this process. </p>
+							
+				<a id="input"></a>
+				<h2>What input did faculty have in designing Opus?</h2>
+				<p class="indent bodytext text-justify"> Our Executive Steering Committee consists of faculty and senior staff, who have been instrumental in guiding the project. User engagement sessions yield many great suggestions from faculty and staff, and we've solicited feedback from all faculty on the Standard Data Outline (i.e. Data Summary). As we rollout and enhance Opus, we conduct extensive user experience testing on each version to make sure we are on the right track. If you would like to be hands-on and give us design feedback, please send an email to <a mailto:"opushelp@ucla.edu">opushelp@ucla.edu</a></p>
+							
+				<a id="work"></a>
+				<h2>How much work will be involved in transitioning to Opus?</h2>
+				<p class="indent bodytext text-justify">Our goal is to make this as smooth as possible. We will populate faculty profiles with authoritative data where possible, but there will be some manual data entry. We are exploring technology to make data entry easier on users. We will offer several training options, and are committed to an intuitive, user-friendly design to make the learning process easy. </p>
+				
+				<a id="stand"></a>
+				<h2>What does Opus stand for?</h2>
+				<p class="indent bodytext text-justify"> Opus is not an acronym. It is literally translated from Latin as 'work', particularly a work of scholarship or creativity.</p>
+				
+				<a id="browsers"></a>
+				<h2>What browsers can I use?</h2>
+				<p class="indent bodytext text-justify">Visit our <a target="blank" href="https://uclaopus.freshdesk.com/support/solutions/articles/24000001976-about-the-opus-website">About the Opus Website</a> page on the UCLA Opus Support Site for more information about compatible browsers and devices.</p>
+						
+				<!--   <a id="phone"></a>
+				<h2>Can I use Opus on tablets and phones?</h2>
+				<p class="indent bodytext text-justify">Yes! Opus works on any size device, including mobile phones and tablets.  It uses a responsive layout that adjusts to any screen size. </p>
+				 -->	
+				<a id="accessibility"></a>
+				<h2>Is Opus accessible for people with disabilities?</h2>
+				<p class="indent bodytext text-justify">Opus was designed and developed to be accessible to people with disabilities, including those who use assistive technologies. 
+				Opus follows the <a href="http://www.ucop.edu/electronic-accessibility/initiative/policy.html">UC Information Technology Accessibility Policy</a>, which means that it follows the <a href="http://www.w3.org/WAI/WCAG20/quickref/Overview.php">Web Content Accessibility Guidelines (WCAG) 2.0</a>  at level AA Success Criteria.</p>
+								
+			</div>
+	
+
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		
+		<script>$('#nav-faq').addClass('active');</script>	
+  	</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "selenium-webdriver": "^4.11.1"
+  },
+  "dependencies": {
+    "node-cron": "^3.0.3"
+  }
+}

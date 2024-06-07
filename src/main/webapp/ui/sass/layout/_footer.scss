@@ -1,0 +1,62 @@
+/* New Sticky footer styles - bootstrap 4
+-------------------------------------------------- */
+// html {
+//   position: relative;
+//   min-height: 100%;
+// }
+// body {
+//   margin-bottom: 60px; /* Margin bottom by footer height */
+// }
+// .footer {
+//   position: absolute;
+//   bottom: 0;
+//   width: 100%;
+//   height: 60px; /* Set the fixed height of the footer here */
+//   line-height: 60px; /* Vertically center the text there */
+//   background-color: #f5f5f5;
+// }
+/* end new Sticky footer styles
+-------------------------------------------------- */
+
+#footer > .container {
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.footer {
+	width: 100%;
+	background-color: $ucla-dark-blue;
+  	color: #fff;
+  	margin: 0px;
+  	border-color: transparent;
+	border-radius: 0px;
+	text-align: center;
+	font-size: ($font-size-base * .8);
+	padding: 5px;
+	//height: 60px;
+}
+		
+a.footer {
+	color: white;
+}
+
+a.footer:hover footer:hover  {
+	color: $ucla-gold;
+}
+
+.footer > li > ul > li.active > a,
+.footer > li > ul > li.active > a:hover,
+.footer > li > ul > li.active > a:focus {
+  color: $ucla-gold;
+  background-color: transparent;
+}
+
+
+
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+

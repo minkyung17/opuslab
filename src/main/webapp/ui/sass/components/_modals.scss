@@ -1,0 +1,108 @@
+/* modals
+-------------------------------------------------- */
+modal-footer {
+	text-align: left;
+}
+
+.modal-title {
+  color: black; 
+}
+
+.modal-header 	{
+	padding: 30px;
+	padding-top: 30px;
+	padding-right: 30px;
+	padding-bottom: 20px;
+	padding-left: 30px;
+}
+
+.modal-buttons-right {
+	float: right;
+}
+
+.modal-buttons-left {
+	margin-top: 20px;
+}
+
+/*
+.modal-backdrop.in:not(:first-child) {
+    opacity:0;
+}
+*/
+
+/* ---commented out to reduce space at bottom
+.modal-body {
+	margin-bottom: 20px;
+}
+--*/
+
+.modal-body	{
+	padding-bottom: 15px;
+}
+
+.modal input[type="checkbox"] {
+	margin: 5px;
+}
+
+.modal input[type="date"] {
+	line-height: 28px;
+}
+
+.close {
+    font-size: 27px;
+    opacity: 0.5;
+}
+
+
+
+/* modal styles
+-------------------------------------------------- */
+.modal-warning	{
+	background-color:$brand-warning;
+	color: #000000;
+}
+
+.modal-danger	{
+	background-color:$brand-danger;
+	color: "white";
+	border-color: #d43f3a;
+}
+
+.modal-info	{
+	background-color:$light-blue;
+	color:#000000;
+}
+
+.modal-success	{
+	background-color:$brand-success;
+	color:"white";
+}
+
+/* modal print button------------------------ */
+.modal-print	{
+	    margin-top: 25px;
+	    margin-right: 30px;
+}
+
+
+/* Fixes a strange thing where .modal-lg width: 900px; makes the modal to the left and with a frame around it.  In this file: Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.1.1.1/vendor/assets/stylesheets/bootstrap/_modals.scss */
+.modal-lg.modal {
+    width: auto;
+}
+
+.modal-info h1	{
+	color: #000000;
+}
+
+.modal-body .results_legend	{
+	min-height: 0px;
+}
+
+@media (min-width: 768px) {
+  .modal-xl .modal-dialog {
+    width: 95%;
+   max-width:1400px;
+  }
+}
+
+

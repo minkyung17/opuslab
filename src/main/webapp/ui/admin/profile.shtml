@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Profile</title>
+
+        <!--#include virtual="../common/header.html" -->
+    </head>
+    <body>
+        <!--#include virtual="../common/nav.html" -->
+
+        <!-- Begin page content -->
+       <div class="container-fluid add-padding-bottom" id="main"> 
+
+		<div id="reactFixedDataTable" data-datatable_appname='profile' data-datatable_config='profile'>
+<!-- 			<div class="loader-container" *ngIf="isSearching">
+            				<div class="loader"></div>
+            				<p class="text-muted center">Loading</p>
+       					 </div>
+			</div> -->Loading...
+		</div>		
+		
+		
+		
+        <!--#include virtual="../common/footer.html" -->
+
+        <!--#include virtual="../common/js-includes.html" -->
+        
+     <!--  <script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development -->      
+		<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production -->
+
+        <!-- JavaScript Functionality -->
+        <script>
+    			//Highlight the active page in the leftnav
+    			$('.sidebar-link').on('click',function(){  $(this).addClass('active'); })
+    			
+    			function initializeTables() {
+    				    				
+					var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+					    reactDomElement = $('[' + react_selector + ']'),
+					    id_attr = 'id',
+					    id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+	            		datatable_appname = $('#' + id).data('datatable_appname'),
+	            		datatable_config_name = $('#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+	
+					window._initReactProfile(id, datatable_appname, datatable_config_name, 
+							access_token, adminData, globalData);
+				}
+    		</script>
+    </body>
+</html>

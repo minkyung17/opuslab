@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Page title here</title>
+				
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body>
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container-fluid main-content" id="main">
+			<div class="row">
+				<!-- Left hand navigation -->
+				<div class="col-md-4 leftnav">
+					<h2>Leftnav header here</h2>
+					<!--#include virtual="../common/academic-history-leftnav.html" -->	
+				</div>
+				<!-- Main page content -->
+				<div class="col-md-8">
+					<div class="page-header">
+						<h1>Page header here</h1>
+					</div>
+			  		<p id="instructions">Instructional text here</p> 					  		
+				</div>
+			</div>
+		</div>
+		
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+			
+		<!-- JavaScript Functionality -->
+		<script>		
+			
+		</script>
+  	</body>
+</html>

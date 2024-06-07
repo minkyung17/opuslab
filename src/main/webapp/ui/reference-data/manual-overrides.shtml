@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Manual Overrides</title>
+<!--#include virtual="../common/header.html" -->
+<link rel="stylesheet" crossorigin="anonymous" integrity="sha384-4ZDNqh7tdG/7K7msMXXlz3BRKqPF45hW2BuHVoycMVJGUB5Y+Tw0vX7Ch5/hVV2S" href="../ucla-design/css/ucla-lib.min.css" />
+</head>
+<style>
+    table, th, td {
+		border: 1px solid black;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-right: 10px;
+		padding-left: 10px;
+    }
+	table { border-spacing: 30px; }
+    .red {
+        color: red;
+    }
+	.lightest-blue{
+		 background-color: #DAEBFE !important;
+	}
+	.daily {
+		font-size: 12px;
+	}
+</style>
+<body class="image">
+	<div class="container fluid public main">
+		<!-- Begin page content -->
+		<div class="ucla">
+			<header class="ucla-header">
+				<div class="ucla-header__logo-container">
+					<div class="ucla-header__logo">
+						<a href="../dashboard/OA-dash.shtml">
+							<img class="ucla-header__logo-image" src="https://www.ucla.edu/img/logo-ucla.svg" alt="UCLA Logo" />
+						</a>
+					</div>
+				</div>
+				
+			</header>
+
+			<div class="ucla-header__container" id="header-wrap">
+				<div class="ucla-header__site-name">
+					<a href="../dashboard/OA-dash.shtml" title="Back to Dashboard" rel="home">Back to Dashboard</a>
+				</div>
+			</div>
+
+			<div class="ucla-grid cols-7">
+				<div class="ucla-grid_span-1"></div>
+				<!-- Middle Column Page content -->
+				<div class="ucla-grid_span-5">
+					<div class="col span_12_of_12 scoot-down">
+						<div class="page-header">
+							<div class="ucla">
+								<div class="col span_2_of_12 flush-top center">
+									<img src="../images/superfolder.png" alt="superman filey!">
+								</div>
+								<div class="col span_8_of_12 center">
+									<h1 class=" black">Manual Overrides</h1>		
+								</div>
+								<div class="col span_2_of_12"></div>
+							</div>
+						</div>
+				
+						<h2 class=" red "><b>Check with team before starting a manual override!</b></h2>
+						<h2 class=" red ">Do not click unless you really mean it.</h2>
+						<br>
+
+						<div>Run times vary based on the number of records to be processed.</div>
+						<br>
+						<div class="ucla">
+							<table style="width:100%" class="ucla-table ucla-table__border align-md-left ">
+								<!-- Row 1 -->
+								<tr class=" black " >
+								<th class="lightest-blue">
+									<h4 class="ucla-text-color-black">Actions Nightly Job</h4>
+									<img src="../images/clock.png" alt="clock">
+									<span class=" daily ">Runs daily at <b>12:30 am</b></span>
+								</th>
+								<th class="lightest-blue">
+									<h4 class="ucla-text-color-black">Load Cases at My Office Data</h4>
+									<img src="../images/clock.png" alt="clock">
+									<span class=" daily ">Runs daily at <b>5:40 pm</b></span>
+								</th>
+								</tr>
+								<tr>
+								<td>Updates Opus appointments based on approved effective actions. Any action that has a status of completed, an effective date
+									on or before the current date, and a positive outcome is included.
+									<br>
+									<br>
+									<div class=" col span_12_of_12 ">
+										<label class="ucla-field__checkbox-label" for="actionsNightlyJob">
+											<input type="checkbox" class="ucla-field__checkbox" id="actionsNightlyJob" />
+											Confirm Manual Override for Actions Nightly Job
+										</label>
+										<div class=" col span_12_of_12 offset_1_of_12 ">
+											<small>Run Time: ~1 minute (30-40 minutes on June 30).</small>
+										</div>
+									</div>
+									<br>
+									<div class=" col span_12_of_12 ">
+										<button type="button" id="actionsNightlyJobButton" class=" ucla-btn ucla-btn--primary right "
+											data-toggle="modal">
+											Start Manual Override
+										</button>
+									</div>
+								</td>
+								<td>Populates the Cases at My Office table from Interfolio. Overwrites the existing data and records the dates each packet moved to and from each workflow
+									step as of the current timestamp. Updates the Case Workflow Step description (Location). Includes all active cases that are linked with an Interfolio packet.
+									<br>
+									<br>
+									<div class=" col span_12_of_12 ">
+										<label class="ucla-field__checkbox-label" for="loadCAMOData">
+											<input type="checkbox" class="ucla-field__checkbox" id="loadCAMOData" />
+											Confirm Manual Override for Load Cases at My Office Data
+										</label>
+										<div class=" col span_12_of_12 offset_1_of_12 ">
+											<small>Run Time: ~3.5 hours.</small>
+										</div>
+									</div>
+									<br>
+									<div class=" col span_12_of_12 ">
+										<button type="button" id="loadCAMODataButton"  class=" ucla-btn ucla-btn--primary right "
+											data-toggle="modal">
+											Start Manual Override
+										</button>
+									</div>
+								</td>
+								</tr>
+
+								<!-- Row 2 -->
+								<tr class=" lightest-blueblack " >
+									<th class="lightest-blue">
+										<h4 class="ucla-text-color-black">Calculate Eligibility Rules</h4>
+										<img src="../images/clock.png" alt="clock">
+										<span class=" daily ">Runs daily at <b>1:30 am</b></span>
+									</th>
+									<th class="lightest-blue">
+										<h4 class="ucla-text-color-black">Save Interfolio Roles to Opus Database</h4>
+										<img src="../images/clock.png" alt="clock">
+										<span class=" daily ">Runs daily at <b>9:30 pm</b></span>
+									</th>
+								</tr>
+								<tr>
+									<td>Updates (deletes/inserts/recalculates) the Eligibility table based on information in the Appointment and Clock tables.
+										<br>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<label class="ucla-field__checkbox-label" for="calculateEligRules">
+												<input type="checkbox" class="ucla-field__checkbox" id="calculateEligRules" />
+												Confirm Manual Override for Calculate Eligibility Rules
+											</label>
+											<div class=" col span_12_of_12 offset_1_of_12 ">
+												<small>Run Time: ~5 minutes (30 minutes on June 30).</small>
+											</div>
+										</div>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<button type="button" id="calculateEligRulesButton"  class=" ucla-btn ucla-btn--primary right "
+												data-toggle="modal">
+												Start Manual Override
+											</button>
+										</div>
+									</td>
+									<td>Save roles from Interfolio to Opus. Deletes all Interfolio user roles from the InterfolioUserRole table, then refreshes them into the InterfolioUserRole
+										table from the RPT API.
+										<br>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<label class="ucla-field__checkbox-label" for="saveIFRoles">
+												<input type="checkbox" class="ucla-field__checkbox" id="saveIFRoles" />
+												Confirm Manual Override for Save Interfolio Roles to Opus Database
+											</label>
+											<div class=" col span_12_of_12 offset_1_of_12 ">
+												<small>Run Time: ~4 hours.</small>
+											</div>
+										</div>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<button type="button" id="saveIFRolesButton"  class=" ucla-btn ucla-btn--primary right "
+												data-toggle="modal">
+												Start Manual Override
+											</button>
+										</div>
+									</td>
+								</tr>
+
+								<!-- Row 3 -->
+								<tr class=" lightest-blueblack " >
+									<th class="lightest-blue">
+										<h4 class="ucla-text-color-black">Endowed Chairs Actions Nightly Job</h4>
+										<img src="../images/clock.png" alt="clock">
+										<span class=" daily ">Runs daily at <b>1:00 am</b></span>
+									</th>
+									<th class="lightest-blue">
+										<h4 class="ucla-text-color-black">Update Current Appointment Details</h4>
+										<img src="../images/clock.png" alt="clock">
+										<span class=" daily ">Runs daily at <b>2:30 am</b></span>
+									</th>
+								</tr>
+								<tr>
+									<td>Updates Opus Endowed Chair (EC) appointments based on approved effective EC actions and EC appointment end date.
+										Any EC action that has a status of completed, an effective date on or before the current date, and a positive outcome is included.
+										Any EC appointments that have reached their end date will also be included.
+										<br>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<label class="ucla-field__checkbox-label" for="ECActionsNightlyJob">
+												<input type="checkbox" class="ucla-field__checkbox" id="ECActionsNightlyJob" />
+												Confirm Manual Override for Endowed Chairs Actions Nightly Job
+											</label>
+											<div class=" col span_12_of_12 offset_1_of_12 ">
+												<small>Run Time: ~1 minute.</small>
+											</div>
+										</div>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<button type="button" id="ECActionsNightlyJobButton"  class=" ucla-btn ucla-btn--primary right "
+												data-toggle="modal">
+												Start Manual Override
+											</button>
+										</div>
+									</td>
+									<td>Updates the OpusAction table's Current Appointment fields and OpusAppoinmtentLocation based on the information in the Appointment table.
+										<br>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<label class="ucla-field__checkbox-label" for="updateCurrentApptDetails">
+												<input type="checkbox" class="ucla-field__checkbox" id="updateCurrentApptDetails" />
+												Confirm Manual Override for Update Current Appointment Details
+											</label>
+											<div class=" col span_12_of_12 offset_1_of_12 ">
+												<small>Run Time: ~8 minutes.</small>
+											</div>
+										</div>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<button type="button" id="updateCurrentApptDetailsButton"  class=" ucla-btn ucla-btn--primary right "
+												data-toggle="modal">
+												Start Manual Override
+											</button>
+										</div>
+									</td>
+								</tr>
+
+								<!-- Row 4 -->
+								<tr class=" lightest-blueblack " >
+									<th class="lightest-blue">
+										<h4 class="ucla-text-color-black">One-Time Job</h4>
+										<!-- <img src="../images/clock.png" alt="clock"> -->
+										<span class=" daily "><b></b></span>
+									</th>
+									<th class="lightest-blue">
+										<h4 class="ucla-text-color-black"></h4>
+										<!-- <img src="../images/clock.png" alt="clock"> -->
+										<span class=" daily "> <b></b></span>
+									</th>
+								</tr>
+								<tr>
+									<td>4.6: One-time API call to add levels to all workflow steps for all Interfolio cases.
+										<br>
+										<div class=" col span_12_of_12 ">
+											<label class="ucla-field__label" for="oneTimeJobDuration">Enter number of hours to execute the job:</label>
+											<input class="ucla-field__input" id="oneTimeJobDuration" type="number" placeholder="Number of Hours">
+										</div>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<label class="ucla-field__checkbox-label" for="oneTimeJob">
+												<input type="checkbox" class="ucla-field__checkbox" id="oneTimeJob" />
+												Confirm Manual Override for One-Time Job
+											</label>
+										</div>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<button type="button" id="oneTimeJobButton"  class=" ucla-btn ucla-btn--primary right "
+												data-toggle="modal">
+												Start Manual Override
+											</button>
+										</div>
+									</td>
+									<td>
+										<br>
+										<br>
+										<div class=" col span_12_of_12 ">
+											<!-- <input class=" flush-top ucla-field__checkbox " type="checkbox" id="updateCurrentApptDetails" name="updateCurrentApptDetails" value="updateCurrentApptDetails"> -->
+											<label for="updateCurrentApptDetails">
+												
+												<br>
+												<small class=" left "></small class=" left ">
+											</label>
+										</div>
+										<br>
+										<!-- <div class=" col span_12_of_12 ">
+											<button type="button" id="oneTimeJobButton"  class=" ucla-btn ucla-btn--primary right "
+												data-toggle="modal">
+												Start Manual Override
+											</button>
+										</div> -->
+									</td>
+								</tr>
+							</table>
+							<!-- End of Table -->
+						</div>
+						<br>
+						<br>
+					</div>
+				</div>
+				<div class="ucla-grid_span-1"></div>
+			</div>
+
+		</div>
+	</div>
+	<!-- JavaScript Functionality -->
+
+	<!--#include virtual="../common/footer.html" -->
+	<!--#include virtual="../common/js-includes.html" -->
+	<script>
+        
+		//If the role is not opus_admin, redirect user to the access-error page.  Borrowing the initializeTables function here
+		//because it is called in the success block of the ajax function inside opus.js that retrieves adminData
+		function initializeTables() { 
+			if (adminData.adminRoles.indexOf('opus_admin') == -1) {
+				window.location.assign("/restServices/ui/error/access-error.shtml");
+			} else {
+				if (adminData.alertTitle != null && adminData.alertTitle != ''
+						&& adminData.alertText != null && adminData.alertText != '') {
+					document.getElementById("alerts").style.display = "block";
+					document.getElementById("dashboardTitle").innerHTML = adminData.alertTitle;
+					document.getElementById("dashboardText").innerHTML = adminData.alertText;
+				}
+			}
+		}
+
+        // Actions Nightly Job button
+        let actionsNightlyJobInput = document.getElementById("actionsNightlyJob");
+        let actionsNightlyJobButton = document.getElementById("actionsNightlyJobButton");
+        actionsNightlyJobButton.disabled = true;
+        actionsNightlyJobInput.addEventListener("change", actionsNightJobHandler);
+
+        function actionsNightJobHandler() {
+            if(!document.getElementById("actionsNightlyJob").checked) {
+                actionsNightlyJobButton.disabled = true;
+            } else {
+                actionsNightlyJobButton.disabled = false;
+            }
+        }
+
+        // Calculate Eligibility Rules button
+        let calculateEligRulesInput = document.getElementById("calculateEligRules");
+        let calculateEligRulesButton = document.getElementById("calculateEligRulesButton");
+        calculateEligRulesButton.disabled = true;
+        calculateEligRulesInput.addEventListener("change", calculateEligRulesHandler);
+
+        function calculateEligRulesHandler() {
+            if(!document.getElementById("calculateEligRules").checked) {
+                calculateEligRulesButton.disabled = true;
+            } else {
+                calculateEligRulesButton.disabled = false;
+            }
+        }
+
+		// Endowed Chairs Actions Nightly Job button
+        let ECActionsNightlyJobInput = document.getElementById("ECActionsNightlyJob");
+        let ECActionsNightlyJobButton = document.getElementById("ECActionsNightlyJobButton");
+        ECActionsNightlyJobButton.disabled = true;
+        ECActionsNightlyJobInput.addEventListener("change", ECActionsNightlyJobHandler);
+
+        function ECActionsNightlyJobHandler() {
+            if(!document.getElementById("ECActionsNightlyJob").checked) {
+                ECActionsNightlyJobButton.disabled = true;
+            } else {
+                ECActionsNightlyJobButton.disabled = false;
+            }
+        }
+
+		// Load Cases at my Office Data button
+        let loadCAMODataInput = document.getElementById("loadCAMOData");
+        let loadCAMODataButton = document.getElementById("loadCAMODataButton");
+        loadCAMODataButton.disabled = true;
+        loadCAMODataInput.addEventListener("change", loadCAMODataHandler);
+
+        function loadCAMODataHandler() {
+            if(!document.getElementById("loadCAMOData").checked) {
+                loadCAMODataButton.disabled = true;
+            } else {
+                loadCAMODataButton.disabled = false;
+            }
+        }
+
+		// Save Interfolio Roles to Opus Database button
+        let saveIFRolesInput = document.getElementById("saveIFRoles");
+        let saveIFRolesButton = document.getElementById("saveIFRolesButton");
+        saveIFRolesButton.disabled = true;
+        saveIFRolesInput.addEventListener("change", saveIFRolesHandler);
+
+        function saveIFRolesHandler() {
+            if(!document.getElementById("saveIFRoles").checked) {
+                saveIFRolesButton.disabled = true;
+            } else {
+                saveIFRolesButton.disabled = false;
+            }
+        }
+
+		// Update Current Appointment Details button
+        let updateCurrentApptDetailsInput = document.getElementById("updateCurrentApptDetails");
+        let updateCurrentApptDetailsButton = document.getElementById("updateCurrentApptDetailsButton");
+        updateCurrentApptDetailsButton.disabled = true;
+        updateCurrentApptDetailsInput.addEventListener("change", updateCurrentApptDetailsHandler);
+
+        function updateCurrentApptDetailsHandler() {
+            if(!document.getElementById("updateCurrentApptDetails").checked) {
+                updateCurrentApptDetailsButton.disabled = true;
+            } else {
+                updateCurrentApptDetailsButton.disabled = false;
+            }
+        }
+
+		// RPT One Time API Call button
+        let oneTimeJobInput = document.getElementById("oneTimeJob");
+        let oneTimeJobButton = document.getElementById("oneTimeJobButton");
+        oneTimeJobButton.disabled = true;
+        oneTimeJobInput.addEventListener("change", oneTimeJobHandler);
+
+        function oneTimeJobHandler() {
+            if(!document.getElementById("oneTimeJob").checked) {
+                oneTimeJobButton.disabled = true;
+            } else {
+                oneTimeJobButton.disabled = false;
+            }
+        }
+
+		//tooltip
+		$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'top'});
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'top'});
+
+		$('#my-affix').affix({
+		    offset: {
+		      top: 25
+		    , bottom: function () {
+		        return (this.bottom = $('.footer').outerHeight(true))
+		      }
+		    }
+		  });
+
+		$("#backButton").click(function() {
+			window.location.assign("/opusWeb/ui/dashboard/OA-dash.shtml");
+		});
+
+		
+		$("#actionsNightlyJobButton").click(function() {
+			console.log("Actions Nightly Job: " + new Date($.now()));
+			var SendInfo = {
+			};
+			let actionsNightlyJobInput = document.getElementById("actionsNightlyJob");
+        	let actionsNightlyJobButton = document.getElementById("actionsNightlyJobButton");
+			actionsNightlyJobInput.checked = false;
+			actionsNightlyJobButton.disabled = true;
+			$.ajax({
+				cache : false,
+				url : "/restServices/rest/activecase/completedActionNightlyJob/?access_token="
+						+ access_token,
+				type : 'GET',
+				dataType : 'json', 
+				contentType : 'application/json',
+				mimeType : 'application/json',
+				success : function(adminScreenData) {
+					var modal = adminScreenData ? '.eligibility-success' : '.eligibility-failure';
+					$(modal).modal();
+					  
+				},
+				error : function(jqXHR, textStatus,	errorThrown) { 
+					$('.eligibility-failure').modal();
+				}
+			});
+		});
+		$("#ECActionsNightlyJobButton").click(function() {
+			console.log("EC Actions Nightly Job: " + new Date($.now()));
+			var SendInfo = {
+			};
+			let ECActionsNightlyJobInput = document.getElementById("ECActionsNightlyJob");
+        	let ECActionsNightlyJobButton = document.getElementById("ECActionsNightlyJobButton");
+			ECActionsNightlyJobInput.checked = false;
+			ECActionsNightlyJobButton.disabled = true;
+			$.ajax({
+				cache : false,
+				url : "/restServices/rest/ec/ecNightlyJob?access_token="
+						+ access_token,
+				type : 'GET',
+				dataType : 'json', 
+				contentType : 'application/json',
+				mimeType : 'application/json',
+				success : function(adminScreenData) {
+					var modal = adminScreenData ? '.eligibility-success' : '.eligibility-failure';
+					$(modal).modal();
+					  
+				},
+				error : function(jqXHR, textStatus,	errorThrown) { 
+					$('.eligibility-failure').modal();
+				}
+			});
+		});
+		$("#loadCAMODataButton").click(function() {
+			console.log("Load CAMO Data: " + new Date($.now()));
+			var SendInfo = {
+			};
+			let loadCAMODataInput = document.getElementById("loadCAMOData");
+        	let loadCAMODataButton = document.getElementById("loadCAMODataButton");
+			loadCAMODataInput.checked = false;
+			loadCAMODataButton.disabled = true;
+			$.ajax({
+				cache : false,
+				url : "/restServices/rest/bycreview/loadCasesAtMyOffc/?access_token="
+						+ access_token,
+				type : 'GET',
+				dataType : 'json', 
+				contentType : 'application/json',
+				mimeType : 'application/json',
+				success : function(adminScreenData) {
+					var modal = adminScreenData ? '.eligibility-success' : '.eligibility-failure';
+					$(modal).modal();
+					  
+				},
+				error : function(jqXHR, textStatus,	errorThrown) { 
+					$('.eligibility-failure').modal();
+				}
+			});
+		});
+		$("#calculateEligRulesButton").click(function() {
+			console.log("Calculate Eligibility Rules: " + new Date($.now()));
+			var SendInfo = {
+			};
+			let calculateEligRulesInput = document.getElementById("calculateEligRules");
+        	let calculateEligRulesButton = document.getElementById("calculateEligRulesButton");
+			calculateEligRulesInput.checked = false;
+			calculateEligRulesButton.disabled = true;
+			$.ajax({
+				cache : false,
+				url : "/restServices/rest/eligibles/triggerEligibility/?access_token="
+						+ access_token,
+				type : 'GET',
+				dataType : 'json', 
+				contentType : 'application/json',
+				mimeType : 'application/json',
+				success : function(adminScreenData) {
+					var modal = adminScreenData ? '.eligibility-success' : '.eligibility-failure';
+					$(modal).modal();
+					  
+				},
+				error : function(jqXHR, textStatus,	errorThrown) { 
+					$('.eligibility-failure').modal();
+				}
+			});
+		});
+		$("#updateCurrentApptDetailsButton").click(function() {
+			console.log("Update Current Appointment Details: " + new Date($.now()));
+			var SendInfo = {
+			};
+			let updateCurrentApptDetailsInput = document.getElementById("updateCurrentApptDetails");
+        	let updateCurrentApptDetailsButton = document.getElementById("updateCurrentApptDetailsButton");
+			updateCurrentApptDetailsInput.checked = false;
+			updateCurrentApptDetailsButton.disabled = true;
+			$.ajax({
+				cache : false,
+				url : "/restServices/rest/activecase/updateCurrentApptDetails/?access_token="
+						+ access_token,
+				type : 'GET',
+				dataType : 'json', 
+				contentType : 'application/json',
+				mimeType : 'application/json',
+				success : function(adminScreenData) {
+					var modal = adminScreenData ? '.eligibility-success' : '.eligibility-failure';
+					$(modal).modal();
+					  
+				},
+				error : function(jqXHR, textStatus,	errorThrown) { 
+					$('.eligibility-failure').modal();
+				}
+			});
+		});
+		$("#saveIFRolesButton").click(function() {
+			console.log("Save Interfolio Roles: " + new Date($.now()));
+			var SendInfo = {
+			};
+			let saveIFRolesInput = document.getElementById("saveIFRoles");
+        	let saveIFRolesButton = document.getElementById("saveIFRolesButton");
+			saveIFRolesInput.checked = false;
+			saveIFRolesButton.disabled = true;
+			$.ajax({
+				cache : false,
+				url : "/restServices/rest/permissions/updateInterfolioUserRoles/?access_token="
+						+ access_token,
+				type : 'GET',
+				dataType : 'json', 
+				contentType : 'application/json',
+				mimeType : 'application/json',
+				success : function(adminScreenData) {
+					var modal = adminScreenData ? '.eligibility-success' : '.eligibility-failure';
+					$(modal).modal();
+					  
+				},
+				error : function(jqXHR, textStatus,	errorThrown) { 
+					$('.eligibility-failure').modal();
+				}
+			});
+		});
+		$("#oneTimeJobButton").click(function() {
+			console.log("Before oneTimeJob: " + new Date($.now()));
+			var SendInfo = {
+			};
+			let oneTimeJobInput = document.getElementById("oneTimeJob");
+        	let oneTimeJobButton = document.getElementById("oneTimeJobButton");
+			oneTimeJobInput.checked = false;
+			oneTimeJobButton.disabled = true;
+			let oneTimeJobDuration = document.getElementById("oneTimeJobDuration").value;
+			let duration = JSON.stringify(oneTimeJobDuration);
+			$.ajax({
+				cache : false,
+				url : "/restServices/rest/bycreview/addAcademicLevels/"+duration+"?access_token="
+						+ access_token,
+				type : 'GET',
+				dataType : 'json', 
+				contentType : 'application/json',
+				mimeType : 'application/json',
+				success : function(adminScreenData) {
+					var modal = adminScreenData ? '.eligibility-success' : '.eligibility-failure';
+					$(modal).modal();
+					  
+				},
+				error : function(jqXHR, textStatus,	errorThrown) { 
+					$('.eligibility-failure').modal();
+				}
+			});
+		});
+		
+</script>
+<script type="text/javascript" crossorigin="anonymous" integrity="sha384-qhkfDxMBbxXrPP843ofQ/2ZDslD8lSruy5RdW1UsKAV6/MExkRIthwyy76QRgEKP" src="../ucla-design/js/ucla-lib-scripts.min.js"></script>
+</body>
+<!-- Modals -->
+<div class="modal fade eligibility-success" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-success">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 style="color: white" class="modal-title">Success!</h4>
+			</div>
+			<div class="modal-body">
+				The job ran successfully! <br> <br>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn left btn-success"
+					data-dismiss="modal">OK</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade eligibility-failure" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header modal-danger">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h4 style="color: white" class="modal-title">Error</h4>
+			</div>
+			<div class="modal-body">
+				Something went wrong. Could not complete the job. Please contact
+				Opus development team <br> <br>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn left btn-link"
+					data-dismiss="modal">Ok</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+</html>
+

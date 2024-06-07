@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Active Cases</title>
+
+<!--#include virtual="../common/header.html" -->
+</head>
+<body>
+	<!--#include virtual="../common/nav.html" -->
+
+	<!-- Begin page content -->
+	<div class="container-fluid" id="main">
+		<div class="row-fluid">
+			<div class="page-header tab-header">
+				<h1>Cases</h1>
+			</div>
+
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#activeCases"
+					aria-controls="active-cases" role="tab">Active Cases</a></li>
+				<li role="presentation"><a href="completed-cases.shtml"
+					aria-controls="completed-cases" role="tab">Completed Cases</a></li>
+				<li role="presentation"><a href="withdrawn-cases.shtml"
+					aria-controls="withdrawn-cases" role="tab">Withdrawn Cases</a></li>
+				<li role="presentation"><a href="cases-at-my-office.shtml"
+					aria-controls="cases-at-my-office" role="tab">Cases at My Office</a></li>
+			</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="activeCases">
+					<p id="instructions">This report displays actions in progress
+						for all academic appointees in your department or organization.</p>
+
+					<!-- 	             		<label for="action-filters">Show Only</label> -->
+					<!-- 						<ul id="action-filters"> -->
+					<!-- 							<li><input class="filter-checkbox" type="checkbox" id="nowaiver" name="nowaiver" title="No Waiver  checkbox" value="No Waiver">Appointees based in your department (or joints without a waiver)&thinsp; <a role="button" aria-label="help tip" trigger="hover" data-trigger="hover" tabindex="0" class="ttip" data-placement="top" data-toggle="popover" white-space="pre-wrap" data-html="true" data-content="Checking this box will display appointees up for review by your department (i.e., it will filter out joint appointees with review waivers)."><span aria-hidden="true" class="icon-help-circled help ttip"></span></a></li> -->
+					<!--<li><input class="filter-checkbox" type="checkbox" id="deferred-actions-checkbox" name="deferred-actions-checkbox" title="Deferred actions checkbox" value="deferred-actions">Deferred Actions</li>-->
+					<!--<li><input class="filter-checkbox" type="checkbox" id="waiver" name="waiver" title="Waiver checkbox" value="Waiver">Waiver</li>-->
+					<!-- 						</ul> -->
+
+					<!-- 					<button type="button" id="start-new-case-button" -->
+					<!-- 						class="btn btn-primary" data-toggle="modal" -->
+					<!-- 						data-target="#choose-person"> -->
+					<!-- 						<img src="../images/case-tiny.png" alt="case icon">&nbsp;Start -->
+					<!-- 						a New Case -->
+					<!-- 					</button> -->
+
+					<div id="start-new-case-button"></div>
+
+					<div id="case-summary-test-button"></div>
+
+					<div id="reactFixedDataTable" data-datatable_appname='activeCases'
+						data-datatable_config='activeCases'>
+						<!-- <div class="loader-container" *ngIf="isSearching">
+            				<div class="loader"></div>
+            				<p class="text-muted center">Loading</p>
+       					 </div> -->
+       					 Loading...
+					</div>
+					<!-- development -->
+					<!--  script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development-->
+					<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production-->
+				</div>
+			</div>
+		</div>
+	<!--#include virtual="../common/footer.html" -->
+
+	<!--#include virtual="../common/js-includes.html" -->
+
+
+
+	<script src="constants.js"></script>
+	<script src="../admin/form-fields.js"></script>
+	<script src="../javascript/select-row.js"></script>
+	<script src="case-logic.js"></script>
+	<script src="case-validation.js"></script>
+
+	<!-- JavaScript Functionality -->
+	<script>
+		//Highlight the active page in the leftnav
+		function initializeTables() {
+
+			var react_selector = 'data-datatable_config', //name of key to get Datatable element by
+			reactDomElement = $('[' + react_selector + ']'), id_attr = 'id', id = reactDomElement
+					.attr(id_attr), //Id of Dom element to attach React Datatable to
+			datatable_appname = $('#' + id).data('datatable_appname'), datatable_config_name = $(
+					'#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+			if (window._initReactDataTable) {
+				window
+						._initReactDataTable(id, datatable_appname,
+								datatable_config_name, access_token, adminData, globalData);
+			}
+
+			if (window._initReactCases) {
+				window._initReactCases('start-new-case-button', access_token,
+						adminData, globalData);
+			}
+		}
+	</script>
+</body>
+</html>

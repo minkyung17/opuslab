@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Opus Dashboard</title>				
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body class="image">
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+				<!-- Begin page content -->
+		<div class="container fluid public" id='main'>
+			<div class="page-header">
+			
+				<div class="row">
+					<div class="col-md-1 scoot-down-10">
+						<img src="../images/happydossier2.png" alt="a happy file folder">
+					</div>
+					<div class="col-md-11">
+							<h1 class="black middle">Welcome to Opus! </h1>	
+							<p>Any questions? We're happy to help. Please contact <a href="https://uclaopus.freshdesk.com/">UCLA Opus Support</a>.
+							
+					</div>
+				</div>
+			</div> 
+			<br>
+			<div id="alerts" class="alert light-blue" role="alert" hidden>
+				<h4 class=" black" id="dashboardTitle"></h4>
+				<p id="dashboardText"></p>
+			</div>
+				
+			<div class="row">
+
+				<!-- Column 1 -->
+				<div class="col-md-6">
+					
+					<!-- Cases -->
+					<div class="row">
+
+						<div class="col-md-2 center align-md-left">
+							<img src="../images/activecase-tiny.jpg" alt="an active case">
+						</div>
+						<div class="col-md-10">
+							<h1 class=" black flush-top ">Cases</h1>
+						</div>
+
+						<!-- Start a Case -->
+						<!-- <div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/active-cases.shtml">
+								<h3><u>Start a Case</u></h3>
+							</a>
+							<button type="button" id="start-new-case-button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#choose-person">
+						</div> -->
+						
+						<!-- Cases -->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/active-cases.shtml">
+								<h3><u>Case Reports</u></h3>
+							</a>
+							<p>Cases in your queue and reports of active, completed, or withdrawn cases.</p>
+						</div>
+						
+						<!-- Go to Interfolio -->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="#" onclick="connectToByC();">
+								<h3>
+									<u>Go to Interfolio</u>
+									<img src="../images/link-external.png" alt="externalLink">
+								</h3>
+							</a>
+							<p>Dossier content and review workflow.</p>
+						</div>
+
+					</div>
+
+					<!-- Eligibility and Clocks -->
+					<div class="row">
+
+						<div class="col-md-2 center align-md-left">
+							<img src="../images/gears-color.png" alt="gears">
+						</div>
+						<div class="col-md-10">
+							<h1 class=" black flush-top ">Eligibility and Clocks</h1>
+						</div>
+
+						<!-- Eligibility -->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/eligibility.shtml">
+								<h3><u>Eligibility</u></h3>
+							</a>
+							<p>Forecast of mandatory and optional actions for academic appointees.</p>
+						</div>
+						
+						<!-- Eight Year Clocks-->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/eight-year-clock-summary.shtml">
+								<h3><u>Eight Year Clocks</u></h3>
+							</a>
+							<p>Aggregate summary of all assistant rank appointees' years of service and time on/off the clock.</p>
+						</div>
+						
+						<!-- Excellence Clocks-->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/excellence-review-clock-summary.shtml">
+								<h3><u>Excellence Review Clocks</u></h3>
+							</a>
+							<p>Aggregate summary of all Unit 18 appointees' years of service and time on the clock.</p>
+						</div>
+
+					</div>
+
+					<!-- Compensation -->
+					<div class="row">
+
+						<div class="col-md-2 center align-md-left">
+							<img src="../images/salary-report.png" alt="report icon">
+						</div>
+						<div class="col-md-10">
+							<h1 class=" black flush-top ">Compensation</h1>
+						</div>
+
+						<!-- Salary -->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/salary-report.shtml">
+								<h3><u>Salary Report</u></h3>
+							</a>
+							<p>Current and proposed salaries for academic
+								appointees, including off-scale analyses.</p>
+						</div>
+
+						<!-- UCPath Compensation Report -->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/salary-report-UCPath.shtml">
+								<h3><u>UCPath Compensation Report</u></h3>
+							</a>
+							<p>Salary plans and components from UCPath.</p>
+						</div>
+						
+						<!-- Administrative Compensation -->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/admin-comp-proposals.shtml">
+								<h3><u>Administrative Compensation</u></h3>
+							</a>
+							<p>Campus allocations for administrative appointments. Submit administrative compensation requests.</p>
+						</div>
+
+					</div>
+
+				</div>
+
+				<!-- Column 2 -->
+				<div class="col-md-6">
+					
+					<!-- Profile and Appointments -->
+					<div class="row">
+
+						<div class="col-md-2 center align-md-left">
+							<img src="../images/profile.png" alt="profile pic">
+						</div>
+						<div class="col-md-10">
+							<h1 class=" black flush-top ">Profiles and Appointments</h1>
+						</div>
+
+						<!-- Profile -->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/profile.shtml">
+								<h3><u>Profiles</u></h3>
+							</a>
+							<p>Active and inactive appointment details per appointee:
+								Appointment sets, clocks, and academic history.</p>
+						</div>
+						
+						<!-- Appointments -->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/roster.shtml">
+								<h3><u>Appointments</u></h3>
+							</a>
+							<p>Roster of active and inactive academic appointments.</p>
+						</div>
+
+						<!-- Endowed Chairs -->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/active-endowed-chairs.shtml">
+								<h3><u>Endowed Chairs</u></h3>
+							</a>
+							<p>Current and past Endowed Chairs and Chair Holders.</p>
+						</div>
+
+					</div>
+
+
+				</div>
+
+				
+
+
+			</div>
+
+			<!-- Administrative Actions -->
+			<div class="row">
+
+				<div class="row">
+					<div class="col-md-6">
+						<br>
+						<div class="col-md-2 center align-md-left">
+							<a href="../admin/permissions.shtml"><img src="../images/certificate.png" alt="certificate"></a>
+						</div>
+						<div class="col-md-10">
+							<h1 class=" black flush-top ">Administrative Actions</h1>
+						</div>
+					</div>
+					<div class="col-md-6"></div>
+				</div>
+
+
+				<!-- Column 1 -->
+				<div class="col-md-6">
+					<div class="row">
+
+						<!-- Mandatory UC Training Compliance -->
+						<div class="col-md-2 center align-md-left"></div>
+						<div class="col-md-10">
+							<a href="../admin/compliance-report.shtml">
+								<h3><u>Mandatory UC Training Compliance</u></h3>
+							</a>
+							<p>Training certification status for academic appointees.</p>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Column 2 -->
+				<div class="col-md-6">
+					<div class="row">
+
+					</div>
+				</div>
+			</div>
+			
+			<br>
+			<br>
+		
+			
+
+		
+	</div>
+	</div>
+</div>						
+			
+					
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		
+		<!-- JavaScript Functionality -->
+		<script>
+			//If the role is not vice_chancellor_academic_personnel, redirect user to the access-error page.  Borrowing the initializeTables function here
+			//because it is called in the success block of the ajax function inside opus.js that retrieves adminData
+			function initializeTables() { 
+				if (adminData.alertTitle != null && adminData.alertTitle != ''
+						&& adminData.alertText != null && adminData.alertText != '') {
+					document.getElementById("alerts").style.display = "block";
+					document.getElementById("dashboardTitle").innerHTML = adminData.alertTitle;
+					document.getElementById("dashboardText").innerHTML = adminData.alertText;
+				}
+			}
+			
+			//tooltip
+			$('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'top'});
+			$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'top'});
+	
+			$('#my-affix').affix({
+			    offset: {
+			      top: 25
+			    , bottom: function () {
+			        return (this.bottom = $('.footer').outerHeight(true))
+			      }
+			    }
+			})
+						
+			function submitJobNumber() {
+				
+				var userData = {};
+				userData.adminEmail = adminData.adminEmail;
+				userData.adminOpusId = adminData.adminOpusId;
+				userData.adminRoles = adminData.adminRoles;
+				userData.adminName = adminData.adminName;
+				userData.permissions = adminData.permissions;
+				
+				var jobNo = document.forms["job-number-form"]["job-number-field"].value; 
+	  			var SendInfo = { 
+	  					jobNumber: jobNo,
+	  					adminData: userData
+	  		    }; 
+	  			
+				$.ajax({ 
+					cache:false,
+				    url: "/restServices/rest/cont/pobProspective/?access_token="+access_token,
+				    type: 'POST', 
+				    dataType: 'json', 
+				    data: JSON.stringify(SendInfo),
+				    contentType: 'application/json',
+				    mimeType: 'application/json',
+				    success: function(data) { 
+				    	$('#addCandidatesToRosterModal').modal('hide');
+				    	clearForm();
+				    	
+				    	$('#candidate-results').empty();
+				    	$.each(data, function(index) {
+ 			    			$('#candidate-results').append("<li>" + this.applicantFullName + "</li>");
+				    	});
+				    	$('#successModal').modal('show');
+				    },
+				    error:function(jqXHR, textStatus, errorThrown) { 
+                        $("#error .modal-body").empty();
+                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+                        $('#error').modal('show');
+                        console.log("Error: ", errorThrown);
+                        console.log(jqXHR); 
+                        console.log("Text Status: ", textStatus);
+				    }
+				});
+
+				//Required so that the form submit doesn't reload the page
+				return false;
+			}
+			
+			function clearForm() {
+				document.forms["job-number-form"]["job-number-field"].value = "";
+			}
+			
+			$('#nav-home').addClass('active');	// make "home" navbar link active	
+		</script>
+  	</body>
+</html>

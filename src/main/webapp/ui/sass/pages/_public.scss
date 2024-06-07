@@ -1,0 +1,92 @@
+
+
+/* Home Page
+-------------------------------------------------- */
+
+.nospace {
+	margin-bottom: 0px;
+	margin-top: 5px;
+}
+
+.thumbnail	{
+	border:none;
+}
+
+/* style descriptive text - center only on small screen size---*/
+@media (max-width:$container-md)	{
+	.center-on-small	{
+		text-align: center;
+		}
+}
+
+@media (max-width:$container-md)	{
+	ul.center-list 	{
+		list-style: none;
+		text-align: center;
+		list-style-type: none;
+		text-align: center;
+    	vertical-align: top;
+    	display: block;
+  		margin-left: auto;
+  		margin-right: auto;
+		}
+}
+
+@media (max-width:$container-md)	{
+	.center-list  li	{
+		text-align: center;
+		float: none;
+		margin: 0;
+		list-style: none;
+		display: inline-block;
+		}
+}
+
+@media (min-width: 699px) and (max-width: 991px) {
+
+	.indent-list  	{
+		margin-left: 100px;
+	}
+}
+
+@media (min-width: 699px) and (max-width: 991px) {
+
+	.indent-label  	{
+		margin-left: 200px;
+	}
+}
+
+
+/*-------- TEAM PAGE-------------------------------------------------- */
+
+/* team page - photo styling
+-------------------------------------------------- */
+.top-buffer { 
+	margin-top:20px; 
+	text-align: center;
+}
+
+/*  team page - new staff green circle (checked for accessible color contrast)
+-------------------------------------------------- */ 
+  .staffcircle   {
+	width: 83px;
+	height: 83px; 
+	background-color:$green;
+	color: black;
+	-moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    vertical-align: bottom;
+    align: center;
+    display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+  	line-height: 83px;
+}
+
+ /*  team page - set the height of the divs so that clearfix isn't necessary
+-------------------------------------------------- */
+
+.team-height {
+    height: 162px;
+}

@@ -1,0 +1,35 @@
+/* Dashboard styles - TODO: restyle
+-------------------------------------------------- */
+
+.dashboard h2 {
+	font-size: 18px;
+}
+
+.dashboard-date {
+	float: right;
+	margin-left: 30px;
+}
+
+.notification-button-submit {
+	margin-right: 10px;
+}
+
+.notification-text {
+	margin-top: 20px;
+}
+
+#leave-actions li {
+	list-style-type: none;
+}
+
+#milestones li, #active-cases li {
+	list-style-type: none;
+	display: inline-block;
+	margin-left: 20px;
+}
+
+/*------------dashboard icons - user responsive utilities for bootstrap 4 -------------------------------------------------- */
+@media (max-width: 992px) {
+	.align-md-left { text-align: left; }
+
+  }

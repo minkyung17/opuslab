@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Page title here</title>				
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body>
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container main-content" id="main">
+			<div class="page-header">
+				<div class="jumbotron">
+  					<div class="container">
+  						<h1>Page header here</h1>
+   						<p>Sub text here</p>
+  					</div>
+				</div>
+			</div>
+			
+			<!-- Main page content -->
+			
+			<div class="row">			
+				<div class="col-md-4">
+					<h2><a href="">Link #1</a></h2>
+					<p>Link text here</p>	
+				</div>
+				
+				<div class="col-md-4">
+					<h2><a href="">Link #2</a></h2>
+					<p>Link text here</p>	
+				</div>
+		
+				<div class="col-md-4">
+					<h2><a href="">Link #3</a></h2>
+					<p>Link text here</p>	
+				</div>
+			</div>	
+		</div>
+										
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		
+		<!-- JavaScript Functionality -->
+		<script>
+		</script>
+  	</body>
+</html>

@@ -1,0 +1,64 @@
+ <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Redux Test Table</title>
+                
+        <!--#include virtual="../common/header.html" -->
+    </head>
+
+    <body>
+        <!--#include virtual="../common/nav.html" -->
+        
+        <!-- Begin page content -->
+        <div class="container-fluid" id="main">
+            
+            <div class="row-fluid"> 
+		            <div class="page-header">
+		                <h1>Roster</h1>
+		            </div>  
+		             
+		            <p id="instructions">A list of faculty and academic appointees in your organization.
+		            	<a data-toggle="popover" role="button" tabindex="0" data-container="body" data-trigger="hover" 
+		            				data-content=""><span aria-hidden="true" class="icon-help-circled help"></span></a>
+		          		How do I correct my Roster?
+		            	
+		            </p>
+		            
+		            <div id="reactFixedDataTable" data-datatable_appname='redux' 
+		            			data-datatable_config='salary'>
+<!-- 							<div class="loader-container" *ngIf="isSearching">
+            						<div class="loader"></div>
+            						<p class="text-muted center">Loading</p>
+       					 	</div> -->Loading...
+       				</div>
+          			<script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development -->
+		             
+					           
+            </div>  
+        </div>   
+        
+        <!--#include virtual="../common/footer.html" -->
+
+        <!--#include virtual="../common/new-js-includes.html" -->
+		<!--script type="text/javascript" src="../react/datatables/dist/bundle.js"></script>
+
+        
+       <script language="javascript" src="../javascript/select-row.js"></script>
+                                
+        <!-- JavaScript Functionality -->
+        <script> 
+        function initializeTables() {
+						
+        	var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+			    reactDomElement = $('[' + react_selector + ']'),
+			    id_attr = 'id',
+			    id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+	    		datatable_appname = $('#' + id).data('datatable_appname'),
+	    		datatable_config_name = $('#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+			window._initReactDataTable(id, datatable_appname, datatable_config_name, access_token, adminData);
+		} 
+
+</script>
+    </body>
+</html>

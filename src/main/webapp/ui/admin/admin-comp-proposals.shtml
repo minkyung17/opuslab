@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Admin Comp Proposals</title>
+                
+        <!--#include virtual="../common/header.html" -->
+    </head>
+
+    <body>
+        <!--#include virtual="../common/nav.html" -->
+        
+        <!-- Begin page content -->
+        <div class="container-fluid" id="main">        
+            <div class="row-fluid"> 
+	            <div class="page-header tab-header">
+	                <h1>Administrative Compensation</h1>
+	            </div>
+	            
+	             <!-- Nav tabs -->
+				<ul id="allAdminCompTabs" class="nav nav-tabs" role="tablist" hidden>
+					<li role="presentation" class="active"><a href="#adminCompProposals"
+						aria-controls="admin-comp-proposals" role="tab">Proposals</a></li>
+					<li role="presentation"><a href="admin-comp-allocations.shtml"
+						aria-controls="admin-comp-allocations" role="tab">Allocations</a></li>
+					<li role="presentation"><a href="admin-comp-reports.shtml"
+						aria-controls="admin-comp-reports" role="tab">Reports</a></li>
+				</ul>
+				
+				<ul id="reportTab" class="nav nav-tabs" role="tablist" hidden>
+					<li role="presentation"><a href="admin-comp-allocations.shtml"
+						aria-controls="admin-comp-allocations" role="tab">Allocations</a></li>
+					<li role="presentation" class="active"><a href="#adminCompProposals"
+						aria-controls="admin-comp-proposals" role="tab">Proposals</a></li>
+				</ul>
+				
+	            <div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="adminCompProposals">	
+						<div id="reactFixedDataTable" data-datatable_appname='adminCompProposals'
+							data-datatable_config='adminCompProposals'>
+							Loading...
+						</div>
+					<!-- development -->
+					<!-- script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development-->
+					<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production-->
+					</div>
+				</div>                 
+            </div>  
+        </div>   
+        
+        <!--#include virtual="../common/footer.html" -->
+
+        <!--#include virtual="../common/js-includes.html" -->
+
+       <script language="javascript" src="../javascript/select-row.js"></script>
+                                
+        <!-- JavaScript Functionality -->
+        <script> 
+        function initializeTables() {
+						
+        	var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+			    reactDomElement = $('[' + react_selector + ']'),
+			    id_attr = 'id',
+			    id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+	    		datatable_appname = $('#' + id).data('datatable_appname'),
+	    		datatable_config_name = $('#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+			window._initReactDataTable(id, datatable_appname, datatable_config_name,
+            	access_token, adminData, globalData);
+		}
+          
+        
+    	//tooltip
+		$("[rel=tooltip]").tooltip();
+		$('[data-toggle="popover"]').popover({trigger: 'hover'},  {container: 'body'});
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'right', 'data-placement': 'right'}, {container: 'body'});
+
+</script>
+    </body>
+</html>

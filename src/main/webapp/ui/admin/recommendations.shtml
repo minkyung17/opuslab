@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Recommendations</title>
+	
+		<!--#include virtual="../common/header.html" -->
+	</head>
+	
+	<body>
+		<!--#include virtual="../common/nav.html" -->
+	
+		<!-- Begin page content -->
+		<div class="container-fluid" id="main">
+			<div class="row-fluid">
+				<div class="page-header">
+					<h1>Recommendations</h1>
+				</div>
+				
+						 	
+				
+	
+				<div id="reactRecommendations" data-datatable_appname='recommendations' data-datatable_config='recommendations'>
+					Loading Recommendations...</div>	
+				<!--script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development -->
+				 <script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- prod -->
+			</div>
+		</div>
+	
+		<!--#include virtual="../common/footer.html" -->
+	
+		<!--#include virtual="../common/js-includes.html" -->
+	
+		<script src="case-logic.js"></script>
+		<script src="constants.js"></script>
+	
+		<!-- JavaScript Functionality -->
+		<script>
+			function initializeTables() {	
+				var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+			    reactDomElement = $('[' + react_selector + ']'),
+			    id_attr = 'id',
+			    id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+	    		datatable_appname = $('#' + id).data('datatable_appname'),
+	    		datatable_config_name = $('#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+				window._initReactRecommendations(id, datatable_appname, datatable_config_name, access_token, adminData, globalData);
+			}
+		</script>
+	</body>
+</html>

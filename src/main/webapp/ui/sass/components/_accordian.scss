@@ -1,0 +1,36 @@
+.panel-title > a {
+  display: block;
+  position: relative;
+}
+.panel-icon  {
+  position: absolute;
+  right: 0; 
+  margin-top: -18px; 
+}
+
+.icon-indent  {
+  margin-right: 30px;
+  margin-top: auto;
+}
+
+// if icon a is open, and text a is open, icon state is open
+ a[class=accordian-toggle]  ~  a[class=accordian-toggle]  .icon-right-open-big {
+  display: none;
+}
+// if icon a is open, but text a is closed icon state is open
+a[class=accordian-toggle]  ~  a[class$=collapsed]  .icon-right-open-big {
+  display: none;
+}
+// if icon a is closed, but text a is open, icon state is open
+a[class$=collapsed] ~  a[class=accordian-toggle]  .icon-right-open-big {
+  display: none;
+}
+// if icon a is closed, and text a is closed, icon state is closed
+a[class$=collapsed] ~  a[class$=collapsed] .icon-down-open-big {
+  display: none;
+}
+
+a[class$=collapse] .icon-down-open-big {
+  display: none;
+}
+

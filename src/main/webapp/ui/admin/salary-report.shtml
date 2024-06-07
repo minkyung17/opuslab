@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Salary Report</title>
+                
+        <!--#include virtual="../common/header.html" -->
+    </head>
+
+    <body>
+        <!--#include virtual="../common/nav.html" -->
+        
+        <!-- Begin page content -->
+        <div class="container-fluid" id="main">
+            
+            <div class="row-fluid"> 
+		            <div class="page-header tab-header">
+		                <h1>Salary Report</h1>
+		            </div>
+		            
+		            <!-- Nav tabs -->
+					<ul id="salaryTabs" class="nav nav-tabs" role="tablist" hidden>
+						<li role="presentation" class="active"><a href="#roster"
+							aria-controls="salary-report" role="tab">Current, Proposed & Approved Salaries</a></li>
+						<li id="UCPathCompensationTab" role="presentation"><a href="salary-report-UCPath.shtml"
+							aria-controls="salary-report-UCPath" role="tab">UCPath Compensation Report</a></li>
+					</ul>  
+		             
+		          	<p id="instructions">This report compares academic appointees' salaries with the salary rate for their relevant scale. 
+		            	The salary scale amounts are populated from UCPath and reflect <a target="blank" href=" https://www.ucop.edu/academic-personnel-programs/compensation/index.html">
+		            	UCOP's current salary scales</a>.
+		            	The Current On-Scale Amount column will be blank for appointees 
+		            	who are above scale.  All academic appointees are included in this report.
+		          	</p>
+		            
+		            <div id="reactFixedDataTable" data-datatable_appname='salary' 
+		            			data-datatable_config='salary'>
+	<!-- 	            			<div class="loader-container" *ngIf="isSearching">
+            						<div class="loader"></div>
+            						<p class="text-muted center">Loading</p>
+       					 		</div> -->Loading...
+       				</div>
+          			<!-- script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development -->
+          			<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production -->            
+					           
+            </div>  
+        </div>   
+        
+        <!--#include virtual="../common/footer.html" -->
+
+        <!--#include virtual="../common/js-includes.html" -->
+
+       <script language="javascript" src="../javascript/select-row.js"></script>
+                                
+        <!-- JavaScript Functionality -->
+        <script> 
+        function initializeTables() {
+						
+        	var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+			    reactDomElement = $('[' + react_selector + ']'),
+			    id_attr = 'id',
+			    id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+	    		datatable_appname = $('#' + id).data('datatable_appname'),
+	    		datatable_config_name = $('#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+			var dashboardRole = adminData.dashboardRole;
+			var adminRole = adminData.adminRoles[0];
+			if(dashboardRole==="DA" || dashboardRole==="Chair"){
+				document.getElementById("UCPathCompensationTab").style.display = "none";
+			}
+			// if(adminRole==="_dept_admin" || adminRole==="_area_admin" || adminRole==="_chair" || adminRole==="_spec_admin" || adminRole==="_chair"){
+			// 	document.getElementById("UCPathCompensationTab").style.display = "none";
+			// }
+
+			window._initReactDataTable(id, datatable_appname, datatable_config_name,
+            	access_token, adminData, globalData);
+		}
+          
+        
+    	//tooltip
+		$("[rel=tooltip]").tooltip();
+		$('[data-toggle="popover"]').popover({trigger: 'hover'},  {container: 'body'});
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'right', 'data-placement': 'right'}, {container: 'body'});
+
+</script>
+    </body>
+</html>

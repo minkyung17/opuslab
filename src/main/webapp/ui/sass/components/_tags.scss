@@ -1,0 +1,68 @@
+
+/* tags (diversity, international, etc.)
+From Bootstrap documentation: "Rendering problems can arise when you have dozens of inline labels within a narrow container, 
+each containing its own inline-block element (like an icon). The way around this is setting display: inline-block;."
+-------------------------------------------------- */
+.label {
+	display: inline-block;
+	padding: .2em .6em .2em;
+//	font-size: 90%;
+//	font-weight: normal;
+//	line-height: 1;
+//	color: white;
+//	text-align: center;
+//	white-space: nowrap;
+	vertical-align: top;
+//	border-radius: .25em;
+}
+
+.new	{
+	background-color: $orange;
+	color: black;
+}
+/*
+.diversity {
+	background-color: $purple;
+}
+
+.international {
+	background-color:lighten($ucla-gold, 20%);
+}
+
+.interdisciplinary {
+	background-color:lighten($aqua, 20%);
+}
+
+.new2 { 
+	background: $ucla-gold; 
+	width: 40px; 
+	height: 40px; 
+	position: relative; 
+	text-align: center; 
+} 
+
+ "new2" tag.  requires rotation before and after, and rotation of text and putting text in "after"
+-------------------------------------------------- 
+
+.new2:before, .new2:after { 
+	content: "New"; 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	height: 40px; 
+	width: 40px; 
+	background: $gold; 
+	line-height: 40px;
+} 
+
+.new2:before { 
+	-webkit-transform: rotate(30deg); -moz-transform: rotate(30deg); -ms-transform: rotate(30deg); -o-transform: rotate(30deg);
+ } 
+
+ .new2:after { 
+	-webkit-transform: rotate(60deg); -moz-transform: rotate(60deg); -ms-transform: rotate(60deg); -o-transform: rotate(60deg); 
+} 
+
+.newtext 
+	{-webkit-transform: rotate(-60deg); -moz-transform: rotate(-60deg); -ms-transform: rotate(-60deg); -o-transform: rotate(-60deg);}
+*/

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Appointment Sets</title>
+                
+        <!--#include virtual="../common/header.html" -->
+    </head>
+
+    <body>
+        <!--#include virtual="../common/nav.html" -->
+        <!-- Begin page content -->
+        <div class="container-fluid" id="main">
+            
+            <div class="row-fluid">
+                    <div class="page-header"> 
+                          <h1>Appointment Sets</h1>
+                    </div>
+                     
+                     <button type='button' id='request-appt-set-button' class='btn btn-primary' data-toggle='modal' data-target='#requestApptSetModal'>Request Appointment Set</button>               
+                 	<br><br>	
+                    <div id="table-scroll-area">
+                        <table id="appt-set-table" class="display nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr> 
+                                    <th class="nosort"></th>
+                                    <th>Appointment Set ID</th>
+                                    <th>Name</th>
+                                    <th>Organization Name</th>
+                                    <th>Affiliation Type</th>
+                                    <th>Appointment Category Type</th>
+                                    <th>Appointment Status</th>
+                                    <th>Appointment Set Start Date</th>
+                                    <th>Appointment Set End Date</th>
+                                </tr>
+                             
+                            </thead>
+                          
+                        </table>
+                    </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="infoModalLabel">Please Note</h4>
+                    </div>                     
+                </div>
+            </div>
+        </div>
+                
+        <!-- Generic Error -->    
+        <div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header modal-danger">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h2 class="white">Error</h2>
+                    </div>
+                    <div class="modal-body">                    
+                    </div> <!-- /modal-body -->
+                    <div class="modal-footer">                    
+                        <button type="button" class="cancel btn btn-danger left" data-dismiss="modal">OK</button>
+                    </div> 
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        
+        <!-- /.modal -->  
+        <div class="modal fade" id="requestApptSetModal" tabindex="-1" role="dialog" aria-labelledby="requestApptSetModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header modal-info">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="clearForm()">&times;</button>
+						<h1 class="modal-title" id="requestApptSetModalLabel">Create Appointment Set</h1>
+					</div>
+					<div class="modal-body">
+						<form id="appt-set-form" role="form" onsubmit="return submitPersonName()">
+  							<div class="form-group">
+    							<p>You can group appointments as set or add appointments to the existing appointment set.</p>
+ 								<label for="appt-set-field">Enter Person's Name: (Last, First)</label>
+ 								<div class="input-group">
+     								<input type="text" id="appt-set-field" title="Please enter person name in LName, FName MName format" class="form-control" required>
+     								<span class="input-group-btn">
+       									<button id="submit-person-name-button" class="btn btn-default">Go</button>
+     								</span>
+   								</div>
+  							</div>
+  							
+  						</form>
+  						<form id="appointment-info-form" role="form" onsubmit="return submitApptSetRequest()">
+  							<div id="appointment-info" class="group">
+								<div class="form-group">
+									<div id="appointments-list">
+									</div>
+								</div>
+	 						</div>
+	 						<div id="job-candidates-info" class="group">
+								<div class="form-group">
+									<label for="job-candidate-info-list">Please enter the gender and birth date for each person you need a UID for.</label>
+									<ul id="job-candidate-info-list">
+									</ul>
+								</div>
+	 						</div>
+	 					
+	 					<div class="modal-footer">
+	 						<div class="modal-buttons-left">
+	 							<button id="submit-appt-set-request-button" class="btn btn-primary left">Submit</button>
+	 							<button type="button" class="btn btn-link left" data-dismiss="modal" onclick="clearForm()">Cancel</button>
+							</div><!-- /modal-footer -->
+						</div>
+						</form>
+					</div>
+				</div><!-- /modal-content -->
+			</div><!-- /modal-dialogue-->
+		</div><!-- /modal -->	
+
+        
+        
+        <!--#include virtual="relevance-modals.html" -->
+                
+        <!--#include virtual="../common/footer.html" -->
+
+        <!--#include virtual="../common/js-includes.html" -->
+        <!--#include virtual="../common/jquery-datatables.html" -->
+        <script src="relevance-logic.js"></script>
+                             
+        <!-- JavaScript Functionality -->
+        <script> 
+        
+    	
+		$("[rel=tooltip]").tooltip();
+		$('[data-toggle="popover"]').popover({trigger: 'hover'},  {container: 'body'});
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'top'}, {container: 'body'});
+	
+		 //responsive table height upon load
+        $ (document).ready(function() {
+      	  console.log($(window).height());
+      	  $('.dataTables_scrollBody').css('height', ($(window).height() - 400));
+         });
+      
+      //responsive table height upon window resize
+        $(window).resize(function() {
+        	  console.log($(window).height());
+        	  $('.dataTables_scrollBody').css('height', ($(window).height() - 400));
+        	}); 
+        	  
+        var pageName = 'apptSetData';
+            function initializeTables() { 
+            	if (adminData.dashboardRole = "OA" && adminData.adminRoles.indexOf("opus_admin")>=0) {
+	                populateTableData();
+            	} else {
+            		 window.location.assign("/opusWeb/ui/error/access-error.shtml");
+            	}
+            }
+            
+            function populateTableData() {
+                console.log("Before call: " + new Date($.now()));
+                var SendInfo = {
+                
+                }; 
+                $.ajax({
+                    cache:false,
+                    url: "/restServices/rest/admin/apptSetData/?access_token="+access_token, 
+                    type: 'GET',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    mimeType: 'application/json',
+                    success: function(adminScreenData) {
+                        if (adminScreenData == "") {                    
+                            window.location.assign("/opusWeb/ui/error/access-error.shtml");       
+                        }
+                        
+                        var aName = adminData.adminName;     
+                        if (aName > "") {  
+                            $('#adminName').html(aName);
+                            $("#nav-logout").show();
+                        }  
+                        apptSetDataRows = adminScreenData;                        
+                        initializeTable(apptSetDataRows); 
+                    },
+                    error:function(jqXHR, textStatus, errorThrown) {
+                        if (jqXHR.responseText !== "") {  
+                                $("#error .modal-body").empty();
+                                $("#error .modal-body").append(jqXHR.responseText);
+                                $('#error').modal('show');
+                                console.log("Error: ", errorThrown);
+                                console.log(jqXHR); 
+                                console.log("Text Status: ", textStatus);
+                        } else {                            
+                                console.log("Error: ", errorThrown);
+                                console.log(jqXHR); 
+                                console.log("Text Status: ", textStatus);              
+                                window.location.assign("/opusWeb/ui/error/access-error.shtml");     
+                        }  
+                    } 
+                });
+            }
+                                    
+            function initializeTable(inputData) {
+                table = $('#appt-set-table').DataTable( {
+                    aaData: inputData,
+                    dom: 'frtiS',
+                    //bPaginate: false, // include if no pagination
+                    pageResize: true,
+                    "sScrollY": ($(window).height() - 400),
+                    scrollX:        true, // allow horizontal scrolling
+                    "orderClasses": false, // Always turn this off.  It highlights the sorted column.  Causes slowness.
+                    //scrollCollapse: true, // if have Fixed Columns
+                    columns: [
+                          	{data: "edit", 
+            					sDefaultContent:"",
+            						mRender:	function (data, type, full) {
+            											return '<a role="button" data-container="body" aria-label="help tip" trigger="hover" data-trigger="hover" tabindex="0" class="ttip" data-placement="top" data-toggle="popover" white-space="pre-wrap" data-html="true" data-content="View/Edit"><button type="button" class="btn btn-default edit-case-button" data-toggle="modal" data-target="#edit-ref-modal" onclick="setEditRefValues('+ full.AppointmentSetId + ',\'' + full.AppointmentId + '\',\'' + full.AppointmentCategoryId +'\',\'' + full.AppointmentAddedToSetDt +'\',\''+full.Name+'\',\'' + full.AppointmentRemovedFromSetDt + '\',\''+'edit' + '\',\'\',\'\')"> <span aria-label="View/Edit" title="View/Edit" class="icon-pencil ttip"></span></button></a>';
+            									},
+            									name: "edit"
+            						},
+							{data: "AppointmentSetId"},
+							{data: "Name"},
+							{data: "DeptName"},
+							{data: "AffiliationType"},
+							{data: "AppointmentCategoryType"},
+							{data: "AppointmentStatus"},
+							{data: "AppointmentAddedToSetDt"},
+							{data: "AppointmentRemovedFromSetDt"} 
+                    ],
+                    columnDefs: [{
+                        "targets": 'nosort',
+                        "orderable": false
+                    }],
+                    order: [[2, 'asc'],[1, 'asc']],
+                    bSortCellsTop: true, //Sort on the top header cell (not the bottom)
+                    sAjaxDataProp: "", //Use blank instead of aaData as array name
+                    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]], //Show # of entries
+                    iDisplayLength: 25, //Show # of entries default
+                    fnInitComplete: function(oSettings, json) { 
+                        //For some reason, we have to re-initialize the table or it gives an 'undefined' error
+                        var table = $('#appt-set-table').DataTable();
+                                                              
+                    }
+                });
+                
+               //  new $.fn.dataTable.FixedColumns( table); //needed to fix double header issue
+         
+                 //Export button
+              /* var tt = new $.fn.dataTable.TableTools(table, {
+                    "aButtons": [
+                                    {
+                                        "sExtends": "collection",
+                                        "aButtons":[
+                                            {
+                                                "sExtends": "xls",
+                                                "oSelectorOpts": {
+                                                    "filter": "applied"
+                                                }, //Exports filtered rows, if applicable
+                                                "mColumns":"visible" //Only exports visible columns
+                                            } 
+                                        ]
+                                    }
+                                ],
+                                "sSwfPath": "../plugins/DataTables-1.10.3/extensions/TableTools/swf/copy_csv_xls_pdf.swf" //Use the .swf file for xls and pdf
+                            });  */
+                //$(tt.fnContainer()).insertAfter('.dataTables_filter');        
+                console.log("After call: " + new Date($.now()));
+            }
+            
+          //Hide sections for modal - HTML still shows when hidden
+			$(document).ready(function () {		
+			    $('.group').hide();
+			    $('.modal-buttons-left').hide();
+			});	
+						
+			function submitPersonName() {
+				
+				var searchStr = document.forms["appt-set-form"]["appt-set-field"].value; 
+	  			var SendInfo = {
+	  					searchString: searchStr
+	  		    }; 
+	  			
+				$.ajax({ 
+					cache:false,
+				    url: "/restServices/rest/admin/apptNameSearchResults/?access_token="+access_token,
+				    type: 'GET', 
+				    dataType: 'json', 
+				    data: SendInfo,
+				    contentType: 'application/json',
+				    mimeType: 'application/json',
+				    success: function(data) { 
+				    	//Don't call clearForm() because we need to retain the job number for reference at this stage
+ 			    		$('#appointments-list').empty();
+						$('.modal-buttons-left').hide();
+ 			    		$('#appointments-list').append("<p>Please select the appointments you would like to create an Appointment Set for:</p>");
+ 			    		var appointmentSetId;
+ 			    		var apptSetFlag = false;
+ 			    		var opusId;
+ 			    		//List the appointment names here along with checkboxes
+ 			    		$.each(data, function(index) {
+ 			    			var className = "appointment-info-" + index;
+ 			    			var recordName = "appointment-" + index;
+ 			    			var apptId;
+ 			    			opusId = this.OpusId;
+ 			    			//Check to see if the appointmnet is already in an appointmnet set
+ 			    			if (this.AppointmentSetId == '' || this.AppointmentSetId == null || this.AppointmentSetId == 'undefined') {
+ 			    				apptId = this.AppointmentId;
+ 			    				name = this.Name;
+ 			    				 			    				
+ 			    				//Show the name and checkbox
+	 			    			$('#appointments-list').append("<div class='candidate-record'><ul class=" + recordName + ">"	
+	 			    				+ "<input type=checkbox title='Candidate checkbox' id=checkbox-" + index + ' data-apptid="' + apptId + '" onclick="displayInfo(\'' + className + '\', this)">'
+	 			    				+ this.Name + " - " + this.AffiliationType+  " - " +this.DeptName+ " - " + this.titleCode+ " - " + this.series+ " - " + this.AppointmentStatus+""
+	 			    				+ "<ul class=" + className + "><li class='name-info noBullet'>"
+	 			    				+ "<label for='name'>Name </label><br>"
+	 								+ "<input type='text' title='Name' id='name' class='name form-control' value='"+this.Name + "' disabled /></li>"
+	 								+ "<li class='AppointmentCategory-info noBullet'>"
+	 								+ "<label for='apptCategory'>Appointment Category <span class='required-field'>(Required field)</span></label>"
+	 								+ "<select title='Appointment Category' id='apptCategory' class='apptCategory form-control'>"
+	 								+ "<option value='' selected='selected'>Select One</option>"
+	 								+ "<option value=1>Primary</option>"
+	 								+ "<option value=2>Joint</option>"
+	 								+ "<option value=3>Split</option>"
+	 								+ "</select></li>"
+	 								+ "<li class='apptSetStart-info noBullet'>"
+	 								+ "<label for='apptSetStartDt'>Appointment Set Start Date (MM/DD/YYYY) <span class='required-field'>(Required field)</span></label><br>"
+	 								+ "<input type='text' title='Appointment Set Start Date' id='apptSetStartDt' class='apptSetStartDt form-control'/></li>"
+	 								+ "<input type='hidden' title='Appointment Id' id='apptId' value="+apptId+ " class='apptId form-control'/></li>"
+	 								+ "</ul></li></ul></div>"
+	 			    			);
+ 			    				
+ 			    				//Set up input mask
+ 			    				$.mask.definitions['a'] = "[0-1]";
+ 			    				$.mask.definitions['b'] = "[0-9]";
+ 			    				$.mask.definitions['c'] = "[0-3]";
+ 			    				$.mask.definitions['d'] = "[0-9]";
+ 			    				$.mask.definitions['e'] = "[0-9]";
+ 			    				$.mask.definitions['f'] = "[0-9]";
+ 			    				$.mask.definitions['g'] = "[0-9]";
+ 			    				$.mask.definitions['h'] = "[0-9]";
+ 			    				$('.' + className + " #apptSetStartDt").mask("ab/cd/efgh");
+	 			    			
+	 			    			$('.' + className).hide();
+ 			    			}
+ 			    			else {
+ 			    				apptSetFlag = true;
+ 			    				appointmentSetId = this.AppointmentSetId;
+ 			    				//Grey out the name and display the status
+ 			    				$('#appointments-list').append("<div class='apptSet-record'><ul><li class='existing-apptSet'>"	
+ 			    					+ this.Name + " - " + this.AffiliationType + " - " + this.AppointmentCategoryType + " - " + this.DeptName + " - " + this.titleCode+ " - " + this.series+ " - " + this.AppointmentStatus+ " is one of the Appointment in Appointment Set: " + appointmentSetId
+ 			    					+ "</li></ul></div>"
+ 			    				);
+ 			    			}
+ 			    		});
+ 			    		$('#appointments-list').append("<div class='appointeeInfo'><input type='hidden' title='Opus Person Id' id='opusId' value="+opusId+ " class='opusId form-control'/>");
+ 			    		if(apptSetFlag) {
+ 			    			$('#appointments-list').append("<input type='hidden' title='Appointment Set Id' id='apptSetId' value="+appointmentSetId+ " class='apptSetId form-control'/>");
+ 			    		}
+ 			    		$('#appointments-list').append("</div>");
+				    },
+				    error:function(jqXHR, textStatus, errorThrown) {
+				    	$('#requestApptSetModal').modal('hide');
+                        $("#error .modal-body").empty();
+                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+                        $('#error').modal('show');
+                        console.log("Error: ", errorThrown);
+                        console.log(jqXHR); 
+                        console.log("Text Status: ", textStatus);
+				    }
+				});
+				
+				$('#appointment-info').show();
+				
+				//Required so that the form submit doesn't reload the page
+				return false;
+			}
+			
+			//Clear form and reset if user clicks Cancel button or X in top right corner of modal
+			function clearForm() {
+				document.forms["appt-set-form"]["appt-set-field"].value = "";
+				$('#appointments-list').empty();
+				$('.modal-buttons-left').hide();
+			}
+			
+			//Display fields for gender and DOB for each candidate that is checked
+			function displayInfo(className, checkbox) {
+				//If checkbox is checked, then show DOB and gender fields, and show job-candidates-info and modal-buttons-left
+				if (checkbox.checked) {					
+		    		$('.' + className).show();
+					$('.modal-buttons-left').show();
+					
+					//Make sure the input fields are required
+					$('.' + className + ' #apptCategory').prop('required', true);
+					$('.' + className + ' #apptSetStartDt').prop('required', true);
+				} 
+				//Otherwise, clear the form fields, and hide job-candidates-info and modal-buttons-left
+				else {
+					var apptCategory = '.' + className + ' #apptCategory';
+					var apptSetStartDt = '.' + className + ' #apptSetStartDt';
+					
+					$(apptCategory).prop('selectedIndex',0);
+					$(apptSetStartDt).val("");
+					$('.' + className).hide();
+					
+					//Make sure the input fields are no longer required
+					$('.' + className + ' #apptCategory').prop('required', false);
+					$('.' + className + ' #apptSetStartDt').prop('required', false);
+					
+					//Only hide the modal-buttons-left if there are no checkboxes checked
+					var anyChecked = false;
+					$("#requestApptSetModal input").each(function(index) {
+						if (this.type == 'checkbox' && this.checked == true) {
+							anyChecked = true;	
+						}
+					});
+					if (!anyChecked) {
+						$('.modal-buttons-left').hide();
+					}
+				}
+			}
+
+			
+			function submitApptSetRequest() {					
+				$('#requestApptSetModal').modal('hide');
+				var opusId = $(".appointeeInfo .opusId").val();
+				var appointmentSetId = $(".appointeeInfo .apptSetId").val();
+				var apptSetCreationInfo = '';
+				$('.candidate-record').each(function(index) {
+					
+					var checkboxValue = "checkbox-" + index;
+					var recordName = "appointment-" + index;
+					
+					//var apptId = this.getAttribute("data-apptid");
+
+					
+					//Must check for null - in the case of a person who already has a UID ISSUED, they will show up in the list greyed out with no checkbox
+					if (document.getElementById(checkboxValue) != null) {
+						if (document.getElementById(checkboxValue).checked) {	
+							if(apptSetCreationInfo != '') {
+								apptSetCreationInfo = apptSetCreationInfo+","+$("." + recordName + " .apptId").val()+"@"+$("." + recordName + " .apptCategory").val()+"@"+$("." + recordName + " .apptSetStartDt").val();
+							} else {
+								apptSetCreationInfo = $("." + recordName + " .apptId").val()+"@"+$("." + recordName + " .apptCategory").val()+"@"+$("." + recordName + " .apptSetStartDt").val();
+							}
+						}
+					}
+				});
+					
+					$.ajax({
+						cache:false,
+				    	url: "/restServices/rest/admin/createApptSetInfo/?access_token="+access_token, 
+				    	type: 'POST', 
+				    	data: {
+				    		apptSetId:appointmentSetId != undefined ? appointmentSetId: null, 
+									opusId:opusId,
+									apptSetInfo:apptSetCreationInfo,
+									adminName: adminData.adminName
+				    	},
+				    	success: function(data) { 
+				    		appointmentSetId = data;
+				    		location.reload();
+//					    		var table = $('#uid-table').DataTable();
+				    		
+//					    		$.each(data, function() {
+//						    		if (this.errored != true) {
+//										var newRow = table.row.add(this).draw();	    		
+//						    		}
+//						    		else {
+//						    			alert(this.errorMessage);
+//						    		}
+//					    		});
+				    		
+				    	},
+				    	error:function(jqXHR, textStatus, errorThrown) { 
+				    		$('#requestUidModal').modal('hide');
+				    		
+	                        $("#error .modal-body").empty();
+	                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+	                        $('#error').modal('show');
+	                        console.log("Error: ", errorThrown);
+	                        console.log(jqXHR); 
+	                        console.log("Text Status: ", textStatus);
+					    	
+					    	//clearForm();
+					    }
+					});
+				
+				//location.reload();
+				//clearForm();						
+				//Required so that the form submit doesn't reload the page
+				return false;
+			}
+        </script>
+    </body>
+</html>

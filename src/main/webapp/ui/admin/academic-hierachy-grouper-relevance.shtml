@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Academic Hierarchy - Grouper relation</title>
+
+<!--#include virtual="../common/header.html" --> 
+<!-- pace CSS (this is only used on DataTable pages) -->
+<link rel="stylesheet" type="text/css"
+	href="../plugins/pace/loadingBar.css">
+</head>
+
+<body>
+	<!--#include virtual="../common/nav.html" -->
+
+	<!-- Begin page content -->
+	<div class="container-fluid" id="main">
+
+		<div class="row-fluid">
+			<div class="page-header">
+				<h2>Academic Hierarchy & Grouper Path Relationship</h2>
+			</div>
+			<div id="table-scroll-area">
+				<table id="academicHierarchy-table" class="display nowrap"
+					cellspacing="0" width="100%">
+					<thead>
+						<tr>
+							<th>AHPathId</th>
+							<th>Update</th>
+							<th>grouperPathText</th>
+							<th>active</th>
+							<th>institutionId</th>
+							<th>institutionName</th>
+							<th>divisionId</th>
+							<th>divisionName</th>
+							<th>schoolId</th>
+							<th>schoolName</th>
+							<th>departmentId</th>
+							<th>departmentName</th>
+							<th>areaId</th>
+							<th>areaName</th>
+							<th>specialtyId</th>
+							<th>specialtyName</th>
+
+						</tr>
+						<tr>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+							<td class="column-filter"></td>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel" aria-hidden="true" id="update-row"
+		data-backdrop="static">
+        
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header modal-info">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h1 class="modal-title">
+						<span aria-hidden="true" class="icon-save modal-icon"></span>&nbsp;&nbsp;Academic Hierarchy ID:
+						<span id="acadHID"> </span> 
+<!-- 						<input type=text id="acadHID" value=acadHID></input> -->
+					</h1>
+				</div>
+				<div class="modal-body">
+					<form id="update-academic-form" role="form" >
+
+						<div class="grouper-details">
+							<div class="form-group">
+								<h5><label for="grouper-path"><Strong>Enter Grouper Path: </Strong></label></h5>
+								<div class="row">
+									<div class="col-sm-4">										 
+<!-- 										<span id="grouper-path"> </span>  -->
+
+										<input type=text id="grouper-path" value=grouper-path></input>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="is-active"><Strong>Is Academic Hierarchy Active? </Strong></label>
+								<div class="row">
+									<div class="col-sm-4">
+									<span id="is-active"> </span>  
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label><strong>Change Opus Hierarchy </strong></label>
+								<div class="row">
+
+									<div class="col-sm-4">
+										<label for="inst-opus-id"><Strong>Institutional OpusId </Strong></label> 
+										<span id="inst-opus-id"> </span>  	
+										<span id="inst-opus-name"> </span>								 
+									</div>
+
+									<div class="col-sm-4">
+										<label for="div-opus-id"><Strong>Division OpusId </Strong></label> 
+										<span id="div-opus-id"> </span>  
+										<span id="div-opus-name"> </span>  
+									</div>
+
+									<div class="col-sm-4">
+										<label for="school-opus-id"><Strong>School OpusId </Strong></label> 
+										<span id="school-opus-id"> </span>  
+										<span id="school-opus-name"> </span>   
+									</div>
+								</div>
+								<br />
+								<div class="row">
+									<div class="col-sm-4">
+										<label for="dept-opus-id"><Strong>Department OpusId </Strong></label> 
+										<span id="dept-opus-id"> </span>   
+										<span id="dept-opus-name"> </span>
+									</div>
+									<div class="col-sm-4">
+										<label for="area-opus-id"><Strong>Area OpusId </Strong></label> 
+										<span id="area-opus-id"> </span> 
+										<span id="area-opus-name"> </span>  
+									</div>
+									<div class="col-sm-4">
+										<label for="spcl-opus-id"><Strong>Specialty OpusId </Strong></label> 
+										<span id="spcl-opus-id"> </span>  
+										<span id="spcl-opus-name"> </span> 
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- /modal-body -->                    
+                <div class="modal-footer">
+					<button type="button" id="update-academic-path" class="submit btn btn-info left">Update</button>					 
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-footer -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- Generic Error -->
+	<div class="modal" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h2 class="white">Error</h2>
+				</div>
+				<div class="modal-body"></div>
+				<!-- /modal-body -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger left"
+						data-dismiss="modal">Okay</button>
+				</div>
+				<!-- /modal-footer -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!--#include virtual="../common/footer.html" -->
+
+	<!--#include virtual="../common/js-includes.html" -->
+
+	<!-- JavaScript Functionality -->
+	<script>
+		$(document).ready(function() {
+			populateTableData();
+		});
+
+		function populateTableData() {
+			console.log("Before call: " + new Date($.now()));
+			var SendInfo = {};
+			$.ajax({
+						cache : false,
+						url : "/restServices/rest/titlecodeinfo/academicHierarchyGrouperPath",
+						type : 'GET',
+						dataType : 'json',
+						data : JSON.stringify(SendInfo),
+						contentType : 'application/json',
+						mimeType : 'application/json',
+						success : function(adminScreenData) {
+							if (adminScreenData == "") {
+								window.location.assign("/restServices/ui/error/access-error.shtml");
+							}
+							academicHierarchy = adminScreenData;
+							var aName = academicHierarchy.adminData.adminName;
+							if (aName > "") {
+								$('#adminName').html(aName);								
+								$("#nav-logout").show();
+							}
+							var data = adminScreenData.academicHierarchies;
+							initializeTable(data);
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							if (jqXHR.responseText !== "") {
+								$("#error .modal-body").empty();
+								$("#error .modal-body").append(
+										jqXHR.responseText);
+								$('#error').modal('show');
+								console.log("Error: ", errorThrown);
+								console.log(jqXHR);
+								console.log("Text Status: ", textStatus);
+							} else {
+								console.log("Error: ", errorThrown);
+								console.log(jqXHR);
+								console.log("Text Status: ", textStatus);
+								window.location
+										.assign("/restServices/ui/error/access-error.shtml");
+							}
+						}
+					});
+		}
+ 
+		function initializeTable(inputData) {
+			var otable = $('#academicHierarchy-table').DataTable(
+							{
+								aaData : inputData,
+								dom : 'frtlip',
+								bPaginate : false, // include if no pagination
+								scrollY : "530px", //set height of table
+								scrollX : true, // allow horizontal scrolling
+								"orderClasses" : false, // Always turn this off.  It highlights the sorted column.  Causes slowness.
+								scrollCollapse : true, // if have Fixed Columns
+								columns : [
+										{
+											data : "academicHierarchyPathId"
+										},
+										{
+											"mRender" : function(data, type,
+													full) {
+												return '<button type="button" id="update-row-button" class="btn btn-primary" data-toggle="modal" data-target="#update-row"><span aria-hidden="true" class="icon-plus"></span>Update</button>';
+											},
+											name : "update",
+											defaultContent : ""
+										}, {
+											data : "grouperPathText"
+										}, {
+											data : "active"
+										}, {
+											data : "institutionId"
+										}, {
+											data : "institutionName"
+										}, {
+											data : "divisionId"
+										}, {
+											data : "divisionName"
+										}, {
+											data : "schoolId"
+										}, {
+											data : "schoolName"
+										}, {
+											data : "departmentId"
+										}, {
+											data : "departmentName"
+										}, {
+											data : "areaId"
+										}, {
+											data : "areaName"
+										}, {
+											data : "specialtyId"
+										}, {
+											data : "specialtyName"
+										}
+										 ],
+						                    columnDefs: [{
+						                        "targets": 'nosort',
+						                        "orderable": false
+						                    }],
+						                    order: [[1, 'asc'],[0, 'asc']],
+						                    bSortCellsTop: true, //Sort on the top header cell (not the bottom)
+						                    sAjaxDataProp: "", //Use blank instead of aaData as array name
+						                    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]], //Show # of entries
+						                    iDisplayLength: 25, //Show # of entries default
+						                    fnInitComplete: function(oSettings, json) { 
+						                        //For some reason, we have to re-initialize the table or it gives an 'undefined' error
+						                       // var table = $('#eligibility-table').DataTable();
+						                        $(".column-filter").each( function ( i ) {
+						                            if ($(this).hasClass('filter-on')) {
+						                                //Have to use index() otherwise "i" only indexes visible columns, and will pull the hidden column's data into the dropdown
+						                                var index = otable.column.index('fromVisible', $(this).index());
+						                                var select = $('<select><option value="">All</option></select>')
+						                                    .appendTo( $(this).empty() )
+						                                    .on( 'change', function () {
+						                                        var val = $(this).val();
+
+						                                        otable.column( index )
+						                                            .search( val ? '^'+$(this).val()+'$' : val, true, false )
+						                                            .draw();
+						                                    } );
+						                         
+						                                otable.column( index ).data().unique().sort().each( function ( d, j ) {
+						                                    select.append( '<option value="'+d+'">'+d+'</option>' )
+						                                } );
+						                            }
+						                        } );                                        
+						                    }
+						                });
+            $('#update-academic-path').off('click').on('click', function() {   
+            	 var iPos = otable.row( this ).index(); 
+                 var rowData = otable.row( this ).data();
+                 var info = rowData; 
+                console.log("Start Timestamp update academic path: " + new Date($.now()));
+                $.ajax({
+                    cache:false, 
+                    url : "/restServices/rest/titlecodeinfo/getActionTypeTitleCode",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: JSON.stringify(info),
+                    contentType: 'application/json',
+                    mimeType: 'application/json',
+                    success: function(data) {                   
+                    },
+                    error:function(jqXHR, textStatus, errorThrown) {
+                        $("#error .modal-body").empty();
+                        $("#error .modal-body").append(jqXHR.responseJSON.message);
+                        $('#error').modal('show');
+                        console.log("Error: ", errorThrown);
+                        console.log(jqXHR); 
+                        console.log("Text Status: ", textStatus); 
+                    }
+                  
+                });     
+            });  
+			
+			$('#academicHierarchy-table tbody').on('click', 'tr', function() {
+				$(this).toggleClass('selected');				
+				 var iPos = otable.row( this ).index(); 
+				 var rowData = otable.row( this ).data();
+				// alert( 'Row index: '+ iPos + rowData.academicHierarchyPathId);
+				 $('#acadHID').html(rowData.academicHierarchyPathId); 
+				 $('#grouper-path').html(rowData.grouperPathText); 
+  				 $('#inst-opus-id').html(rowData.institutionId); 
+ 				 $('#dept-opus-id').html(rowData.departmentId); 
+  				 $('#div-opus-id').html(rowData.divisionId)+'<br/>'; 
+  				 $('#school-opus-id').html(rowData.schoolId);  
+  				 $('#area-opus-id').html(rowData.areaId); 
+                 $('#spcl-opus-id').html(rowData.specialtyId); 
+                 $('#is-active').html(rowData.active);
+                 $('#dept-opus-name').html(rowData.departmentName);
+                 $('#area-opus-name').html(rowData.areaName);
+                 $('#spcl-opus-name').html(rowData.specialtyName);
+                 $('#inst-opus-name').html(rowData.institutionName);
+                 $('#div-opus-name').html(rowData.divisionName);
+                 $('#school-opus-name').html(rowData.schoolName);
+                 
+			}); 
+
+			new $.fn.dataTable.FixedColumns(otable); //needed to fix double header issue
+
+			//Export button
+			var tt = new $.fn.dataTable.TableTools(
+					otable,
+					{
+						"aButtons" : [ {
+							"sExtends" : "collection",
+							"aButtons" : [ {
+								"sExtends" : "xls",
+								"oSelectorOpts" : {
+									"filter" : "applied"
+								}, //Exports filtered rows, if applicable
+								"mColumns" : "visible" //Only exports visible columns
+							} ]
+						} ],
+						"sSwfPath" : "../plugins/DataTables-1.10.3/extensions/TableTools/swf/copy_csv_xls_pdf.swf" //Use the .swf file for xls and pdf
+					//"sRowSelect": "os" //no need for this right now because we are not allowing users to select individual rows
+					});
+			$(tt.fnContainer()).insertAfter('.dataTables_filter');
+			console.log("After call: " + new Date($.now()));
+
+			/* Add events */
+			$("body").on(
+							"click",
+							"#example tbody tr",
+							function(e) {
+								e.preventDefault();
+
+								var nTds = $('td', this);
+								//example to show any cell data can be gathered, I used to get my ID from the first coumn in my final code
+								var sBrowser = $(nTds[1]).text();
+								var sGrade = $(nTds[4]).text();
+								var dialogText = "The info cell I need was in (col2) as:"
+										+ sBrowser
+										+ " and in (col5) as:"
+										+ sGrade + "";
+								var targetUrl = $(this).attr("href");
+
+								$('#table-dialog').dialog({
+									buttons : {
+										"Delete" : function() {
+											window.location.href = targetUrl;
+										},
+										"Cancel" : function() {
+											$(this).dialog("close");
+										}
+									}
+								});
+								//simple dialog example here
+								$('#table-dialog').text(dialogText).dialog(
+										"open");
+							});
+		}
+	</script>
+</body>
+</html>

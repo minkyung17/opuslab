@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <title>Opus</title>     
+                        <!--#include virtual="common/header.html" -->
+                <!--get rid of .. before all virtual includes and images before you deploy -->
+        </head>
+
+        <body class="image">
+                <!--#include virtual="common/nav.html" -->
+
+                <!-- Begin page content -->
+                <div class="container public" id="main">
+
+                <!-- Main page content -->
+                <br>
+                <!-- alert messages, uncomment in case of outages 
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                Opus will be down for scheduled maintenance from (date time) to (date time).  We apologize for any inconvenience. 
+                </div>
+                -->
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        Opus is currently down for scheduled maintenance.  We will be back up on (date) at (time).  We apologize for any inconvenience.
+                </div>
+                
+                <!--  
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        Opus is currently inaccessible.  We are working to get it back online.  We apologize for any inconvenience.  If you have any questions please contact <a class="alert-link" href="mailto:opushelp@ucla.edu">opushelp@ucla.edu.</a>
+                </div>
+                -->
+
+                <div class="jumbotron">
+                        <div class="text-center">
+                                <img src="images/blueOpus2.png" alt="Opus Logo" class="responsive">
+                        </div>
+                        <h1 class="tagline">Making the academic review process <br>easier for everyone.</h1>
+                        <p class="text-center jumbotron">Now open to academic personnel administrators.</p>
+                        <div class="text-center"><a href="/restServices/index.jsp">
+                                <button type="button" class="btn btn-primary btn-xlg"  alt="sign in">Sign In</button></a>
+                        </div>
+                </div>
+                <br>
+                <hr>
+                                                                                      <!-- New-->
+        <h1 class="center big-gray">New!</h1>
+        <div class="row"><!--spacing bug fix
+        --><div class="col-md-6 vtop">
+                        <div class="thumbnail">
+                                <img src="images/graph.jpg" alt="graph" class="img-responsive">
+                                <div class="caption">
+                                        <h2 class="text-center">Salary Report</h2>
+                                <p>Staff can view current and proposed salaries, including off-scale analyses, for appointees.</p>
+                                        </div>
+                        </div>
+                </div>
+                <div class="col-md-6 vtop">
+                        <div class="thumbnail align-left">
+                                <img src="images/activecase.jpg" alt="a cartoon file folder working out with headband and weights" class="img-responsive align-right">
+                        </div>
+                        <div class="caption">
+                                <h2 class="text-center">Active Cases</h2>
+                                <p>An easier way to view all actions in progress for staff and senior administrators.</p>
+                        </div>
+                </div>
+    </div>
+        <hr>
+
+                <!-- Now Available -->
+                <div class="row"><!--spacing bug fix
+                --><h1 class="center big-gray">Opus Features</h1>
+                <div class="col-md-4 vtop">
+                                <div class="thumbnail">
+                                        <img src="images/foldie-bath-home.jpg" alt="a cartoon file folder taking a bath" class="img-responsive" style="display:block;" style="border:solid;">
+                                        <div class="caption">
+                                                <h2 class="text-center">Clean Academic History Data</h2>
+                                                <p>To ensure that Opus has accurate information on which to base eligibility calculations, we've built a tool to correct inaccurate academic history data.</p>
+                                        </div>
+                                </div>
+                        </div><!--spacing bug fix
+                -->
+
+                <div class="col-md-4 vtop">
+                        <div class="thumbnail">
+                                <img src="images/eligibility.jpg" alt="a cartoon eligibility machine with gears and dials" class="img-responsive" style="display:block;" style="border:solid;">
+                                <div class="caption">
+                                                                      
+                                                                      
+                                        <h2 class="text-center">Eligibility</h2>
+                                        <p>See what types of review academic appointees are eligible for and the next possible steps in their career path.</p>
+                                </div>
+                        </div>
+                        </div><!--spacing bug fix
+  
+  
+                --><div class="col-md-4 vtop">
+                        <div class="thumbnail">
+                                <img src="images/uidkey.jpg" alt="a key" class="img-responsive display:block;">
+                                <div class="caption">
+                                        <h2 class="text-center">Request a UID</h2>
+                                        <p>Hiring a new faculty member? Request a UID so that they can create a UCLA logon and access campus online services in advance of their arrival on campus.</p>
+                                </div>
+                        </div>
+                        </div>
+        </div>
+        <hr>
+        <div class="jumbotron">
+                        <div class="text-center">
+                                <img src="images/publicationslist.jpg" alt="pic of magic wand creating publications list" class="img-responsive center">
+                        </div>
+                        <h1 class="tagline">Faculty, Get Your Publications List Ready!</h1>
+                        <p class="text-center jumbotron">The <a href="http://oapolicy.universityofcalifornia.edu">UC Publication Management tool</a> scans the web for publications that UCLA faculty have authored. Use your UCLA logon to access the tool, then review and claim your publications. In the future, Opus will import these claimed publications automatically. </p>
+        </div>
+        <br>
+        <hr>
+
+
+        <!-- Future Features -->
+        <h1 class="center big-gray"> Future Features</h1>
+                <div class="row"><!--spacing bug fix
+                -->
+                <div class="col-md-4 vtop">
+                                <div class="thumbnail">
+                                        <img src="images/filing-self2.jpg" alt="a cartoon file folder enthusiastically filing papers in itself" class="img-responsive">
+                                             <div class="caption">
+                                                <h2 class="text-center">Data Integration</h2>
+                                                <p>Information about courses, research, and teaching and mentoring will be imported from campus data sources. This means less typing!</p>
+                                                </div>
+                                </div>
+                        </div><!--spacing bug fix
+                -->
+                <div class="col-md-4 vtop">
+                        <div class="thumbnail">
+                                <img src="images/faculty-syllabus.jpg" alt="an ipad, glasses, and a coffee mug" class="img-responsive" style="display:block;" style="border:solid;">
+                                <div class="caption">
+                                        <h2 class="text-center">Faculty Access</h2>
+                                        <p>Faculty will be able to log on, edit their dossier, and see where their file is in the review process.</p>
+                                </div>
+                        </div>
+                        </div><!--spacing bug fix
+        --><div class="col-md-4 vtop">
+                        <div class="thumbnail">
+                                <img src="images/case-management.jpg" alt="a cartoon file folder making its way to the Dean's office" class="img-responsive display:block;">
+                                <div class="caption">
+                                        <h2 class="text-center">Case Management</h2>
+                                        <p>Opus will replace the current paper process with a secure electronic dossier and workflow, allowing for a more efficient and speedy review.</p>
+                                </div>
+                        </div>
+                        </div>
+        </div>
+
+        </div>
+
+                <!--#include virtual="common/footer.html" -->
+                <!--#include virtual="common/js-includes.html" -->
+
+</body>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js">
+$('#nav-home').addClass('active');	// make "home" navbar link active	</script>
+
+</html>
+                                        

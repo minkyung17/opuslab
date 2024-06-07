@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>Application Health Check</title>
+<!--#include virtual="../common/header.html" -->
+</head>
+
+<body class="image">
+	<!--#include virtual="../common/nav.html" -->
+
+	<!-- Begin page content -->
+	<div class="container fluid public main" id='main'>
+
+		<div class="page-header">
+			<h1>Grouper Connection Check</h1>
+		</div>
+		<table class="table table-bordered middle">
+			<tr>
+				<th colspan='2'>Admin Details</th>
+			</tr>
+			<tr>
+				<td width=25%>Does Member Exist in Grouper?</td>
+				<td id="exists-id"></td>
+			</tr>
+			<tr>				
+				<td>Dashboard Role</td>
+				<td id="role-id"></td>
+			</tr>
+			<tr>
+				<td>Admin Roles</td>
+				<td id="admin-role-id"></td>
+			</tr>
+			<tr>
+				<td>UCLA Logon</td>
+				<td id="ucla-logon"></td>
+			</tr>
+			<tr>
+				<td>Permission</td>
+				<td id=permString-id></td>
+			</tr>
+		</table>
+		
+		<div class="row">
+			<div class="page-header">
+				<h1>Database Connection Check</h1>
+			</div>
+			<table class="table table-bordered middle">
+				<tr>
+					<th colspan='2'>Query</th>
+				</tr>
+				<tr>
+					<td width=15%>Time for execution</td>
+					<td id=exec-time></td>
+				</tr>
+			</table>
+		</div>
+
+		
+		<div class="page-header">
+			<h1>Browser Details</h1>
+		</div>
+		<table class="table table-bordered middle">
+			<tr>
+				<th colspan='2' id=browser-name> is the browser being used.</th>
+			</tr>
+			<tr>
+				<td width=15%>Version</td>
+				<td id=brow-ver></td>
+			</tr> 
+		</table>
+		<div class="page-header">
+			<h1>VM Details</h1>
+		</div>
+		<table class="table table-bordered middle">
+			<tr>
+				<th colspan='2'>RHEL</th>
+			</tr>
+			<tr>
+				<td width=15%>ersion</td>
+				<td></td>
+			</tr>			
+		</table>
+		<div class="page-header">
+			<h1>Application Server Status</h1>
+		</div>
+		<table class="table table-bordered middle">
+			<tr>
+				<th colspan='2'>Tomcat</th>
+			</tr>
+			<tr>
+				<td width=15%>Version</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Java Version</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+
+	<!--#include virtual="../common/footer.html" -->
+	<!--#include virtual="../common/js-includes.html" -->
+	<!--#include virtual="../common/jquery-datatables.html" -->
+
+	<script src="../javascript/jquery.selectlistactions.js"></script>
+
+	<!-- JavaScript Functionality -->
+	<script>
+		//responsive table height upon load
+		$(document).ready(
+				function() {
+					//console.log($(window).height());
+					$('.dataTables_scrollBody').css('height',
+							($(window).height() - 350));
+					var startDate = new Date();
+					//console.log("Start API call: " + startDate);	
+					$.ajax({
+						'cache' : false,
+						'url' : '/opusWeb/rest/common/role',
+						'type' : 'GET',
+						'content-Type' : 'x-www-form-urlencoded',
+						'dataType' : 'json',
+						'success' : function(result) {
+							var endDate = new Date(); 
+							adminData = result.adminData;
+							var diff = Math.abs(startDate - endDate); 
+							loadDashboard();
+						},
+						'error' : function(XMLHttpRequest, textStatus,
+								errorThrown) {
+							var endDate = new Date();
+							console.log("Got the results:" + endDate);
+							console.log("TimeTaken to get the data:" + diff
+									/ 1000);
+							console.log(XMLHttpRequest.status + ' '
+									+ XMLHttpRequest.statusText);
+						}
+					});
+				});
+		//responsive table height upon window resize
+		$(window).resize(
+				function() {
+					console.log($(window).height());
+					$('.dataTables_scrollBody').css('height',
+							($(window).height() - 350));
+				});
+
+
+		function loadDashboard() {
+			var dashboardRole = adminData.dashboardRole;
+			$('#role-id').html(dashboardRole);
+
+			var adminRoles = adminData.adminRoles;
+			var permString = "";			
+			for (var i = 0; i < adminRoles.length; i++) { 
+				permString = permString + " " + adminRoles[i] + "<br>";
+				} 
+			$('#admin-role-id').html(permString);
+			
+			var permissions = adminData.permissions;
+			permString = "";			
+			for (var i = 0; i < permissions.length; i++) { 
+				permString = permString + " " + permissions[i].resource + ' - ' + permissions[i].action + "<br>";
+				} 
+			$('#permString-id').html(permString);	
+			
+// 			var adminDepartments = adminData.adminDepartments;
+// 			permString = "";			
+// 			for (var i = 0; i < 10; i++) { 
+// 				permString = permString + " " + adminDepartments[i].ahName 
+// 				  + ' & ' + adminDepartments[i].grouperPathText + "<br>";
+// 				} 
+// 			$('#depts-id').html(permString);	
+			
+			$('#ucla-logon').html(adminData.adminUclaLogon);
+
+		} // loadDashboard
+	</script>
+</body>
+</html>

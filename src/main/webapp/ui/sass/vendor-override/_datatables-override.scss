@@ -1,0 +1,446 @@
+/* General Table Spacing and Borders
+-------------------------------------------------- */
+//div.DTS div.DTS_Loading	{
+//	border: none;
+//	background-color: transparent;
+//	background: transparent;
+//}
+
+.dataTables_wrapper .dataTables_processing	{
+	border: none;
+	background-color: transparent;
+	background: transparent;
+}
+
+//minimum height
+.dataTables_scrollBody, .DTFC_ScrollWrapper {
+        min-height: 200px;
+}
+
+//processing icon shows over table
+.dataTables_processing { 
+	z-index: 999;
+}
+
+div.DTS div.dataTables_scroll, div.dataTables_scroll	{
+	background-image: none;
+	//background: $gray-lighter;
+}
+
+// no results table has a bottom border on the row
+table.dataTable td.dataTables_empty {
+	border-bottom: 1px solid $gray-light; 
+}
+
+
+
+//table bottom row has border
+.dataTables_wrapper.no-footer div.dataTables_scrollBody table  {
+border-bottom: 1px solid $gray-light; 
+}
+
+//table.dataTable tbody tr:last-child { 
+//	border-bottom: 1px solid $gray-light;  
+//	}
+
+// put this in the th of the first column after a frozen column to avoid column overlap when filtering has no results
+
+.column-width	{
+	min-width: 250px !important;
+}
+
+// makes frozen column bigger on an extremely large monitor so that the second column doesn't hide behind the frozen column.
+//@media(min-width: 1800px)	{
+// .column-width	{
+//	min-width: 550px;
+//}
+//}
+
+// makes frozen column smaller on an iphone so that you can scroll horizontally through the table.
+@media(max-width:  480px)	{
+ .column-width	{
+	max-width: 100px;
+}
+}
+
+ 
+
+// when no or few results, makes border on table sides
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+   border-left: 1px solid $gray-light;
+   border-right: 1px solid $gray-light;
+}
+
+.DTFC_LeftHeadWrapper, .DTFC_LeftBodyWrapper	{
+	border-right: 1px solid $gray-light; 
+}
+
+
+table.dataTable tbody td {
+  padding: 10px 20px;
+}
+
+.dataTables_length {
+	margin-top: 20px;
+}
+
+table.dataTable thead th{
+  	border-bottom: none;
+ 	padding-top: 5px;
+ 	padding-left: 20px;
+}
+
+table.dataTable thead td {
+	padding-top: 10px;
+  	padding-bottom: 8px;
+  	border-bottom: 1px solid $gray-light; 
+}
+
+/***fix extra padding just on IUI - needs to go here instead of _iui.sass otherwise it is overwritten
+#faculty-info td {
+  padding: 8px 20px;
+}***/
+
+table.dataTable.no-footer {
+  border-top: 1px solid $gray-light;
+  border-left: 1px solid $gray-light;
+  border-right: 1px solid $gray-light;
+  border-bottom: 1px solid $gray-light;
+}
+
+/*fix bottom border*/
+//.dataTables_wrapper.no-footer .dataTables_scrollBody {
+//	border-bottom: 1px solid $gray-light;
+//}
+
+/***makes table borders line up on right side***/
+table.dataTable {
+	margin: 0px;
+	//border-collapse: collapse;
+}
+
+ /***Eligibility table name header get rid of right border***/
+//table.display.nowrap.dataTable.no-footer.DTFC_Cloned {
+ // border-right: none;
+//}
+
+
+/* ------------------------------BUTTONS-------------------------------------------------- */
+
+/* Paginate Button
+-------------------------------------------------- */
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+	padding: 0px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  	border: 1px solid white;
+}
+
+.dataTables_paginate {
+	margin-top: -60px;
+}
+
+.paginate_button_disabled {
+	display: none; 
+}
+
+li.paginate_button.previous.disabled, li.paginate_button.next.disabled	{
+	display: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: white !important;
+    border: 1px solid white;
+    background-color: none; 
+    background: none;
+}
+
+
+
+/* Showing __ of __ entries 
+-------------------------------------------------- */
+.dataTables_info {
+	margin-bottom: 40px;
+}
+
+.dataTables_length label, div.dataTables_info, dataTables_filter  {   /* "show __ entries" and "showing __ of __" at the foot of the table */
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.dataTables_length {
+	clear: both;
+}
+
+
+
+/* DataTables ColVis override
+-------------------------------------------------- */
+/*
+div.ColVis {
+	float: left;
+}
+*/
+
+
+a.dt-button.buttons-print	{
+	float:right !important;
+//	border: none;
+}
+
+.buttons-print:hover, a.dt-button:hover:not(.disabled)	{
+		@extend .btn-default:hover;
+	    background-color: $gray-lighter;
+    	border-color: $gray;
+    	background-image: none;
+}
+
+div.dt-buttons	{
+	float: none;
+}	
+
+.buttons-colvis	{
+	float: left;
+}
+
+div.dt-button-collection	{ /*change columns dropdown - new buttons  */
+	width: 300px;
+}
+
+
+ul.ColVis_collection {  /*change columns dropdown */
+	width: 300px;
+	background: #ffffff;
+}
+
+ul.ColVis_collection label  {  /*change columns dropdown */
+	font-weight: normal;
+}
+
+ul.ColVis_collection li, ul.ColVis_collection li:hover	{  /*change columns dropdown */
+  margin-bottom: 0px;
+  border: none;
+  background: #ffffff;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+   box-shadow: none;
+}
+
+div.dt-button-collection, div.dt-button-collection li:hover	{  /*change columns dropdown - new buttons plugin */
+  margin-bottom: 0px;
+  border: none;
+  background: #ffffff;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+   box-shadow: none;
+}
+
+a.dt-button.buttons-columnVisibility {   /*change columns dropdown buttons - new buttons plugin */
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+	background-image: none;
+	@extend.btn;
+	@extend .btn-default;
+	@extend .btn-sm;
+}
+
+/*Give ColVis button the same classes as Bootstrap buttons old colvis plugin*/
+button.ColVis_Button { 
+	@extend .btn;
+	@extend .btn-default;
+	@extend .btn-sm;
+/*	height: 34px; */
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+}
+
+/*Give ColVis button the same classes as Bootstrap buttons - new buttons plugin*/
+a.dt-button, a.dt-button.buttons-collection.buttons-colvis, a.dt-button.buttons-excel.buttons-flash, a.dt-button buttons-csv buttons-html5, a.dt-button buttons-csv buttons-flash  { 
+	@extend .btn;
+	@extend .btn-default;
+	@extend .btn-sm;
+/*	height: 34px; */
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+	border: none;
+}
+
+a.DTTT_button DTTT_button_csv {
+	@extend .btn;
+	@extend .btn-link;
+}
+
+
+
+/* Gets rid of drop shadow on hover-over Download Data and Change Columns buttons---- */
+a.DTTT_button:hover, button.ColVis_Button:hover {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+	background: $gray-light;
+}
+
+/* DataTables TableTools override
+-------------------------------------------------- */
+/***old tabletools plugin***/
+.DTTT_container {
+	margin-right: 10px;
+}
+
+a.DTTT_button {
+	@extend .btn;
+	@extend .btn-default;
+	@extend .btn-sm;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-ms-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+	border: none;
+}
+
+//.btn-default a.DTT_button	{
+//	border: none !important;
+//}
+//
+//.DTTT_button_csv	{
+//	border: none !important;
+//}
+
+/* DataTables TableTools backdrop background - new buttons - change to Bootstrap styling
+-------------------------------------------------- */
+div.dt-button-background  {
+	    background: #000;
+	    background-color:  #000;
+	    opacity: .5;
+	    background-image: none;
+}
+
+/***checkbox filters at the top of the table***/
+#action-filters	{
+	font-size: 13px;
+}
+
+
+/*Sorting icons 
+-------------------------------------------------- */
+
+table.dataTable thead .sorting {
+  	background: url("../images/sort_null.png") no-repeat center left;
+}
+
+table.dataTable thead .sorting_asc {
+  	background: url("../images/sort_asc_ucla.png") no-repeat center left;
+}
+
+table.dataTable thead .sorting_desc {
+  	background: url("../images/sort_desc_ucla.png") no-repeat center left;
+}
+
+table.dataTable thead .sorting_asc_disabled {
+  	background: url("../images/sort_asc_disabled_ucla.png") no-repeat center left;
+}
+
+table.dataTable thead .sorting_desc_disabled {
+  	background: url("../images/sort_desc_disabled_ucla.png") no-repeat center left;
+}
+
+/*Table Form Input Elements
+-------------------------------------------------- */
+
+ /***buttons***/
+table input[type="button"]	{
+	@extend .btn;
+	@extend .btn-default;	
+}
+
+/***drop down lists***/
+table tbody select	{
+	@extend .form-control;
+	height: 31px;
+}
+
+/***text inputs***/
+table input[type="text"]	{
+	@extend .form-control;
+	height: 31px;
+}
+
+/***column header drop down lists***/
+table thead select	{  
+	@extend .form-control;
+	height: 27px !important;
+	padding: 4px 12px !important;
+	font-size: 12px !important;
+}
+
+
+/* DataTables FixedColumns fixes
+-------------------------------------------------- */
+
+/***Gets rid of the secondary scroll inside the Name column for all browsers except for Safari***/
+.DTFC_LeftBodyLiner {
+	overflow-x: hidden;
+}
+
+/***get rid of extra header rows***/
+	.dataTables_scrollBody thead tr  {
+   height: 0px !important;
+   border-color: transparent;
+   background: none;
+}
+
+/***get rid of extra header rows in IUI***/
+.dataTables_scrollBody thead tr th.sorting_asc {
+	height: 0px !important;
+	background-image: none;
+ }
+
+/***brings  frozen columns to the front.  overrides the Scroller file.***/
+div.DTS div.dataTables_scrollBody {
+    z-index: 0;
+}
+
+.dataTables_scrollHeadInner	{
+	width: 100%
+}
+
+/* hover style - don't use datatables built in hover for the frozen column tables
+-------------------------------------------------- */
+
+.hover2	{
+	background-color: $light-blue !important;
+}
+/* need important or scroller overrides it- */
+.off-scale-background {
+	background-color: $light-yellow !important; 
+	border-color: white !important; 
+}
+
+/***printing
+.print-table	{
+	overflow: visible;
+	overflow-y: visible;
+	table-layout: fixed;
+	page-break-inside: auto;
+	
+	}
+	***/
+	

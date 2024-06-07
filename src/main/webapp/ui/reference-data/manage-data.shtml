@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Manage Data</title>
+                
+        <!--#include virtual="../common/header.html" -->
+
+    </head>
+
+    <body>
+        <!--#include virtual="../common/nav.html" -->
+        <!-- Begin page content -->
+        <div class="container-fluid public" id="main">
+            
+            <div class="row-fluid">
+                    <div class="page-header"> 
+                          <h1>Manage Data</h1>
+
+                          <p class="small"><h2>Opus Release 4.7.0 - August 2024</h2></p>
+ 
+            		</div>
+            		<p> Action Types</p>
+            		<ul>
+            			<li><a href="../reference-data/action-type-reference.shtml">ActionType Reference</a></li>
+            			<li><a href="../reference-data/action-type-title-code-relevance.shtml">ActionType-Title Relevance</a></li>
+            			<li><a href="../reference-data/action-outcome-relevance.shtml">ActionType-Outcome Relevance</a></li>
+            		</ul>
+            		<p> Title Code</p>
+            		<ul>
+            			<li><a href="../reference-data/titleCode-relevance.shtml">Title Reference</a></li>
+            			<li><a href="../reference-data/series-type-reference.shtml">Series-Type Reference</a></li>
+            			<li><a href="../reference-data/rank-type-reference.shtml">Rank-Type Reference</a></li>            			
+            			<li><a href="../reference-data/step-type-relevance.shtml">Step-Type Reference</a></li>
+            			<li><a href="../reference-data/series-rank-relevance.shtml">Series-Rank Relevance</a></li>
+            			<li><a href="../reference-data/series-rank-step-relevance.shtml">Series-Rank-Step Relevance</a></li>	
+            		</ul>
+            		<p>Academic Hierarchy</p>
+            		<ul>
+            			<li><a href="../reference-data/ah-grouper-relevance.shtml">Academic Hierarchy Details</a></li>
+            			<li><a href="../reference-data/ah-mapper-reference.shtml">AcademicHierarchy Mapper Reference</a></li>
+            		</ul>
+            		<p>Appointment Sets</p>
+            		<ul>
+            			<li><a href="../reference-data/appointmentSet-Data.shtml">Manage Appointment Sets</a></li>
+            		</ul>
+            		<p>Duplicate Records</p>
+            		<ul>
+            			<li><a href="../reference-data/duplicate-records.shtml">Manage Duplicate Records</a></li>
+            		</ul>
+            		<p>Manage Permissions</p>
+            		<ul>
+            			<li><a href="../admin/permissions-users.shtml">Manage Permissions</a></li>
+            		</ul>
+            		<p>Manage Alerts</p>
+            		<ul>
+            			<li><a href="../reference-data/alerts.shtml">Alerts Page</a></li>
+            		</ul>
+            		<p>Manage Quartz Jobs</p>
+            		<ul>
+            			<li><a href="../reference-data/quartzJob.shtml">Quartz Jobs</a></li>
+            		</ul>
+           </div>
+         </div>
+                               
+                   
+                
+        <!--#include virtual="../common/footer.html" -->
+
+        <!--#include virtual="../common/js-includes.html" -->
+
+                             
+     
+    </body>
+</html>

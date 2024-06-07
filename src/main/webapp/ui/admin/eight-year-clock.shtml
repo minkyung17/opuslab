@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Eight Year Clock</title>
+		<!--#include virtual="../common/header.html" -->
+
+
+  	</head>
+
+  	<body>
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container-fluid" id="main">
+
+			<div class="row-fluid">
+			<div class="page-header">
+					<h1>Profile</h1>
+			</div>
+		<!-- Left hand navigation -->
+		<div class="col-xs-4 col-md-2 leftnav left-side-nav">
+			<!--#include virtual="../common/profile-leftnav.html" -->
+		</div>
+		
+		<!-- Main content -->
+		<div class="col-xs-8 col-md-10">
+			<h2>Eight Year Clock</h2>
+			<p id="instructions">This table displays service accrued toward the 8-year limit for assistant professors and researchers. See <a href="https://www.apo.ucla.edu/policies-forms/the-call/appendices/appendix-14-guide-to-the-computation-of-years-of-service-which-count-toward-the-eight-year-limit-1">Appendix 14 of the CALL</a> for details on how time towards the 8-year limit is calculated, and for information about requesting time off the clock for your faculty.</p>
+
+		<div id="reactFixedDataTable" data-datatable_appname='eightyearclock'
+               data-datatable_config='eight_year_clock'> 
+<!-- 				<div class="loader-container" *ngIf="isSearching">
+            				<div class="loader"></div>
+            				<p class="text-muted center">Loading</p>
+       			</div> -->Loading...
+		</div>
+
+					<!--script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development -->
+
+
+					<!--Filters-->
+
+				</div>
+				</div>
+			</div>
+		
+
+		<!-- Modal -->
+		<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="infoModalLabel">Please Note</h4>
+					</div>
+					<div class="modal-body">
+						<form id="action-form" role="form">
+  							<div class="form-group">
+    							<p>This feature is coming soon!</p>
+  							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Generic Error -->
+        <div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header modal-danger">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h2 class="white">Error</h2>
+                    </div>
+                    <div class="modal-body">
+
+                    </div> <!-- /modal-body -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger left" data-dismiss="modal">Okay</button>
+                    </div> <!-- /modal-footer -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+
+		<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production -->
+
+		<script language="javascript" src="../javascript/select-row.js"></script>
+
+		<!-- JavaScript Functionality -->
+		<script>
+		//Highlight the active page in the leftnav
+		$('#eight-year-clock').addClass('active');
+
+			function initializeTables() {
+				var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+				    reactDomElement = $('[' + react_selector + ']'),
+				    id_attr = 'id',
+				    id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+            		datatable_appname = $('#' + id).data('datatable_appname'),
+            		datatable_config_name = $('#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+				window._initReactDataTable(id, datatable_appname, datatable_config_name,
+                    access_token, adminData, globalData);
+            	
+				
+			}
+
+		</script>
+
+
+
+  	</body>
+</html>

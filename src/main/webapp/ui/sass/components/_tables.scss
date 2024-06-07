@@ -1,0 +1,94 @@
+/* tables
+-------------------------------------------------- */
+
+th {
+	background-color:$gray-lighter !important;
+	font-weight: bold;
+}
+
+.no-bold	{
+	font-weight: normal;
+}
+
+.label-column	{
+	background-color: $gray-lightest !important;
+	font-weight: lighter;
+}
+
+
+
+/*Table dropdowns*/
+table select {
+	background-color: white;
+	border-color: $gray-light;
+	font-family: ProximaNova;
+	//font-size: 12px;
+	padding: 6px 12px;
+}
+
+/*	Table header background
+ *	Note: The !important is being used because it's very hard to target the background-color of the table header coming from DataTables.
+ * 	Looks like it is coming from the body's background-color style.
+ */
+th.sorting, th.sorting_asc, th.sorting_desc {
+	background-color: $gray-lightest !important;
+}
+
+td.column-filter {
+	background-color: $gray-lightest;
+}
+
+table {
+  max-width: none;
+ // border: 1px solid $gray-light;
+}
+
+
+.select-background {
+	background-color: $light-blue !important;
+}
+
+
+.odd	{
+	background-color: $gray-lightest;
+}
+
+
+.table-heading	{
+	margin-top: 0px;
+}
+
+table.fixed-layout {
+	table-layout:fixed;
+}
+
+table.fixed-layout td {
+	word-wrap:break-word;
+}
+
+.middle	{
+vertical-align: middle;
+}
+
+/*	special formatting for the case summary action flag row, since it is a new table underneath the table  */
+.padding-8	{
+	padding:8px;
+}
+
+/*	special formatting for the Edit Appointment Set modal  */
+.x-smaller	{
+	font-size: 18px;
+
+}
+
+/*	special formatting - no row border grid for the Edit Appointment Set modal  */
+
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+}
+

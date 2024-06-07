@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>UCPath Compensation Report</title>
+                
+        <!--#include virtual="../common/header.html" -->
+    </head>
+
+    <body>
+        <!--#include virtual="../common/nav.html" -->
+        
+        <!-- Begin page content -->
+        <div class="container-fluid" id="main">
+            
+            <div class="row-fluid"> 
+		            <div class="page-header tab-header">
+		                <h1>Salary Report</h1>
+		            </div>
+		            
+		            <!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation"><a href="salary-report.shtml"
+							aria-controls="salary-report" role="tab">Current, Proposed & Approved Salaries</a></li>
+						<li role="presentation" class="active"><a href="#salary-report-UCPath"
+							aria-controls="salary-report-UCPath" role="tab">UCPath Compensation Report</a></li>
+					</ul>    
+		             
+		            <p id="instructions">This table displays the rate code amounts associated with the academic jobs in UCPath. Data is refreshed nightly.
+		          	</p>
+		            
+		            <div id="reactFixedDataTable" data-datatable_appname='salaryCompensation' 
+		            			data-datatable_config='salaryCompensation'>
+	<!-- 	            			<div class="loader-container" *ngIf="isSearching">
+            						<div class="loader"></div>
+            						<p class="text-muted center">Loading</p>
+       					 		</div> -->Loading...
+       				</div>
+          			<!-- script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development -->
+          			<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production -->            
+					           
+            </div>  
+        </div>   
+        
+        <!--#include virtual="../common/footer.html" -->
+
+        <!--#include virtual="../common/js-includes.html" -->
+
+       <script language="javascript" src="../javascript/select-row.js"></script>
+                                
+        <!-- JavaScript Functionality -->
+        <script> 
+        function initializeTables() {
+						
+        	var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+			    reactDomElement = $('[' + react_selector + ']'),
+			    id_attr = 'id',
+			    id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+	    		datatable_appname = $('#' + id).data('datatable_appname'),
+	    		datatable_config_name = $('#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+			window._initReactDataTable(id, datatable_appname, datatable_config_name,
+            	access_token, adminData, globalData);
+		}
+          
+        
+    	//tooltip
+		$("[rel=tooltip]").tooltip();
+		$('[data-toggle="popover"]').popover({trigger: 'hover'},  {container: 'body'});
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'hover','placement': 'right', 'data-placement': 'right'}, {container: 'body'});
+
+</script>
+    </body>
+</html>

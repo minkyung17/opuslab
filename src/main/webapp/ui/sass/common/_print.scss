@@ -1,0 +1,138 @@
+/*
+
+@media print {
+body, table 
+{     width: auto;     border: 0;     margin: 0 5%;     padding: 0;     float: none;     position: static;     overflow: visible; overflow-y:visible; }
+}
+
+
+@media print {
+   .table-responsive {
+     width: 100%;
+     margin-bottom: 15px;
+     overflow-x: scroll;
+     overflow-y: visible;
+     -webkit-overflow-scrolling: touch;
+     -ms-overflow-style: -ms-autohiding-scrollbar;
+     border: 1px solid #ddd;
+   }
+}
+
+
+ 
+@media print {
+table, thead, tbody, tfoot, tr, td, th, caption {
+  display: block;
+  overflow: visible;
+}
+}
+
+
+@media print {
+table, th, td {
+  display: inline;
+}
+}
+*/
+@media print {
+.edit-case-button, .icon-help-circled, .toggle-message  {
+  display: none;
+}
+}
+
+
+.print-table {
+ float: none;     
+ position: static;    
+overflow-y: visible !important;
+overflow: visible !important;
+//display: block; 
+page-break-inside:auto;
+// width: auto;
+
+}
+
+@media print {
+
+  
+
+  .color-gray {
+  	background-color: white !important;
+  }
+ .case-border {
+  	border-color: white !important;
+  	border-width: 0px;
+  }
+ body	{
+   font-size: 11px;
+   height: auto;
+   }
+   
+	h1	{
+  font-size: 14px; 
+  margin-top: 0px;
+	}
+
+	h2	{
+  font-size: 13px; 
+  margin-top: 5px;
+	}
+	.case-padding-left {
+    padding-left: 25px;
+  }
+    .case-padding-top {
+      padding-top: 0px
+    }
+    .case-round-top   {
+      padding-left: 0px;
+    }
+}
+
+@media print {
+  table, thead, tbody, tfoot, tr, td, th {
+       overflow: visible !important;
+  }
+  }
+
+ /**don't print url at the bottom of the page*
+
+@media print {
+
+@page { size: auto;  margin: 0mm; }
+
+}*/
+
+ /**page break after final decision**/
+
+@media print {
+    .breaker {page-break-before: always;}
+}
+
+ /**Printing a Modal**/
+ 
+@media print {
+  .modal, .modal-content, .modal-body .modal-backdrop {
+  	background-color: white !important;
+  }
+  
+  body {
+  	margin:3px; 
+  	position:static;
+  }
+
+  .modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    visibility: visible;
+    /**Remove scrollbar for printing.**/
+    overflow: visible !important;
+  }
+  .modal-dialog {
+    visibility: visible !important;
+    /**Remove scrollbar for printing.**/
+    overflow: visible !important;
+  }
+}

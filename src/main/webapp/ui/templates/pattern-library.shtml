@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Opus Pattern Library</title>
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+  
+
+  	<body>
+  		<!--#include virtual="../common/nav.html" -->
+
+<!-- Begin page content -->
+
+		<div class="container-fluid main-content">
+			<div class="page-header">
+				<h1>Pattern Library</h1>
+		</div>
+		<div class="row">
+		<!-- Left hand navigation -->
+		<div class="col-xs-4 col-md-2 leftnav">
+			<div class="list-group" id="sidebar" data-spy="affix">
+                  <a href="#alerts" class="list-group-item">Alerts</a>
+                  <a href="#buttons" class="list-group-item">Buttons</a>
+                  <a href="#colors" class="list-group-item">Colors</a>
+                  <a href="#datatables" class="list-group-item">Jquery DataTables</a>
+                  <a href="#forms" class="list-group-item">Forms</a>
+                  <a href="#icons" class="list-group-item">Icons</a>
+                  <a href="#modals" class="list-group-item">Modals </a>
+                  <a href="#navigation" class="list-group-item">Navigation </a>
+                  <a href="#page-types" class="list-group-item">Page Types</a>
+                  <a href="#popovers" class="list-group-item">Popovers</a>
+                  <a href="#tags" class="list-group-item">Tags</a>
+                  <a href="#typography" class="list-group-item">Typography</a>
+        	</div>
+		</div>
+				
+<!-- Main page content -->
+		
+		<div class="col-xs-8 col-md-10">
+
+<!-- Alerts -->
+					<h2><a id="alerts">Alerts</a></h2>
+					<p> Alerts for when the system is down or there is a planned outage are commented out on the home (public/index.shtml) page.  Uncomment them as needed.
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">Instructions</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+					<tr>
+						<td><strong>System is down (red alert)</strong></td>
+						<td> 
+							<div class="alert alert-danger alert-dismissible" role="alert">
+  							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  							Opus is currently down for scheduled maintenance.  We will be back up on (date) at (time).  We apologize for any inconvenience.
+							</div> 
+						</td>
+						<td>This alert is already on the home page.  Uncomment out as needed.</td>
+						<td><pre class="prettyprint pre-scrollable"><xmp><div class="alert alert-danger alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  Opus is currently down for scheduled maintenance.  We will be back up on (date) at (time).  We apologize for any inconvenience.
+</div></xmp></pre>
+						</td>
+					</tr>
+					<tr>
+						<td><strong>Maintenance scheduled (yellow alert)</strong></td>
+						<td> 
+							<div class="alert alert-warning alert-dismissible" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times; </span> </button> Opus will be down for scheduled maintenance from (date time) to (date time).  We apologize for any inconvenience. </div>
+						</td>
+						<td>This alert is already on the home page.  Uncomment out as needed.</td>
+						<td> 
+							<pre class="prettyprint pre-scrollable"><xmp><div class="alert alert-danger alert-dismissible">
+<button class="close" data-dismiss="alert" type="button"><span>&times;</span></button>
+     Opus is currently down for scheduled maintenance. We will be back up on (date) at (time). We apologize for any inconvenience.
+</div></xmp></pre>
+						</td>
+					</tr>
+					</table>
+				</div>
+
+<!-- Buttons -->
+					
+					<h2><a id="buttons">Buttons</a></h2>
+					<p class="instructions">Be sure to use type="button" and class="btn".  Then add your style classes.
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">Instructions</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+					<tr>
+						<td><strong>Primary Buttons</strong></td>
+						<td><button type="button" class="btn btn-primary" >Primary Button</button></td>
+						<td>Use for major functions on a page.</td>
+						<td><pre class="prettyprint"><xmp><button type="button" class="btn btn-primary">Primary Button</button></xmp></pre></td>
+					</tr>
+					<tr>
+						<td><strong>Default Buttons</strong></td>
+						<td><button type="button" class="btn btn-default">Default Button</button></td>
+						<td> Use for secondary actions on a page, buttons inside a table.</td>
+						<td><pre class="prettyprint"><xmp><button type="button" class="btn btn-default">See Example</button></xmp></pre></td>
+					</tr>
+					<tr>
+						<td><strong>Back/Next Buttons</strong></td>
+						<td><button type="button" class="btn btn-primary"><span class="icon-left wizard"></span>&nbsp;&nbsp;Back</span></button>
+						<button type="button" class="btn btn-primary">Next&nbsp;&nbsp;<span class="icon-right wizard"></span></button></td>
+						<td>Wizards and Dossiers</td>
+						<td><pre class="prettyprint"><xmp>
+<button type="button" class="btn btn-primary"><span class="icon-left wizard"></span>&nbsp;&nbsp;Back</span></button>
+<button type="button" class="btn btn-primary">Next&nbsp;&nbsp;<span class="icon-right wizard"></span></button>						
+						</xmp></pre></td>
+					</tr>
+					<tr>
+						<td><strong>See Example</strong></td>
+						<td><button type="button" class="btn btn-default btn-round-sm btn-sm">See Example</button></td>
+						<td>class="btn btn-primary btn-round-sm btn-sm" </td>
+						<td><pre class="prettyprint"><xmp><button type="button" class="btn btn-default btn-round-sm btn-sm">See Example</button></xmp></pre></td>
+					</tr>
+					<tr>
+						<td><strong>Change Columns</strong></td>
+						<td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewcolumns" >Change Columns</button></td>
+						<td>class="btn btn-default"</td>
+						<td><pre class="prettyprint pre-scrollable"><xmp><button type="button" class="btn btn-default" data-toggle="modal" data-target="#viewcolumns" >Change Columns</button></xmp></pre>
+						</td>
+					</tr>
+						<tr>
+						<td><strong>Actions</strong></td>
+						<td>
+						<div class="btn-group"> <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    							Actions <span class="caret"></span>
+  								</button>
+  								<ul class="dropdown-menu" role="menu">
+    							<li><a href="#">Action</a></li>
+   								 <li><a href="#">Another action</a></li>
+    							<li><a href="#">Something else here</a></li>
+    							<li class="divider"></li>
+    							<li><a href="#">Separated link</a></li>
+  								</ul>
+								</div>
+						</td>
+						<td>Use a drop down button. Be sure to wrap the button in a button group (btn-group).</td>
+						<td><pre class="prettyprint pre-scrollable"><xmp><div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> Actions <span class="caret"></span> </button>
+	 <ul class="dropdown-menu" role="menu"> <li><a href="#">Action</a></li> <li><a href="#">Another action</a></li> <li><a href="#">Something else here</a></li>
+		 <li class="divider"></li>
+		 <li><a href="#">Separated link</a></li>
+	</ul>
+</div></xmp></pre>
+						</td>
+					</tr>
+					<tr>
+						<td><strong>Download Data</strong></td>
+						<td><button type="button" class="btn btn-default"><span aria-hidden="true" class="icon-download"></span>&nbsp;Download Data</button></td>
+						<td>class="btn btn-default"</td>
+						<td><pre class="prettyprint"><xmp><button type="button" class="btn btn-default"><span aria-hidden="true" class="icon-download"></span>&nbsp;Download Data</button></xmp></pre></td>
+					</tr>
+					<tr>
+						<td><strong>Small square buttons. </strong> </td>
+						<td><button type="button" class="btn btn-primary btn-sm" >Initiate</button>&nbsp;&nbsp;
+						<button type="button" class="btn btn-primary btn-sm" >View Case</button></td>
+						<td>class="btn btn-primary btn-sm"</td>
+						<td><pre class="prettyprint"><xmp><button type="button" class="btn btn-primary btn-sm" >View Case</button></xmp></pre></td>
+					</tr>
+					<tr>
+						<td><strong>Link</strong></td>
+						<td><button type="button" class="btn btn-link">Link</button></td>
+						<td>"Cancel" and other secondary buttons. class="btn btn-link"</td>
+						<td><pre class="prettyprint"><xmp><button type="button" class="btn btn-link">Link</button></xmp></pre></td>
+					</tr>
+					</table>
+				</div>
+				
+				
+<!-- Colors -->
+					
+					<h2><a id="colors">Colors</a></h2>
+					<p class="instructions">Color variables are found in sass/common/_bootstrap-variables.scss and _opus-variables.scss</p>
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">Instructions</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+					<tr>
+						<td><strong>Grays</strong></td>
+						<td></td>
+						<td></td>
+						<td><pre class="prettyprint pre-scrollable"><xmp>//## Grays 
+//-----------------Bootstrap
+$gray-darker:            lighten(#000, 13.5%) // #222
+$gray-dark:              lighten(#000, 20%)   // #333
+$gray:                   lighten(#000, 33.5%) // #555
+$gray-light:             lighten(#000, 60%)   // #999
+$gray-lighter:           lighten(#000, 93.5%) // #eee // table headers
+//-----------------Opus
+$gray-lightest:          lighten(#000, 97%); // tooltips
+ 
+</xmp></pre></td>
+					</tr>
+					<tr>
+						<td><strong>Brand Colors</strong></td>
+						<td>
+						</td>
+						<td></td>
+						<td><pre class="prettyprint pre-scrollable"><xmp>//---------Primary Colors
+$ucla-blue:         #347bad; //for text 
+$ucla-blue2:		#3184bf; // for graphic elements
+$orange: 			#f79021; //opus orange
+$purple: 			#9c3c96;
+ 	
+//---------Accent Colors
+$ucla-dark-blue:	#1e4b87; 
+$ucla-gold: 		#ffc727;
+$cyan:				#00a5e4; 
+$purple-blue:		#6657a5;
+	
+//---------Expanded Colors
+$light-yellow: 		#f7f3d0;	// for warning cells in tables
+$light-blue: 		#E3EFF9;	// row highlight upon click, primary button color</xmp></pre></td>
+					</tr>
+					</table>
+				</div>
+				
+<!-- Jquery Datatables -->
+					<h2><a id="datatables">Jquery DataTables</a></h2>
+					<p class="instructions">Some of the older Opus datatables use <a href="http://datatables.net/">DataTables</a> table plug-in for jquery</p>
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">When to Use</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+					<tr>
+						<td><strong>Standard Initialization</strong></td>
+						<td></td>
+						<td></td>
+						<td><pre class="prettyprint pre-scrollable"><xmp>var datatable = $("#faculty-info").dataTable({
+dom: 'frtlip',
+bPaginate: false, // include if no pagination
+scrollY:        "530px", //set height of table
+scrollX:        true, // allow horizontal scrolling
+"orderClasses": false, // Always turn this off.  It highlights the sorted column.  Causes slowness.
+scrollCollapse: true, // if have Fixed Columns
+"aaSorting": [[1, 'asc'], [3, 'asc'], [4, 'asc']],  // Define how you want the columns to be sorted upon load. 
+"aoColumnDefs":[ {
+	"aTargets": [0],
+	"bSortable": false // define which columns you don't want to be sortable
+},</xmp> </pre></td>
+					</tr>
+					<tr>
+					<td><strong>Allow column sorting for input elements (text box, drop-down menus, checkboxes).  For client-side tables only.</strong></td>
+					<td></td>
+						<td><a href="http://datatables.net/release-datatables/examples/plug-ins/dom_sort.html">Documentation</a></td>
+						<td><pre class="prettyprint pre-scrollable"><xmp>/* ---------------------Allows sorting by HTML elements.  Insert before table initialization. --------------*/
+
+/* Create an array with the values of all the input boxes in a column */
+$.fn.dataTable.ext.order['dom-text'] = function  ( settings, col )
+{
+    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+        return $('input', td).val();
+    } );
+}
+ 
+/* Create an array with the values of all the input boxes in a column, parsed as numbers */
+$.fn.dataTable.ext.order['dom-text-numeric'] = function  ( settings, col )
+{
+    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+        return $('input', td).val() * 1;
+    } );
+}
+ 
+/* Create an array with the values of all the select options in a column.  We changed this to "text" instead of "val" because it was sorting as if it was a string */
+$.fn.dataTable.ext.order['dom-select'] = function  ( settings, col )
+{
+    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+    	 return $('select option:selected', td).text();
+    } );
+}
+ 
+/* Create an array with the values of all the checkboxes in a column */
+$.fn.dataTable.ext.order['dom-checkbox'] = function  ( settings, col )
+{
+    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+        return $('input', td).prop('checked') ? '1' : '0';
+    } );
+}</xmp> </pre></td>
+					</tr>
+<tr>
+					<td><strong>Define the field type of input elements, to allow correct sorting</strong></td>
+					<td></td>
+						<td><a href="http://datatables.net/release-datatables/examples/plug-ins/dom_sort.html">Documentation</a></td>
+						<td><pre class="prettyprint pre-scrollable"><xmp>/* ------------------Example, drop down menu (number in brackets is the column number)-------------*/
+{
+	"aTargets": [1], 
+	"sSortDataType": "dom-select"
+}
+/* -----------Example, drop down list with numbers-------------*/
+{
+	"aTargets": [1], 
+	"sSortDataType": "dom-select",
+	"sType": "num"
+},
+/* -----------Example, drop down list with numbers and letters (known issue, sorts by the first number it finds, so A2 is bigger than A11)-------------*/
+{
+	"aTargets": [1], 
+	"sSortDataType": "dom-select",
+	"sType": "natural"
+},
+/* -----------Example, checkbox-------------*/
+{
+	"aTargets": [1], 
+	"sSortDataType": "dom-checkbox"
+},
+/* -----------Example, text field-------------*/
+{
+	"aTargets": [1], 
+	"sSortDataType": "dom-text"
+},
+/* -----------Example, text field with numbers only-------------*/
+{
+	"aTargets": [21], 
+	"sSortDataType": "dom-text-numeric"
+			},
+/* -----------Example, date text field-------------*/
+{
+	"aTargets": [1], 
+	"sSortDataType": "dom-text",
+	"sType": "date"
+},
+/* -----------Example, date text field, numbers and letters-------------*/
+{
+	"aTargets": [1], 
+	"sSortDataType": "dom-text",
+	"sType": "natural"
+},
+</xmp> </pre></td>
+					</tr>
+					<tr>
+						<td><strong>Buttons</strong>
+						<td></td>
+						<td>Use the new Buttons plugin.  Always use cvs button instead of excel button.  The excel download is ""xlsx", which does not work with all operating systems / versions of Excel.</td>
+						<td><pre class="prettyprint pre-scrollable"><xmp>buttons: [
+   'colvis',
+    'csv'
+ ],
+language: {
+     buttons: {
+         colvis: 'Change Columns',
+         csv: 'Export to Excel'
+}</xmp></pre></td>
+					</table>
+				</div>
+								
+				
+				
+<!-- Forms -->
+					<h2><a id="forms">Forms</a></h2>
+					<p> Whenever possible, use vertical forms.  When you have limited room, like in Modals, use horizontal forms (class="form-horizontal")
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">When to Use</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+					<tr>
+						<td><strong>Date Field</strong></td>
+						<td>
+						<form>
+							<div class="form-group">
+    							<label for="exampleInputEmail1">Date</label>
+    							<input type="date" class="form-control" id="dateexample" placeholder="MM/DD/YYYY">
+  							</div>
+  						</form>
+  						</td>
+						<td>MM/DD/YYYY date format.  Masks the calendar option, since most of our entered dates are not close to today's date.</td>
+						<td>
+							<pre class="prettyprint pre-scrollable"><xmp>  //Set up input mask
+$.mask.definitions['a'] = "[0-1]";
+$.mask.definitions['b'] = "[0-9]";
+$.mask.definitions['c'] = "[0-3]";
+$.mask.definitions['d'] = "[0-9]";
+$.mask.definitions['e'] = "[0-9]";
+$.mask.definitions['f'] = "[0-9]";
+$.mask.definitions['g'] = "[0-9]";
+$.mask.definitions['h'] = "[0-9]";
+$([dateexample]).mask("ab/cd/efgh");
+	
+ <form>
+	<div class="form-group">
+    	<label for="exampleInputEmail1">Date</label>
+    	<input type="date" class="form-control" id="dateexample" placeholder="MM/DD/YYYY">
+  	</div>
+ </form></xmp></pre>
+  						</td>
+					</tr>
+					<tr>
+						<td><strong>Required vs. Optional Fields</strong></td>
+						<td>Because most fields are required, do not put an asterisk or "required" by the required fields.  Instead, indicate if the field is optional by putting "optional" in the form field placeholder:
+						<form>
+  							<div class="form-group">
+    							<label for="exampleInputEmail1">Email address</label>
+    							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="optional">
+  							</div> 
+  						</form>
+						</td>
+						<td>Use when a field is optional.</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><strong>Error Messages</strong></td>
+						<td><p>Use the Bootstrap "has-error" <a href="http://getbootstrap.com/css/#forms-control-validation">validation state</a>. From now on, handle validation errors and required fields errors this way.  </p>
+							<form>
+							<div class="form-group has-error has-feedback">
+  								<label class="control-label" for="inputError2">Input with error</label>
+  								<input type="text" class="form-control" id="inputError2" aria-describedby="inputError2Status">
+  								<span id="inputError2Status" class="sr-only">(error)</span>
+  								<span id="helpBlock2" class="help-block">Please fill out this required field.</span>
+							</div>
+							
+							<div class="form-group has-error has-feedback">
+							<label class="control-label" for="">Should I stay or should I go now?</label>
+								<div class="checkbox">
+								  	<label>
+    									<input type="checkbox" value="">
+    									If I stay there will be trouble.
+ 								 	</label>
+ 								 </div>
+								<div class="checkbox">
+								 	<label>
+ 									<input type="checkbox" value="">
+    									If I go it will be double.
+  									</label>
+								</div>
+								 <span id="helpBlock2" class="help-block">Please fill out this required field.</span>
+							</div>
+							
+							
+							<div class="form-group has-error has-feedback">
+							<label class="control-label" for="optionsRadios">Who should I pick?</label>
+								<div class="radio">
+  									<label>
+    									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+    									Pick me
+  									</label>
+								</div>
+								<div class="radio">
+  									<label>
+    									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    									Noooo, pick me!
+  									</label>
+								</div>
+								<div class="radio">
+  									<label>
+    									<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+    									Pick meeeeeeeee.....
+  									</label>
+								</div>
+								<span id="helpBlock2" class="help-block">Please fill out this required field.</span>
+							</div>
+							
+							<div class="form-group has-error has-feedback">
+								<label class="control-label" for="dept-add">Who is the greatest of all time?</label>
+								<select class="form-control">
+									<option></option>
+  									<option>Muhammad Ali</option>
+  									<option>Batman</option>
+  									<option>Kanye</option>
+  								</select>
+  								<span id="helpBlock2" class="help-block">Please fill out this required field.</span>
+							</div>
+							</form>
+						</td>
+						<td>Use when the user submits a form to display validation errors and missing required fields. For validation errors, always use a customized message.</td>
+						<td></td>
+					</tr>
+					</table>
+	
+	
+<!-- Icons -->
+					<h2><a id="icons">Icons</a></h2>
+					<p class="instructions">Opus uses the <a href="http://www.entypo.com/">Entypo</a> free icon set. It was converted into an icon font by <a href="http://fontello.com/">Fontello</a>. The fontello file is in the sass/vendor folder.   </p>
+					
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">When to Use</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+					
+					<tr>
+						<td><strong>Alert</strong></td>
+						<td><span aria-hidden="true" class="icon-alert help"></span></td>
+						<td>Always use class="help" to make it blue.</td>
+						<td><pre class="prettyprint"><xmp><span aria-hidden="true" class="icon-alert"></span></xmp></pre></td>
+					</tr>											
+					<tr>
+						<td><strong>Comment</strong></td>
+						<td><span aria-hidden="true" class="icon-comment"></span></td>
+						<td></td>
+						<td><pre class="prettyprint"><xmp><span aria-hidden="true" class="icon-comment"></span></xmp></pre></td>
+				</tr>
+					<tr>
+						<td><strong>Download</strong></td>
+						<td><span aria-hidden="true" class="icon-download"></span></td>
+						<td></td>
+						<td><textarea class="form-control" rows="2"><span aria-hidden="true" class="icon-download"></span></textarea></td>
+				</tr>
+					<tr>
+						<td><strong>Edit</strong></td>
+						<td><span aria-hidden="true" class="icon-pencil"></span></td>
+						<td></td>
+						<td><pre class="prettyprint"><xmp><span aria-hidden="true" class="icon-pencil"></span></xmp></pre></td>
+					</tr>
+					
+					<tr>
+					<td><strong>File Attached</strong></td>
+						<td><span aria-hidden="true" class="icon-attach"></span></td>
+						<td></td>
+						<td><pre class="prettyprint"><xmp><span aria-hidden="true" class="icon-attach"></span></xmp></pre></td>
+					</tr>
+					
+					<tr>
+						<td><strong>Help</strong></td>
+						<td><span aria-hidden="true" class="icon-help-circled help"></span></td>
+						<td>Always use class="help" to make it blue.</td>
+						<td><pre class="prettyprint"><xmp><span aria-hidden="true" class="icon-help-circled help"></span></xmp></pre></td>
+					</tr>
+					
+					<tr>
+						<td><strong>International</strong></td>
+						<td><span aria-hidden="true" class="icon-globe"></span></td>
+						<td></td>
+						<td><pre class="prettyprint"><xmp><span aria-hidden="true" class="icon-globe"></span></xmp></pre></td>
+					</tr>
+					
+						<tr>
+						<td><strong>Search</strong></td>
+						<td><span aria-hidden="true" class="icon-search"></span></td>
+						<td></td>
+						<td><pre class="prettyprint"><xmp><span aria-hidden="true" class="icon-search"></span></xmp></pre></td>
+					</tr>
+				
+					</table>
+				</div>
+				
+				<!-- Modals -->
+
+	<h2><a id="modals">Modals</a></h2>
+	<p class="instructions">The javascript to initialize the modals, tooltips and instructions are included in common/header.html, which should already be referenced at the top of every page.</p>
+
+  	<br>
+<!--   	<p class="instructions">Reference the modal through it's anchor tag with the href attribute: -->
+<!--   	<textarea class="form-control" rows=1><span aria-hidden="true" data-toggle="modal" href="ui/common-text/modals.html#download-data"></span></textarea> -->
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">When to Use</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+<!-- 					<tr> -->
+<!-- 						<td>Information Incorrect?</td> -->
+<!-- 						<td> <button class="btn btn-link infoincorrect" data-toggle="modal" data-target="#infoincorrect">Information Incorrect?</button></td> -->
+<!-- 						<td></td> -->
+<!-- 						<td><pre class="prettyprint"><xmp><p class="instructions"><a class="btn btn-default case-button-back" href="#" role="button"><span aria-hidden="true" data-icon="&#58542;" font-size="48pt"></span><br>Back</a></xmp></pre></td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td>Add a Record</td> -->
+<!-- 						<td><button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#AddEmployment"></span>Add a Record</button></td> -->
+<!-- 						<td></td> -->
+<!-- 						<td>modal:<pre class="prettyprint"><xmp><a class="btn btn-default case-button-next" href="#" role="button">Next</a></xmp></pre><br> -->
+<!-- 						trigger button:<pre class="prettyprint"><xmp><a class="btn btn-default case-button-next" href="#" role="button">Next</a></xmp></pre></td> -->
+<!-- 					</tr> -->
+					<tr>
+						<td><strong>Informational Modal</strong></td>
+						<td><button class="btn btn-primary" data-toggle="modal" data-target="#plain-modal">Open Informational Modal</button></td>
+						<td><p>for forms, or editing or displaying information. These are the most common type of modals.</p>
+						<p>Can have an optional print feature.</p></td>
+						<td><pre class="prettyprint pre-scrollable"><xmp>
+<!--Informational Modal-->
+		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="plain-modal">
+ 			<div class="modal-dialog">
+   				<div class="modal-content" id="print1">  <!--put an id in the div you want to print-->
+     				<div class="modal-header modal-info">
+       					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      					
+      					<a data-toggle="popover" role="button" tabindex="0" data-container="body" data-trigger="hover" data-content="Print" class="pull-right"><button type="button" class="btn btn-nostyle pull-right modal-print" value="Print" onclick="printPage('print1');"><span aria-hidden="true" class="icon-print"></span></button></a> <!--put onclick event for button-->
+     					<h1 class="modal-title">Informational Modal</h1>
+     				</div>
+     				<div class="modal-body">
+     				<p>Please look at this fine information.</p>
+     				</div> <!-- /modal-body -->
+   					<div class="modal-footer">
+         				<button type="button" class="btn btn-primary left" data-dismiss="modal">Save</button>
+         				<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+         			</div> <!-- /modal-footer -->
+   				</div><!-- /.modal-content -->
+ 			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->			
+								
+						</xmp></pre></td>
+					</tr>
+					<tr>
+						<td><strong>Yellow Warning Modal</strong></td>
+						<td><button class="btn btn-warning" data-toggle="modal" data-target="#warning-modal">Open Warning Modal</button></td>
+						<td>Session time out<br>Do you want to save?</td>
+						<td><pre class="prettyprint pre-scrollable"><xmp><!-- Warning Modal -->
+  		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="warning-modal">
+  			<div class="modal-dialog">
+    			<div class="modal-content">
+      				<div class="modal-header modal-warning">
+        				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+       					<h1 class="modal-title">Warning Modal</h1>
+      				</div>
+      				<div class="modal-body">
+      					<p> They ask the user if they are sure they want to do something. It gives the user a chance to back out without saving. Warning Modals are usually triggered when: it will impact something else (like a case in progress)
+    						a notification will be triggered</p>
+						<div class="notification-text">
+	      					<p>The following notification will be sent to <span class="appointee-name"></span>'s current departments:</p>
+	      					<ul class="department-list">
+	      					</ul>
+	      					<h2>Notification Text:</h2>
+	      					<div class="well">
+	      						<p>Text here.</p>
+	      					</div>
+	      				</div>
+					</div> <!-- /modal-body -->
+    				<div class="modal-footer">
+    					<button data-index="" type="button" class="submit btn left btn-warning">Proceed</button>
+          				<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Nope, get me out of here!</button>
+      				</div> <!-- /modal-footer -->
+    			</div><!-- /.modal-content -->
+  			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->						
+						</xmp></pre></td>
+					</tr>
+					<tr>
+						<td><strong>Red Danger Modal</strong></td>
+						<td><button class="btn btn-danger" data-toggle="modal" data-target="#error-modal">Open Danger Modal</button></td>
+						<td>used for alerts and errors. They warn the user when they are doing something that cannot be reversed, such as deleting something, or when an error has occurred.</td>
+						<td><pre class="prettyprint pre-scrollable"><xmp>
+<!--Danger Modal-->
+  		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error-modal" data-backdrop="static">
+ 			<div class="modal-dialog">
+   				<div class="modal-content">
+     				<div class="modal-header modal-danger">
+       					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      					<h1 class="white">Errors</h1>
+     				</div>
+     				<div class="modal-body">
+     				Oh oh.  You did a bad. Please fix.
+					</div> <!-- /modal-body -->
+   					<div class="modal-footer">
+         				<button type="button" class="submit btn btn-danger left">Submit</button>
+         				<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+         			</div> <!-- /modal-footer -->
+   				</div><!-- /.modal-content -->
+ 			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->							
+						</xmp></pre></td>
+					</tr>
+						<tr>
+						<td><strong>Green Success Modal</strong></td>
+						<td><button class="btn btn-success" data-toggle="modal" data-target="#success-modal">Open Success Modal</button></td>
+						<td>They let the user know they have successfully completed a task and the application has taken an action. For example, creating a case.
+							They are not necessary when the user will immediately see their changes whey click save (such as editing an eight year clock row).</td>
+						<td><pre class="prettyprint pre-scrollable"><xmp>
+<!--Success Modal-->
+		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="success-modal">
+ 			<div class="modal-dialog">
+   				<div class="modal-content modal-sm">
+     				<div class="modal-header modal-success">
+       					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      					<h1 class="white">Success!</h1>
+     				</div>
+     				<div class="modal-body">
+     				<img src="../images/happydossier2.png" alt="happy dossier">
+     					<p> Wooooo! You has success.</p>
+     				</div> <!-- /modal-body -->
+   					<div class="modal-footer">
+         				<button type="button" class="btn btn-success left" data-dismiss="modal">Okay</button>
+         			</div> <!-- /modal-footer -->
+   				</div><!-- /.modal-content -->
+ 			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->						
+						</xmp></pre></td>
+					</tr>
+					</table>	
+				</div>
+				
+				<!-- Page Types -->
+					
+					<h2><a id="page-types">Page Types</a></h2>
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">Instructions</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+					<tr>
+						<td><strong>Public</strong></td>
+						<td> <img src="../images/public-page.png"> </td>
+						<td><p>Has the blue "cloud"" background.  Used for public informational pages, such as "Help," and "Team".</p></td>
+						<td><textarea class="form-control" rows="3">Set the background image: <body class="image"><br>Main container, use "public" class: <div class="container public" id="main"></textarea></td>
+					</tr>
+					<tr>
+						<td><strong>Post-login</strong></td>
+						<td> <img src="../images/post-login.png"> </td>
+						<td><p>Has no image background, to allow for a greater working area.  Used for pages such as "Eligibility" and "Request UID".</p></td>
+						<td><pre class="prettyprint"><xmp>Body tag has no image class <body><br>Main container, use "main-content." Use  "container-fluid" class on the main container if you have a responsive table: <div class="container-fluid main-content" id="main">.  Use regular container class if it's a mainly static page.</xmp></pre></td>
+					</tr>
+					<tr>
+						<td><strong>Dossier</strong></td>
+						<td> TBD </td>
+						<td></td>
+						<td><pre class="prettyprint"><xmp>.</xmp></pre></td>
+					</tr>
+					
+					</table>
+				</div>
+				
+<!-- Navigation -->
+					<h2><a id="navigation">Navigation</a></h2>
+					
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">When to Use</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+					<tr>
+						<td><strong>Global Nav</strong></td>
+						<td></td>
+						<td>HTMl file is found in the "common" folder.  Put the virtual include right after the body tag.</td>
+						<td><pre class="prettyprint pre-scrollable"><xmp><code><!--#include virtual="../common/nav.html" --></code></xmp> </pre></td>
+					</tr>
+					<tr>
+						<td><strong>Left Nav</strong></td>
+						<td></td>
+						<td></td>
+						<td>To make the current page "active" in the left nav, include this in the HTML pages: <pre class="prettyprint"><xmp>//Highlight the active page in the leftnav
+  $('#reference-nav-id').addClass('active');</xmp></pre></td>
+					</tr>
+						<td><strong>Tabs</strong></td>
+						<td><img src="../images/patterns-tabs.png"></td>
+						<td>Use for pages that require views of current and past actions. Gets rid of the border on the bottom of the header and tightens up the spacing.</td>
+						<td>Add the "tab-header" class to the "page-header" div: <pre class="prettyprint"><xmp><div class="page-header tab-header">
+<h1>Completed Cases</h1>
+				</div></xmp></pre></td>
+					</tr>
+					</table>
+				</div>
+
+
+				</div>				
+				
+				
+							
+<!--Popovers -->
+
+	<h2><a id="popovers">Popovers</a></h2>
+	<p class="instructions"> Use these instead of tooltips for instructions and extra help. <p class="instructions">The javascript to initialize the modals, tooltips and instructions are included in common/header.html, which should already be referenced at the top of every page.
+		<br>Be sure to use tabindex="0" and data-container="body" to put it at the top of the DOM. Per Bootstrap rules, use "a" tag and make role="button" to allow dismiss on click.
+	</p>
+			
+	<div class="table-responsive">	
+	<table class="table table-hover">
+	<tr>
+		<th class="col-md-2">Name</th>
+		<th class="col-md-3">Example</th>
+		<th class="col-md-3">When to Use</th>
+		<th class="col-md-4">Code</th>
+	</tr>
+	<tr>
+		<td>Help Popover</td>
+		<td><a  data-toggle="popover" role="button" tabindex="0" data-container="body" data-trigger="hover" data-content="Help tip"><span aria-hidden="true" class="icon-help-circled help"></span></a></td>	
+		<td>When defining a term.  May be used in the header at the top of datatables.<br> Use data-trigger="hover" in tables to prevent it from sorting the column. </td>
+		<td><pre class="prettyprint pre-scrollable"><xmp><a data-toggle="popover" role="button" tabindex="0" data-container="body" data-trigger="hover" data-content="Help tip"><span aria-hidden="true" class="icon-help-circled help"></span></a></xmp></pre></td>
+	</tr>
+	</table>
+	</div>
+	
+	<!-- Tags -->
+					<h2><a id="tags">Tags</a></h2>
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">When to Use</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+					<tr>
+						<td><strong>New</strong></td>
+						<td> 
+							<span class="label label-success new">New!</span>
+						</td>
+						<td>When something is new, yo.</td>
+						<td><pre class="prettyprint"><xmp><span class="label label-success new">New!</span></xmp></pre></td>
+					</tr>					
+					
+<!-- 					<tr> -->
+<!-- 						<td><strong>Diversity</strong></td> -->
+<!-- 						<td>  -->
+<!-- 							<span class="label diversity"><span aria-hidden="true" class="icon-flag label"> </span>Diversity</span> -->
+<!-- 						</td> -->
+<!-- 						<td></td> -->
+<!-- 						<td><pre class="prettyprint"><xmp><span class="label diversity"><span aria-hidden="true" class="icon-flag label"> </span>Diversity</span></xmp></pre></td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td><strong>International</strong></td> -->
+<!-- 						<td><span class="label international"><span aria-hidden="true" class="icon-globe label"> </span>International</span></td> -->
+<!-- 						<td></td> -->
+<!-- 						<td><pre class="prettyprint"><xmp><span class="label international"><span aria-hidden="true" class="icon-globe label"> </span>International</span></xmp></pre></td> -->
+<!-- 					</tr> -->
+					
+<!-- 					<tr> -->
+<!-- 						<td><strong>Interdisciplinary</strong></td> -->
+<!-- 						<td><span class="label interdisciplinary"><span aria-hidden="true" class="icon-shuffle label"> </span> Interdisciplinary</span></td> -->
+<!-- 						<td></td> -->
+<!-- 						<td><pre class="prettyprint"><xmp><span class="label interdisciplinary"> <span aria-hidden="true" class="icon-shuffle label"></span> Interdisciplinary</span></xmp></pre></td> -->
+<!-- 					</tr> -->
+					
+<!-- 					<tr> -->
+<!-- 						<td><strong>New Since Last Review</strong></td> -->
+<!-- 						<td><div class="new newtext vmiddle">New</div></td> -->
+<!-- 						<td></td> -->
+<!-- 						<td><pre class="prettyprint"><xmp> </xmp></pre></td> -->
+<!-- 					</tr> -->
+					</table>
+				</div>
+	
+						
+<!-- Typography -->
+					<h2><a id="typography">Typography</a></h2>
+					<p class="instructions"> Opus uses Proxima Nova, the UCLA typeface of choice for the web.  </p>
+					<div class="table-responsive">	
+					<table class="table table-hover">
+					<tr>
+						<th class="col-md-2">Name</th>
+						<th class="col-md-3">Example</th>
+						<th class="col-md-3">When to Use</th>
+						<th class="col-md-4">Code</th>
+					</tr>
+					<tr>
+						<td><strong>Instructions</strong></td>
+						<td><p class="instructions">We've imported your UCLA employment history.   </p></td>
+						<td>Instructional text, usually above tables. Slightly smaller than body text.</td>
+						<td><pre class="prettyprint"><xmp><p class="instructions"></p></xmp> </pre></td>
+					</tr>
+					<tr>
+						<td><strong>Body Text</strong></td>
+						<td><p class="bodytext">Heeey</p></td>
+						<td>Use for blocks of body text.  This will restrict the column width of the text, for readability.</td>
+						<td><pre class="prettyprint"><xmp><p class="bodytext"></p></xmp></pre></td>
+					</tr>
+					</table>
+				</div>
+
+
+				</div>				
+
+				
+</div>
+
+<!-- Modal Section - always put modals in the main html container... -->
+
+<!-- Warning Modal -->
+  		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="warning-modal">
+  			<div class="modal-dialog">
+    			<div class="modal-content">
+      				<div class="modal-header modal-warning">
+        				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+       					<h1 class="modal-title">Warning Modal</h1>
+      				</div>
+      				<div class="modal-body">
+      					<p> Warning - you have done a thing we are not sure of.</p>
+						<div class="notification-text">
+	      					<p>The following notification will be sent:</p>
+	      					<ul class="department-list">
+	      					</ul>
+	      					<h2>Notification Text:</h2>
+	      					<div class="well">
+	      						<p>Text here.</p>
+	      					</div>
+	      				</div>
+					</div> <!-- /modal-body -->
+    				<div class="modal-footer">
+    					<button data-index="" type="button" class="submit btn left btn-warning">Proceed</button>
+          				<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Nope, get me out of here!</button>
+      				</div> <!-- /modal-footer -->
+    			</div><!-- /.modal-content -->
+  			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
+<!--Success Modal-->
+		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="success-modal">
+ 			<div class="modal-dialog">
+   				<div class="modal-content modal-sm">
+     				<div class="modal-header modal-success">
+       					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      					<h1 class="white">Success!</h1>
+     				</div>
+     				<div class="modal-body">
+     				<img src="../images/happydossier2.png" alt="happy dossier">
+     					<p> Wooooo! You has success.</p>
+     				</div> <!-- /modal-body -->
+   					<div class="modal-footer">
+         				<button type="button" class="btn btn-success left" data-dismiss="modal">Okay</button>
+         			</div> <!-- /modal-footer -->
+   				</div><!-- /.modal-content -->
+ 			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
+<!--Plain Modal-->
+		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="plain-modal">
+ 			<div class="modal-dialog">
+   				<div class="modal-content" id="print1">  <!--put an id in the div you want to print-->
+     				<div class="modal-header modal-info">
+       					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      					
+      					<a data-toggle="popover" role="button" tabindex="0" data-container="body" data-trigger="hover" data-content="Print" class="pull-right"><button type="button" class="btn btn-nostyle pull-right modal-print" value="Print" onclick="printPage('print1');"><span aria-hidden="true" class="icon-print"></span></button></a> <!--put onclick event for button-->
+     					<h1 class="modal-title">Informational Modal</h1>
+     				</div>
+     				<div class="modal-body">
+     				<p>Please look at this fine information.</p>
+     				</div> <!-- /modal-body -->
+   					<div class="modal-footer">
+         				<button type="button" class="btn btn-primary left" data-dismiss="modal">Save</button>
+         				<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+         			</div> <!-- /modal-footer -->
+   				</div><!-- /.modal-content -->
+ 			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->			
+		
+<!--Error Modal-->
+  		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error-modal">
+ 			<div class="modal-dialog">
+   				<div class="modal-content">
+     				<div class="modal-header modal-danger">
+       					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      					<h1 class="white">Errors</h1>
+     				</div>
+     				<div class="modal-body">
+     				Oh oh.  You did a bad. Please fix.
+					</div> <!-- /modal-body -->
+   					<div class="modal-footer">
+         				<button type="button" class="submit btn btn-danger left">Submit</button>
+         				<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+         			</div> <!-- /modal-footer -->
+   				</div><!-- /.modal-content -->
+ 			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->	
+</div>
+</div>
+	
+		<!-- JavaScript Functionality -->
+		
+	<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		
+		<!-- JavaScript Functionality -->
+		<script>
+		
+		//Set up input mask
+			$.mask.definitions['a'] = "[0-1]";
+			$.mask.definitions['b'] = "[0-9]";
+			$.mask.definitions['c'] = "[0-3]";
+			$.mask.definitions['d'] = "[0-9]";
+			$.mask.definitions['e'] = "[0-9]";
+			$.mask.definitions['f'] = "[0-9]";
+			$.mask.definitions['g'] = "[0-9]";
+			$.mask.definitions['h'] = "[0-9]";
+			$([dateexample]).mask("ab/cd/efgh");
+			
+			
+		
+		$('#my-affix').affix({
+		    offset: {
+		      top: 25
+		    , bottom: function () {
+		        return (this.bottom = $('.footer').outerHeight(true))
+		      }
+		    }
+		  })
+				
+		</script>
+		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  	</body>
+</html>

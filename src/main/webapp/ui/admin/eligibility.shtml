@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Eligibility</title>
+		<!--#include virtual="../common/header.html" -->
+
+
+  	</head>
+
+  	<body>
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container-fluid" id="main">
+
+			<div class="row-fluid">
+				<!-- Main page content -->
+
+					<div class="page-header">
+					   <h1>Eligibility</h1>
+					</div>
+
+					<p id="instructions">Your faculty are eligible for the following academic personnel actions. </p>
+
+					<div id="reactFixedDataTable" data-datatable_appname='eligibility'
+               data-datatable_config='eligibility'>
+<!-- 						<div class="loader-container" *ngIf="isSearching">
+            				<div class="loader"></div>
+            				<p class="text-muted center">Loading</p>
+       					 </div> -->Loading...
+					</div>
+					<!-- script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development -->
+					<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production -->
+
+					<!--Filters-->
+
+				</div>
+			</div>
+		</div>
+
+
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+
+		<script language="javascript" src="../javascript/select-row.js"></script>
+
+		<!-- JavaScript Functionality -->
+		<script>
+			//Highlight the active page in the leftnav
+
+			function initializeTables() {
+				var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+				    reactDomElement = $('[' + react_selector + ']'),
+				    id_attr = 'id',
+				    id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+            		datatable_appname = $('#' + id).data('datatable_appname'),
+            		datatable_config_name = $('#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+				window._initReactDataTable(id, datatable_appname, datatable_config_name,
+                    access_token, adminData, globalData);
+			}
+
+		</script>
+
+
+
+  	</body>
+</html>

@@ -1,0 +1,79 @@
+ <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Appointments</title>
+                
+        <!--#include virtual="../common/header.html" -->
+    </head>
+
+    <body>
+        <!--#include virtual="../common/nav.html" -->
+        
+        <!-- Begin page content -->
+        <!-- Begin page content-->
+        <div class="container-fluid id="main">          
+            <div class="row-fluid">
+				<div class="page-header tab-header">
+		                <h1>Appointments</h1>
+		            </div>  
+					             
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation"><a href="roster.shtml"
+                        aria-controls="roster" role="tab">Active</a></li>
+                    <li role="presentation" class="active"><a href="#inactiveRoster"
+                        aria-controls="inactiveRoster" role="tab">Inactive</a></li>
+                </ul>
+				<div class="tab-content">
+    				<div role="tabpanel" class="tab-pane active" id="inactiveRoster">
+    				
+<!-- 	             		<label for="action-filters">Show Only</label> -->
+<!-- 						<ul id="action-filters"> -->
+<!-- 							<li><input class="filter-checkbox" type="checkbox" id="nowaiver" name="nowaiver" title="No Waiver  checkbox" value="No Waiver">Appointees based in your department (or joints without a waiver)&thinsp; <a role="button" aria-label="help tip" trigger="hover" data-trigger="hover" tabindex="0" class="ttip" data-placement="top" data-toggle="popover" white-space="pre-wrap" data-html="true" data-content="Checking this box will display appointees up for review by your department (i.e., it will filter out joint appointees with review waivers)."><span aria-hidden="true" class="icon-help-circled help ttip"></span></a></li> -->
+<!-- 						</ul> -->
+                           
+                           
+                         <div id="reactFixedDataTable" data-datatable_appname='inactiveRoster' 
+		            			data-datatable_config='inactiveRoster'>
+<!-- 		            		<div class="loader-container" *ngIf="isSearching">
+            						<div class="loader"></div>
+            						<p class="text-muted center">Loading</p>
+       					 	</div> -->Loading...
+						</div>
+                      <!-- script type="text/javascript" src="http://localhost:3005/bundle.js"></script><!-- development -->
+                    	<script type="text/javascript" src="../react/projects/dist/bundle.js"></script><!-- production -->
+	
+
+                    </div>
+            	</div>  
+			</div>
+        </div> 
+        	
+								
+        <!--#include virtual="../common/footer.html" -->
+
+        <!--#include virtual="../common/js-includes.html" -->
+
+        
+       <script language="javascript" src="../javascript/select-row.js"></script>
+                                
+        <!-- JavaScript Functionality -->
+        <script> 
+        function initializeTables() {
+						
+        	var react_selector = 'data-datatable_config',//name of key to get Datatable element by
+			    reactDomElement = $('[' + react_selector + ']'),
+			    id_attr = 'id',
+			    id = reactDomElement.attr(id_attr),//Id of Dom element to attach React Datatable to
+	    		datatable_appname = $('#' + id).data('datatable_appname'),
+	    		datatable_config_name = $('#' + id).data('datatable_config');//Datatable name - in this case 'eligibility'
+
+			window._initReactDataTable(id, datatable_appname, datatable_config_name, access_token, adminData, globalData);
+		}
+
+            
+                      
+
+</script>
+    </body>
+</html>

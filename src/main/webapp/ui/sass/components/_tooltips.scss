@@ -1,0 +1,16 @@
+
+/* tooltip styling
+-------------------------------------------------- */
+
+.tooltip-inner {
+	color: #000;
+	background: $gray-lightest;
+	border: solid 1px $gray-light;
+	-webkit-border-radius:0px;
+    -moz-border-radius:0px;
+    border-radius:0px
+}
+
+.tooltip-arrow {
+	display: none;
+} 

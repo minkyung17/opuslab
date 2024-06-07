@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>About Opus</title>
+			
+	
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body class="image">
+		<!--#include virtual="../common/nav.html" -->
+
+		<!-- Begin page content -->
+		<div class="container public" id="main">
+			<div class="page-header">
+				<h1>About Opus</h1>
+			</div>
+		
+				
+				<!-- Main page content -->
+				
+					<p class="bodytext ">Opus is the faculty information system and book of record for academic appointees at UCLA. Along with applications licensed from Interfolio, Opus improved the efficiency, transparency, and accuracy of the academic review process by replacing a paper-based process with a secure electronic profile, a convenient and automated review process, and robust messaging and reporting features. Interfolio and Opus follow data security and privacy guidelines set by the University of California.</p>
+			
+			<p class="bodytext ">Opus and Interfolio provide the following core features:	</p>
+			
+			
+			<p class="bodytext "><span class="strong">Faculty Information System </span>that has real-time or periodic integrations with existing campus systems of record. The Academic Personnel Office has licensed Faculty 180 from Interfolio to present a unified view of an individual faculty member's teaching, research, and service activities at UCLA. To populate Faculty 180, we have integrated with multiple campus and system-wide sources including the Student Records database, UCPath, and the UC-wide Publications Management System.  </p>
+	
+			<p class="bodytext "><span class="strong">Faculty Profile</span> where faculty can view and manage their data. Faculty can view and update their data in Faculty 180. They can then export a snapshot of these data for use in annual reviews, grant applications, custom CVs, etc.</p>
+			<p class="bodytext "><span class="strong">Online faculty review process.</span> Interfolio's Review, Promotion, and Tenure (RPT) module, in combination with Opus (our homegrown reporting and case management system), provides a streamlined process for tracking, managing, and updating cases as they progress through the review process. Candidates submit materials online, and reviewers are provided access to personnel files at appropriate steps in the process.</p>
+			<p class="bodytext "><span class="strong">Academic personnel reporting and decision-making </span>through access to trusted data. Opus, in combination with Faculty 180 provides user-driven, flexible reporting tools that support staff and administrators in carrying out their work. Our diverse user base of deans, chairs, campus and unit administrators, and others require different views of data. We are able to create canned reports to support common needs, and give users the ability to customize the reports themselves.</p>
+
+		</div>
+		<!--#include virtual="../common/footer.html" -->
+
+		<!--#include virtual="../common/js-includes.html" -->
+		
+		<script>$('#nav-about').addClass('active');</script>	
+  	</body>
+</html>

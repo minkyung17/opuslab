@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+		<title>Access to this Page Error</title>
+			
+	
+		<!--#include virtual="../common/header.html" -->
+  	</head>
+
+  	<body >
+		<!--#include virtual="../common/nav-no-logout.html" -->
+
+		<!-- Begin page content -->
+		<div class="container-fluid" id="main">
+			<div class="page-header">
+				<h1>Sorry, you do not have access to this page.</h1>
+			</div>
+			<div class="row">
+				
+				<!-- Main page content -->
+				<div class="col-xs-8 col-md-10">
+				
+			  	<p class="bodytext">Please click on "Home" to return to the Dashboard.
+			  	</p>
+			  		
+				</div>
+			</div>
+		</div>
+
+		<!--#include virtual="../common/footer.html" -->
+
+		
+	
+  	</body>
+</html>

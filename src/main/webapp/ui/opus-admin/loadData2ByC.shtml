@@ -1,0 +1,2873 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Interfolio Integrations</title>
+	<!--#include virtual="../common/header.html" -->
+</head>
+
+<body class="image">
+	<!--#include virtual="../common/nav.html" -->
+
+	<!-- Begin page content -->
+	<div class="container fluid public main" id='main'>
+
+		<div class="row">
+
+			<!-- Page content -->
+			<div class="page-header">
+				<h1>Interfolio Integration</h1>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<!-- ByC Link -->
+					<p>
+						<a href="#" onclick="connectToByC();">Go to Interfolio
+							Workflow Process</a>
+					</p>
+					<p>Red buttons mean danger! Do not click unless you really mean it.</p>
+
+				</div>
+			</div>
+			<div class="row">
+
+				<!-- Column 1 -->
+
+
+				<div class="col-md-6">
+					<h2>Review, Promotion, & Tenure</h2>
+					<table class="table table-bordered middle">
+						<tr>
+							<th colspan='2'>Cases</th>
+						</tr>
+						<tr>
+							<td>Recuse admins from cases
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover"
+									data-content="Clicking this button triggers the recusal API calls. These API calls take several hours to run and can impact the performance of the Opus application. Do not press in production without communicating to the team. The job uses API calls to loop through all cases in Interfolio and recuse DAs from dean steps and DAs and SAs from APO, CAP, and VCAP steps. This job runs automatically (without a button press) every Friday. "><span
+										aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" data-target="#nightlyRecusalCasesModal"
+									class="btn btn-danger btn-sm" data-toggle="modal">
+									Step 1</button> <br>
+								<div class="small">Runs every Friday at 9pm. The job takes about 10 hours to complete, but can run longer based on the number of recusals.</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Generate case recusal report
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Clicking this button generates the CSV file that shows which admins remain unrecused for each case at each step. The job may take an hour to run - a developer can tell you if it's completed. You should always click 'Step 1' first to ensure you get the latest data. When the recusal job runs automatically, the report is also generated automatically, without a button press.  
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="generatedownload" class="btn btn-primary btn-sm"
+									data-toggle="modal">
+									Step 2</button>
+								<div class="small">Automatically generated every Saturday at 10:30am. The job takes about 6 hours to complete.</div>
+							</td>
+						</tr>
+						<!--  <tr>
+							<td>Download case recusal report
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Downloads the generated CSV file report to your machine. You should always click the generate button first to ensure you get the latest data. When the recusal job runs automatically, the report is also generated automatically, and you can download without re-generating the report. 
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="unrecuseddownload" class="btn btn-primary btn-sm"
+									data-toggle="modal">
+									Step 3</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Download case sections report
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="This report shows all of the packet sections for each case in Interfolio. Clicking this button downloads a CSV file to your machine. Requires Step 2 to be clicked first.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="caseSectionsDownload" class="btn btn-primary btn-sm"
+									data-toggle="modal">
+									Download</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Download finalized Interfolio cases report
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover"
+									data-content="This report shows cases that are at the final step in Interfolio, and still open in Opus. Clicking this button downloads a CSV file to your machine. Requires Step 2 to be clicked first.">
+									<span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="toBeCompletedCasesDownload" class="btn btn-primary btn-sm"
+									data-toggle="modal">
+									Download</button>
+							</td>
+						</tr> -->
+						<tr>
+							<td>Record Workflow Steps
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover"
+									data-content="Clicking this button triggers the activity log API call and records all workflow step tracking dates for active (in progress) cases to the CasesAtMyOfficeWorkflowActivity table. These API calls take several hours to run and can impact the performance of the Opus application. Do not press in production without communicating to the team."><span
+										aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" data-target="#nightlyRecordActivityLogModal"
+									class="btn btn-danger btn-sm" data-toggle="modal">
+									Record Workflow Steps</button> <br>
+								<div class="small">Runs every day at 6:30pm. The job takes about 4 hours to complete, but can run longer based on the number of open cases.</div>
+							</td>
+						</tr>
+					</table>
+
+					<table class="table table-bordered middle">
+						<tr>
+							<th colspan='2'>Recusals for Templates</th>
+						</tr>
+						<tr>
+							<td>Recuse admins from each template
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Clicking this button triggers the recusal API calls. These API calls take several hours to run and can impact the performance of the Opus application. Do not press in production without communicating to the team. The job uses API calls to loop through all templates in Interfolio and recuse DAs from dean steps and DAs and SAs from APO, CAP, and VCAP steps. This job runs automatically (without a button press) every Friday. 	
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" data-target="#nightlyRecusalTemplatesModal"
+									class="btn btn-danger btn-sm" data-toggle="modal">
+									Step 1</button> <br>
+								<div class="small">Runs every Friday at 7:30pm. The job takes about 30 minutes to complete, but can run longer based on the number of recusals.</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Generate template recusal report
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Clicking this button generates the CSV file that shows which admins remain unrecused for each template at each step. The job may take an hour to run - a developer can tell you if it's completed. You should always click 'Step 1' first to ensure you get the latest data. When the recusal job runs automatically, the report is also generated automatically, without a button press. 
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="generateTemplatedownload" class="btn btn-primary btn-sm"
+									data-toggle="modal">
+									Step 2</button>
+								<div class="small">Automatically generated every Saturday at 7am. The job takes about 20 minutes to complete.</div>
+							</td>
+						</tr>
+					<!-- 	<tr>
+							<td>Download template recusal report
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Downloads the generated CSV file report to your machine. You should always click the 'Step 2' first to ensure you get the latest data. When the recusal job runs automatically, the report is also generated automatically, and you can download without re-generating the report.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="unrecusedTemplatedownload" class="btn btn-primary btn-sm"
+									data-toggle="modal">
+									Step 3</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Download template sections report
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="This report shows all of the packet sections for each template in Interfolio. Clicking this button downloads a CSV file to your machine. Requires Step 2 to be clicked first.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="templateSectionsDownload" class="btn btn-primary btn-sm"
+									data-toggle="modal">
+									Download</button>
+							</td>
+						</tr>
+					-->
+					</table>
+
+					<table class="table table-bordered middle">
+						<tr>
+							<th colspan='2'>Update Templates</th>
+
+						</tr>
+						<tr>
+							<td>Create a new template in all units
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Allows the user to create a template at every unit in RPT (e.g. when we added the simplified templates). 
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="templateCreation" class="btn btn-primary btn-sm"
+									data-toggle="modal" data-target="#template-modal" onclick="loadTemplates()">
+									Create Templates</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Update candidate instructions for All templates
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Updates the candidate instructions on all templates with the pre-approved text. This button does not allow the user to enter text - it is hard-coded.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" data-target="#buttonUpdateCandSecDescModal"
+									class="btn btn-danger btn-sm" data-toggle="modal">
+									Update Candidate Instructions</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Update case review step for selected templates
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Allows the user to search for and select templates. The user can then enter a current step name, and rename the step. The user can also enter a current committee, and replace it with a different committee for the chosen step.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="templateUpdation" class="btn btn-primary btn-sm"
+									data-toggle="modal" data-target="#template-update-modal"
+									onclick="updateTemplates()">Update Case Review Step</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Update candidate section order for selected templates
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover"
+									data-content="Allows the user to select templates, and enter the candidate packet sections in a specific order. This button cannot be used to update internal packet sections."><span
+										aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="secReorder" class="btn btn-primary btn-sm" data-toggle="modal"
+									data-target="#req-sec-order-modal" onclick="updateTemplatesReqOrder()">Reorder
+									Candidate
+									Sections</button>
+							</td>
+						</tr>
+					</table>
+
+					<table class="table table-bordered middle">
+						<tr>
+							<th colspan='2'>Add Units, Administrators, and Committees to
+								RPT & Box</th>
+						</tr>
+						<tr>
+							<td>Update existing units in RPT
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Updates existing units in RPT based on updates made to Opus (e.g. renaming OID units to CAT). The unit must already have a ByC unit ID. This button should be used when renaming a unit or when moving a unit from one node in the hierarchy to another.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="oneUnitToByc" class="btn btn-primary btn-sm"
+									data-toggle="modal">
+									&nbsp;Update Existing Units</button></td>
+						</tr>
+
+						<tr>
+							<td>Add new units to RPT
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Adds new units to RPT. The API takes any Opus units that do not have a ByC unit ID, adds them to RPT, and gets back/saves the ByC unit ID from RPT into Opus. This button should be used any time we add new units to Opus.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="unitTobyc" class="btn btn-primary btn-sm" data-toggle="modal">
+									&nbsp;Load Units to RPT</button></td>
+
+						</tr>
+				
+						<tr>
+							<td>Add new units to Box
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Adds a folder in Box for any unit that does not already have a folder. We use these Box folders to archive case materials from Interfolio.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="unitTobox" class="btn btn-primary btn-sm" data-toggle="modal">
+									&nbsp;Load Units to Box</button></td>
+
+						</tr>
+
+						<tr>
+							<td>Create administrator & approver committees in RPT
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Adds the administrator and approver committees to RPT. It only adds committees to units that do not already have administrator and approver committees according to the Opus database (Opus committee table). This button should be used any time we add new units to Opus.
+									"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="cmmtsTobyc" class="btn btn-primary btn-sm"
+									data-toggle="modal">
+									Load Committees to RPT</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Update Opus person role table
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Checks Grouper to determine which people have a Grouper role. For each person with a Grouper role, the application finds the person's ByC user ID and saves this information to the Opus database (Opus person role table). This button does NOT actually update RPT. This button should only be used when populating a new tenant.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="grouperToOpusPersonRole" class="btn btn-primary btn-sm"
+									data-toggle="modal">Load
+									Opus Person Role</button></td>
+
+						</tr>
+						<tr>
+							<td>Load administrators to RPT
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Adds all administrators from Opus to RPT based on their Grouper role. Administrators are granted the administrator role for their unit in RPT and they are added to the relevant department, school, or campus committees. To load the admins, we use the Opus Person Role table updated above. This button should only be used when we have a new tenant.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" data-target="#adminstobycModal" class="btn btn-danger btn-sm"
+									data-toggle="modal">
+									Upload Admins</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Load approvers to RPT
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Adds all people with chair, dean, vcap roles from Opus to the RPT chair, dean, or campus committees in their unit based on their Grouper role. To load the approvers, we use the Opus Person Role table updated above. This button should only be used when we have a new tenant.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" data-target="#approverstobycModal" class="btn btn-danger btn-sm"
+									data-toggle="modal">
+									Upload Approvers</button></td>
+						</tr>
+						<tr>
+							<td>Import ByCUnitIDs from RPT to Opus
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content=" "><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="syncByCUnitIdsFromRPT" class="btn btn-danger btn-sm"
+									data-toggle="modal">Import BycUnitIDs from RPT</button></td>
+						</tr>
+					</table>
+				</div>
+
+
+				<!-- Column 2 -->
+
+				<div class="col-md-6">
+
+					<table class="table table-bordered middle">
+						<tr>
+							<th colspan='2'>Update Users in RPT</th>
+						</tr>
+						<tr>
+							<td>Import ByC user IDs from RPT to Opus
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Compares Opus people (checks name and email and if they already exist in ByC) without a ByC user ID to people in RPT and attempts to find a match. Updates the ByC user ID in Opus if there is a name and email match.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="syncByCUserIdsFromInter" class="btn btn-primary btn-sm"
+									data-toggle="modal">Byc
+									User IDs</button></td>
+						</tr>
+						<tr>
+							<td>Send Opus user information to RPT
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content=" Downloads a list of Opus People in JSON format and uploads it to Interfolio via SFTP. Initially we sent this list to Interfolio to populate the tenant. We then requested that they send the file back with the ByC User IDs. This button should only be used when populating a new tenant.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" data-target="#personTobycModal" class="btn btn-danger btn-sm"
+									data-toggle="modal">
+									Opus Person to RPT</button></td>
+						</tr>
+						<tr>
+							<td>Upload ByC user ID to Opus from file
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Populates all the ByC user IDs from Interfolio to Opus. This button should only be used when populating a new tenant (Interfolio must have dropped the file in the correct FTP location prior to clicking the button).
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" data-target="#byctoopusModal" class="btn btn-danger btn-sm"
+									data-toggle="modal">
+									ByC User to Opus</button></td>
+						</tr>
+						<tr>
+							<td>Get RPT PIDs for all existing ByC Users
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Populates the PIDs from Interfolio to Opus for each existing ByC user ID. This button should not be used after release 3.9.0 without team agreement.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" data-target="#byctoopusPIDModal" class="btn btn-danger btn-sm"
+									data-toggle="modal">
+									Import PIDs to Opus</button></td>
+						</tr>
+						
+						<tr>
+							<td>Record RPT Admin flag
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Calls the Interfolio API to determine which RPT users are administrators for any unit. If a user is an RPT admin, updates the IsRPTAdmin flag to Y. This button should not be used after release 3.9.0 without team agreement."><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" data-target="#byctoopusRPTAdminModal" class="btn btn-danger btn-sm"
+									data-toggle="modal">
+									Record RPT Admin Flag</button></td>
+						</tr>
+						
+						<tr>
+							<td>Post Opus ID as Institution ID in RPT
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="For all users in Opus where we have a PID and where IsRPTActive flag is Y, this button click will post the Opus ID to RPT and record it as the Institution ID. This button should not be used after 3.9.0 without team agreement."><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" data-target="#opustorptinstitutionidModal" class="btn btn-danger btn-sm"
+									data-toggle="modal">
+									Post Opus ID to RPT</button></td>
+						</tr>
+						
+						<tr>
+							<td>Delete Users from in RPT
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="For all users in Opus where we have a PID and where IsRPTActive flag is N, this button click will delete the user from RPT and clear out the PID and ByC user ID in Opus. This button should not be used after 3.9.0 without team agreement."><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" data-target="#deleteInactiveRPTUsersModal" class="btn btn-danger btn-sm"
+									data-toggle="modal">
+									Delete Users from RPT</button></td>
+						</tr>
+						
+						<tr>
+							<td>Get PIDs & BYC UserIDs from RPT to Opus where IsRPTActive flag is Y
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Populates the PIDs & BYCUserIDs from Interfolio to Opus for each existing OPUSID where IsRPTActive flag is Y. This button should only be used if OPUSIDs and PIDs are compromised in Opus for any Interfolio Tenant."><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="syncByCUserIdsAndPidFromInter" class="btn btn-danger btn-sm"
+									data-toggle="modal">
+									Import PIDs & BYCUserIDs from RPT</button></td>
+						</tr>
+					</table>
+
+					<h2>Faculty 180</h2>
+					<table class="table table-bordered middle">
+						<tr>
+							<th colspan='2'>Teaching Data</th>
+						</tr>
+						<tr>
+							<td>Download activity types from Registrar
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Generates and downloads the latest list of course activity types from the Registrar. We use this field to populate the activity type to F180. This button should be clicked once per quarter to ensure we have all the types in F180. The user will need to compare the downloaded list manually with the list under the 'Type of Course' activity classification in F180.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td>
+								<button type="button" id="activitytypedownload" class="btn btn-primary btn-sm"
+									data-toggle="modal">
+									Download Activities</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Load quantitative teaching evaluation scores
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Allows the user to enter a specific term and year, then pull all quantitative teaching evaluation scores for the selected term into Opus from the Center for the Advancement of Teaching (CAT) Box folders. Files are downloaded internally to the application - the user cannot access them."><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="oiddatalffoad" class="btn btn-primary btn-sm"
+									data-toggle="modal" data-target='#saveOIDdata'>Load CAT Data to Opus</button></td>
+						</tr>
+						<tr>
+							<td>Rename instructor summary files
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Renames all of the Instructor Summary PDF files to the format requested by Interfolio. After the app loops through and renames all files, the files are downloaded as a zip file to the user's desktop.
+								"><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="oidfileyyyyrename" class="btn btn-primary btn-sm"
+									data-toggle="modal" data-target='#renameOIDFiles'>Rename Files</button></td>
+						</tr>
+					</table>
+					
+					<h2>Enterprise Grouper</h2>
+					<table class="table table-bordered middle">
+						<tr>
+							<th colspan='2'>Load Academic Hierarchy, Roles, Resources and Memberships</th>
+						</tr>
+						<tr>
+							<td>Add new units to Enterprise Grouper
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Adds new units to Grouper. The API takes any Opus units that do not have the IsInGrouper flag = Y, adds them to Enterprise Grouper, and updates the flag to Y. Additionally, all resources are added to the unit through the API. Finally, roles are created as applicable for the unit and added to the OpusPersonRole table. Note: members are not automatically assigned to the roles. This button should be used any time we add new units to Opus."><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="unitTogrouper" class="btn btn-primary btn-sm" data-toggle="modal">
+									&nbsp;Add Units</button></td>
+
+						</tr>
+						
+						<tr>
+							<td>Add Resources to Enterprise Grouper
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Add resources to Grouper. The API takes any resources that do not have the IsInGrouper flag = Y, adds them to Enterprise Grouper, and updates the flag to Y."><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="addResourcesToGrouper" class="btn btn-primary btn-sm" data-toggle="modal">
+									&nbsp;Add Resources</button></td>
+
+						</tr>
+						
+						<tr>
+							<td>Assign Roles to Resources
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Connects the appropriate resources to the appropriate roles. This button should be used any time we add new units or new resources to Opus."><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="assignRolesToResources" class="btn btn-primary btn-sm" data-toggle="modal">
+									&nbsp;Assign Roles to Resources</button></td>
+
+						</tr>
+						
+						<tr>
+							<td>Import user memberships from Opus Grouper to Enterprise Grouper
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Import users and their membership from the Opus instance of Grouper to Enterprise Grouper. Assigns our users to their correct roles in Enterprise Grouper. One time load."><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="importUsersTogrouper" class="btn btn-danger btn-sm" data-toggle="modal">
+									&nbsp;Import Users</button></td>
+
+						</tr>
+						
+						<tr>
+							<td>Remove Resources from Enterprise Grouper
+								<a role="button" aria-label="help tip" data-original-title="" data-trigger="hover"
+									class="ttip" title="" data-html="true" data-container="body" data-placement="top"
+									data-toggle="popover" data-content="Remove resources from Grouper. The API takes any resources that do not have the IsInGrouper flag = Y, removes them from Enterprise Grouper."><span aria-hidden="true" class="icon-help-circled help ttip "></span></a>
+							</td>
+							<td><button type="button" id="removeResourcesFromGrouper" class="btn btn-danger btn-sm" data-toggle="modal">
+									&nbsp;Remove Resources</button></td>
+
+						</tr>
+						 
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Warning Modal -  Recuse Admins from Cases - Step 1-->
+	<div class="modal fade" id="nightlyRecusalCasesModal" tabindex="-1" role="dialog"
+		aria-labelledby="nightlyRecusalCasesModal" aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Recuse Admins from Cases</h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="nightlyRecusalCases" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+	<!-- Warning Modal -  Record Workflow Steps-->
+	<div class="modal fade" id="nightlyRecordActivityLogModal" tabindex="-1" role="dialog"
+		aria-labelledby="nightlyRecordActivityLog" aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Record Workflow Steps</h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="nightlyRecordActivityLog" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+	<!-- Warning Modal -  Recuse Admins from Each Template - Step 1-->
+	<div class="modal fade" id="nightlyRecusalTemplatesModal" tabindex="-1" role="dialog"
+		aria-labelledby="nightlyRecusalTemplatesModal" aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Recuse Admins from Each Template</h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="nightlyRecusalTemplates" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+	<!-- Warning Modal -  Update Candidate Instructions-->
+	<div class="modal fade" id="buttonUpdateCandSecDescModal" tabindex="-1" role="dialog"
+		aria-labelledby="buttonUpdateCandSecDescModal" aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Update Candidate Instructions for all Templates</h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="buttonUpdateCandSecDesc" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+	<!-- Warning Modal -  Upload Admins-->
+	<div class="modal fade" id="adminstobycModal" tabindex="-1" role="dialog" aria-labelledby="adminstobycModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Load Administrators to RPT</h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="adminstobyc" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+	<!-- Warning Modal -  Upload Approvers-->
+	<div class="modal fade" id="approverstobycModal" tabindex="-1" role="dialog" aria-labelledby="approverstobycModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Load Approvers to RPT</h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="approverstobyc" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+	<!-- Warning Modal -  Opus Person to Interfolio-->
+	<div class="modal fade" id="personTobycModal" tabindex="-1" role="dialog" aria-labelledby="#personTobycModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Send Opus User Information to RPT</h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="personTobyc" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+	<!-- Warning Modal - ByC User to Opus-->
+	<div class="modal fade" id="byctoopusModal" tabindex="-1" role="dialog" aria-labelledby="byctoopusModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Upload ByC User ID to Opus from File</h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="byctoopus" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+	
+	<!-- Warning Modal - PID to Opus-->
+	<div class="modal fade" id="byctoopusPIDModal" tabindex="-1" role="dialog" aria-labelledby="byctoopusPIDModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Get RPT PID to all existing Byc Users </h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="byctoopuspid" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+	
+	<!-- Warning Modal - OPUSID to RPT as InstitutionID-->
+	<div class="modal fade" id="opustorptinstitutionidModal" tabindex="-1" role="dialog" aria-labelledby="byctoopusPIDModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Post OpusID as InstitutionID to RPT to all existing Byc Users </h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="opustorptinstitutionid" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+	
+	<!-- Warning Modal - Delete and Inactive RPT Users-->
+	<div class="modal fade" id="deleteInactiveRPTUsersModal" tabindex="-1" role="dialog" aria-labelledby="byctoopusPIDModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Delete/Inactive RPT Users </h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="deleteInactiveRPTUsers" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+	
+	<!-- Warning Modal - RPT Admin to Opus-->
+	<div class="modal fade" id="byctoopusRPTAdminModal" tabindex="-1" role="dialog" aria-labelledby="byctoopusRPTAdminModal"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document" data-backdrop="static">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h1 class="white">Record RPT Admin to all existing Byc Users based on Empl Class</h1>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to press this button? </p>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" id="byctoopusRPTAdmin" class="save btn btn-danger left"
+						data-toggle="modal">YOLO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+	<!-- Build  Reference Edit Modal-->
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+		id="template-modal" data-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content" id="print1">
+				<div class="modal-header modal-info">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h1 class="modal-title">Template Creation</h1>
+
+				</div>
+				<div class="modal-body">
+					<form id="template-form" role="form" class="form-horizontal">
+						<div id="template-section">
+							<div id="refDropdownCodeContainer"></div>
+							<div id="refContainer" class="form-group"></div>
+
+						</div>
+
+
+
+					</form>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" class="save btn btn-primary left">Save</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+
+				</div>
+				<!-- /modal-footer -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- Build  Reference Edit Modal-->
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+		id="template-update-modal" data-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content" id="print1">
+				<div class="modal-header modal-info">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h1 class="modal-title">Update selected templates in bulk for
+						selected units</h1>
+
+				</div>
+				<div class="modal-body">
+					<form id="template-update-form" role="form" class="form-horizontal">
+						<div id="template-update-section">
+							<div id="refDropdownCodeContainer"></div>
+							<div id="refContainer" class="form-group"></div>
+
+						</div>
+
+
+
+					</form>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" class="save btn btn-primary left">Save</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+
+				</div>
+				<!-- /modal-footer -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- Build  Reference Edit Modal-->
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+		id="req-sec-order-modal" data-backdrop="static">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content" id="print1">
+				<div class="modal-header modal-info">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h1 class="modal-title">Update selected templates candidate
+						requirement section order in bulk for selected units</h1>
+
+				</div>
+				<div class="modal-body">
+					<form id="req-sec-order-modal-form" role="form" class="form-horizontal">
+						<div id="req-sec-order-modal-section">
+							<div id="refDropdownCodeContainer"></div>
+							<div id="refContainer" class="form-group"></div>
+						</div>
+					</form>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" class="save btn btn-primary left">Save</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+
+				</div>
+				<!-- /modal-footer -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- Modals -->
+	<div class="modal fade eligibility-success" tabindex="-1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-success">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h1 class=" white">Success!</h1>
+				</div>
+				<div class="modal-body">
+					The job ran successfully! <br> <br>
+
+					<p></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn left btn-success" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<div class="modal fade eligibility-failure" tabindex="-1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-danger">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 style="color: white" class="modal-title">Error</h4>
+				</div>
+				<div class="modal-body">
+					Something went wrong. The job could not be completed. Please contact
+					Opus development team <br> <br>
+
+					<p></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn left btn-danger btn-small" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="createIFCases" tabindex="-1" role="dialog" aria-labelledby="createIFCasesLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+						onclick="clearForm()">&times;</button>
+					<h4 class="modal-title" id="createIFCasesLabel">Enter a Term</h4>
+				</div>
+				<div class="modal-body">
+					<form id="term-form" role="form" class="form-horizontal">
+						<div id="termSearch-section">
+							<p>You can enter a term for downloading the data from OID/CAT
+								Box of Teaching Evals associated with different Subject Area
+								Codes.</p>
+							<label for="termCode" class="control-label">Term Code:</label> <input title="Term Code"
+								type="text" class="form-control" id="termCode" placeholder="Enter Term Code" />
+						</div>
+					</form>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" class="save btn btn-primary left">GO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="renameOIDFiles" tabindex="-1" role="dialog" aria-labelledby="renameOIDFilesLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+						onclick="clearForm()">&times;</button>
+					<h4 class="modal-title" id="renameOIDFilesLabel">Enter a Term</h4>
+				</div>
+				<div class="modal-body">
+					<form id="term-form" role="form" class="form-horizontal">
+						<div id="termSearch-section">
+							<p>You can enter a term for downloading the data from OID/CAT
+								Box of Teaching Evals associated with different Subject Area
+								Codes.</p>
+							<label for="termCode" class="control-label">Term Code:</label> <input title="Term Code"
+								type="text" class="form-control" id="termCode" placeholder="Enter Term Code" />
+						</div>
+					</form>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" class="save btn btn-primary left">GO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="saveOIDdata" tabindex="-1" role="dialog" aria-labelledby="saveOIDdataLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+						onclick="clearForm()">&times;</button>
+					<h4 class="modal-title" id="saveOIDdataLabel">Enter a Term</h4>
+				</div>
+				<div class="modal-body">
+					<form id="term-form" role="form" class="form-horizontal">
+						<div id="termSearch-section">
+							<p>You can enter a term for downloading the data from OID/CAT
+								Box of Teaching Evals associated with different Subject Area
+								Codes.</p>
+							<label for="termCode" class="control-label">Term Code:</label> <input title="Term Code"
+								type="text" class="form-control" id="termCode" placeholder="Enter Term Code" />
+
+						</div>
+					</form>
+				</div>
+				<!-- /modal-body -->
+				<div class="modal-footer hidden-print">
+					<button type="button" class="save btn btn-primary left">GO</button>
+					<button type="button" class="cancel btn btn-link left" data-dismiss="modal">Cancel</button>
+				</div>
+				<!-- /modal-content -->
+			</div>
+			<!-- /modal-dialogue-->
+		</div>
+	</div>
+	<!-- /modal -->
+
+
+
+	<!-- JavaScript Functionality -->
+
+	<!--#include virtual="../common/footer.html" -->
+	<!--#include virtual="../common/js-includes.html" -->
+
+	<script>
+		//If the role is not opus_admin, redirect user to the access-error page.  Borrowing the initializeTables function here
+		//because it is called in the success block of the ajax function inside opus.js that retrieves adminData
+
+		var packetTypeDataRows = '';
+		function initializeTables() {
+			$.ajax({
+				cache: false,
+				url: "/restServices/rest/wfm/getPacketTypes/?access_token="
+					+ access_token,
+				type: 'GET',
+				dataType: 'json',
+				contentType: 'application/json',
+				mimeType: 'application/json',
+				success: function (packetTypeData) {
+					packetTypeDataRows = packetTypeData;
+				},
+
+			});
+			if (adminData.adminRoles.indexOf('opus_admin') == -1) {
+				window.location
+					.assign("/restServices/ui/error/access-error.shtml");
+			}
+		}
+
+		$('#createIFCases .save')
+			.off('click')
+			.on(
+				'click',
+				function () {
+					var termNo = $('#createIFCases #termCode').val();
+					var SendInfo = {
+						termCode: termNo
+					};
+					$
+						.ajax({
+							url: "/restServices/rest/sdl/boxToInterfolio/?access_token="
+								+ access_token,
+							type: 'GET',
+							data: {
+								termCode: termNo
+							},
+							uccess: function (success) {
+								if (success) {
+									$('#createIFCases').modal(
+										'hide');
+									$('.eligibility-success')
+										.modal();
+								}
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								// alert(jqXHR.responseText);
+								console.log("Error:", errorThrown);
+								console.log(jqXHR.status);
+								console.log("Text Status:",
+									textStatus);
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		$('#renameOIDFiles .save')
+			.off('click')
+			.on(
+				'click',
+				function () {
+					var termNo = $('#renameOIDFiles #termCode').val();
+					var SendInfo = {
+						termCode: termNo
+					};
+					$
+						.ajax({
+							url: "/restServices/rest/sdl/renameTermTeachEvals/?access_token="
+								+ access_token,
+							type: 'GET',
+							data: {
+								termCode: termNo
+							},
+							uccess: function (success) {
+								if (success) {
+									$('#renameOIDFiles').modal(
+										'hide');
+									$('.eligibility-success')
+										.modal();
+								}
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								// alert(jqXHR.responseText);
+								console.log("Error:", errorThrown);
+								console.log(jqXHR.status);
+								console.log("Text Status:",
+									textStatus);
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		$('#saveOIDdata .save')
+			.off('click')
+			.on(
+				'click',
+				function () {
+					var termNo = $('#saveOIDdata #termCode').val();
+					var SendInfo = {
+						termCode: termNo
+					};
+					$
+						.ajax({
+							url: "/restServices/rest/sdl/getTeachingEvals/?access_token="
+								+ access_token,
+							type: 'GET',
+							data: {
+								termCode: termNo
+							},
+							uccess: function (success) {
+								if (success) {
+									$('#saveOIDdata').modal('hide');
+									$('.eligibility-success')
+										.modal();
+								}
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								// alert(jqXHR.responseText);
+								console.log("Error:", errorThrown);
+								console.log(jqXHR.status);
+								console.log("Text Status:",
+									textStatus);
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		function loadTemplates() {
+
+			var dropdownCodeContainerFields = '';
+			dropdownCodeContainerFields += '<div id="tempDescContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="tempDesc" class="control-label">Template Description</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<input title="Template Description" type="text" class="form-control" id="tempDesc"  '
+				+ ' placeholder="Enter Template Description">'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="tempNameContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="tempName" class="control-label">Template Name</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<input title="Template Name" type="text" class="form-control" id="tempName" '
+				+ ' placeholder="Enter Template Name">'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="tempInstContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="tempInst" class="control-label">Template Instructions</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<input title="Template Instructions" type="text" class="form-control" id="tempInst"'
+				+ ' placeholder="Template Instructions">'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="packetTypeContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="packetType" class="control-label">Packet Type</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<select title="Packet Type" class="form-control" id="packetType" > '
+				+ '<option>--select Packet Type---</option></select>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="candSecContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="candSec" class="control-label">Candidate Section Requirement</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<textarea title="Candidate Section Requirement" class="form-control" cols= "40" rows= "5" id="candSec"  '
+				+ ' placeholder="Enter Candidate Section Requirements seperated by comma"></textarea>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="internalSecContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="candSec" class="control-label">Internal Section Requirement</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<textarea title="Internal Section Requirement" class="form-control" cols= "40" rows= "5" id="internalSec"  '
+				+ ' placeholder="Enter Internal Section Requirements seperated by comma"></textarea>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="workFlowStepContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="workFlowStep" class="control-label" >Work Flow Steps</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<textarea title="Work Flow Steps" class="form-control" cols= "40" rows= "5" id="workFlowStep"  '
+				+ ' placeholder="Enter Work Flow Steps seperated by comma"></textarea>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>' + '</div>' + '</div>';
+
+			$('#template-modal #refDropdownCodeContainer').html("");
+			$('#template-modal #refDropdownCodeContainer').html(
+				dropdownCodeContainerFields);
+
+			var packetTypeDropdown = '';
+			packetTypeDropdown += '<option></option>';
+			if (packetTypeDataRows !== undefined && packetTypeDataRows !== null) {
+				$.each(packetTypeDataRows, function (key, value) {
+					packetTypeDropdown += '<option value=' + value + '>' + key
+						+ '</option>';
+				});
+			}
+			$('#template-modal #packetType').html("");
+			$('#template-modal #packetType').html(packetTypeDropdown);
+
+		}
+
+		function updateTemplates() {
+
+			var dropdownCodeContainerFields = '';
+			dropdownCodeContainerFields += '<div id="packetTypeContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="packetType" class="control-label">Packet Type*</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<select title="Packet Type" class="form-control" id="packetType" > '
+				+ '<option>--Select Packet Type---</option></select>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="unitContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="unit" class="control-label">Unit*</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<select title="Unit" class="form-control" multiple="multiple" id="unit" > '
+				+ '<option>--Select A Unit---</option></select>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="tempNameContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="tempName" class="control-label">Template Name*</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<input title="Template Name" type="text" class="form-control" id="tempName" '
+				+ ' placeholder="Enter Template Name">'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="currentStepTypeContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="currentStep" class="control-label">Current Step Name*</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<input title="Current Step Name" type="text" class="form-control" id="currentStepName"  '
+				+ ' placeholder="Enter the name of the existing step that needs to be edited">'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="newStepTypeContainer" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="newStep" class="control-label">New Step Name</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<input title="New Step Name" type="text" class="form-control" id="newStepName" '
+				+ ' placeholder="Enter the new name for the existing Step">'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="currentCommitteeContainer" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="currentCommittee" class="control-label">Current Committee</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<input title="Current Committee" type="text" class="form-control" id="currentCommitteeName"'
+				+ ' placeholder="Enter the name of the Current Committee">'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="newCommitteeContainer" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="newCommittee" class="control-label">New Committee</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<input title="New Committee" type="text" class="form-control" id="newCommitteeName"'
+				+ ' placeholder="Enter the name of the New Committee">'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>' + '</div>' + '</div>';
+
+			$('#template-update-modal #refDropdownCodeContainer').html("");
+			$('#template-update-modal #refDropdownCodeContainer').html(
+				dropdownCodeContainerFields);
+
+			var packetTypeDropdown = '';
+			packetTypeDropdown += '<option></option>';
+			if (packetTypeDataRows !== undefined && packetTypeDataRows !== null) {
+				$.each(packetTypeDataRows, function (key, value) {
+					packetTypeDropdown += '<option value=' + value + '>' + key
+						+ '</option>';
+				});
+			}
+			$('#template-update-modal #packetType').html("");
+			$('#template-update-modal #packetType').html(packetTypeDropdown);
+
+			var unitDropdown = '';
+			unitDropdown += '<option></option>';
+			var unitDataRows = adminData.adminDepartments;
+			if (unitDataRows !== undefined && unitDataRows !== null) {
+				$.each(unitDataRows, function (index, u) {
+					unitDropdown += '<option value=' + u.byCUnitId + '>'
+						+ u.ahName + '</option>';
+				});
+			}
+			$('#template-update-modal #unit').html("");
+			$('#template-update-modal #unit').html(unitDropdown);
+
+		}
+
+		function updateTemplatesReqOrder() {
+
+			var dropdownCodeContainerFields = '';
+			dropdownCodeContainerFields += '<div id="packetTypeContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="packetType" class="control-label">Packet Type*</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<select title="Packet Type" class="form-control" id="packetType" > '
+				+ '<option>--Select Packet Type---</option></select>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="unitContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="unit" class="control-label">Unit*</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<select title="Unit" class="form-control" multiple="multiple" id="unit" > '
+				+ '<option>--Select A Unit---</option></select>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="tempNameContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="tempName" class="control-label">Template Name*</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<input title="Template Name" type="text" class="form-control" id="tempName" '
+				+ ' placeholder="Enter Template Name">'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div id="candReqSecContainier" class="form-group">'
+				+ '<div class="col-sm-4">'
+				+ '<label for="candReqSec" class="control-label" >Candidate Requirement Section Order</label>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<textarea title="Candidate Requirement Section" class="form-control" cols= "40" rows= "5" id="candReqSec"  '
+				+ ' placeholder="Enter Candidate Requirement Section Order seperated by comma"></textarea>'
+				+ '</div>'
+				+ '<div class="col-sm-5">'
+				+ '<span class="help-block"></span>' + '</div>' + '</div>';
+
+			$('#req-sec-order-modal #refDropdownCodeContainer').html("");
+			$('#req-sec-order-modal #refDropdownCodeContainer').html(
+				dropdownCodeContainerFields);
+
+			var packetTypeDropdown = '';
+			packetTypeDropdown += '<option></option>';
+			if (packetTypeDataRows !== undefined && packetTypeDataRows !== null) {
+				$.each(packetTypeDataRows, function (key, value) {
+					packetTypeDropdown += '<option value=' + value + '>' + key
+						+ '</option>';
+				});
+			}
+			$('#req-sec-order-modal #packetType').html("");
+			$('#req-sec-order-modal #packetType').html(packetTypeDropdown);
+
+			var unitDropdown = '';
+			unitDropdown += '<option></option>';
+			var unitDataRows = adminData.adminDepartments;
+			if (unitDataRows !== undefined && unitDataRows !== null) {
+				$.each(unitDataRows, function (index, u) {
+					unitDropdown += '<option value=' + u.byCUnitId + '>'
+						+ u.ahName + '</option>';
+				});
+			}
+			$('#req-sec-order-modal #unit').html("");
+			$('#req-sec-order-modal #unit').html(unitDropdown);
+
+		}
+
+		//tooltip
+		$('[data-toggle="popover"]').popover({
+			trigger: 'hover',
+			'placement': 'top'
+		});
+		$('[data-toggle="tooltip"]').tooltip({
+			trigger: 'hover',
+			'placement': 'top'
+		});
+
+		$('#my-affix').affix({
+			offset: {
+				top: 25,
+				bottom: function () {
+					return (this.bottom = $('.footer').outerHeight(true))
+				}
+			}
+		})
+
+		$('#nav-home').addClass('active'); // make "home" navbar link active	
+
+		$("#oneUnitToByc")
+			.click(
+				function () {
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/updateUnitsToByc/?access_token="
+								+ access_token,
+							type: 'GET',
+							dataType: 'json',
+							contentType: 'application/json',
+							mimeType: 'application/json',
+							success: function (adminScreenData) {
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#unitTogrouper").click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/loadUnitsToGrouper/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (adminScreenData) {
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+		$("#assignRolesToResources").click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/assignRolesToResources/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (adminScreenData) {
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+		$("#importUsersTogrouper").click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/importUsersToGrouper/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (adminScreenData) {
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+		$("#removeResourcesFromGrouper").click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/removeResourcesFromGrouper/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (adminScreenData) {
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+		$("#addResourcesToGrouper").click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/addResourcesToGrouper/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (adminScreenData) {
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+		// 		$("#byccasesdownload").click(function() {
+		// 			 $('.byccasesdownload').prop("disabled", true);
+		// 			console.log("Before call: " + new Date($.now()));
+		// 			var SendInfo = {
+		// 			};
+		// 			 var a = document.createElement("a");
+		// 			 document.body.appendChild(a);
+		// 			 a.style = "display: none";
+		// 			 var fileName = "my-csv.csv";
+		// 			$.ajax({
+		// 				cache : false,
+		// 				url : "/restServices/rest/wfm/downloadCaseSteps/?access_token="
+		// 						+ access_token,
+		// 				type : 'GET',
+		// 				success : function(data) {
+		// 					 const blob = new Blob([data], {type: "octet/stream"}),
+		// 			            url = window.URL.createObjectURL(blob);
+		// 			        a.href = url;
+		// 			        a.download = fileName;
+		// 			        a.click();
+		// 			        window.URL.revokeObjectURL(url);
+		// 			        $('.byccasesdownload').prop("disabled", false);
+		// 				},
+		// 				error : function(jqXHR, textStatus,	errorThrown) { 
+		// 					$('.eligibility-failure').modal();
+		// 				}
+		// 			});
+		// 		});
+
+		$("#generatedownload")
+			.click(
+				function () {
+					$('.generatedownload').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/generateUnRecusedAdmins/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#generateTemplatedownload")
+			.click(
+				function () {
+					$('.generateTemplatedownload').prop("disabled",
+						true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/generateTemplateUnRecusedAdmins/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#nightlyRecusalCases")
+			.click(
+				function () {
+					$('.nightlyRecusalCases').prop("disabled", true);
+					$('#nightlyRecusalCases').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/nightlyRecusalCases/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								$('#nightlyRecusalCasesModal').modal('hide');
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#nightlyRecordActivityLog")
+			.click(
+				function () {
+					$('.nightlyRecordActivityLog').prop("disabled", true);
+					$('#nightlyRecordActivityLog').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/bycreview/loadCasesAtMyOffc/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								$('#nightlyRecordActivityLog').modal('hide');
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#nightlyRecusalTemplates")
+			.click(
+				function () {
+					$('.nightlyRecusalTemplates')
+						.prop("disabled", true);
+					$('#nightlyRecusalTemplates')
+						.prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/nightlyRecusalTemplates/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								$('#nightlyRecusalTemplatesModal').modal('hide');
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#buttonUpdateCandSecDesc")
+			.click(
+				function () {
+					$('.buttonUpdateCandSecDesc')
+						.prop("disabled", true);
+					$('#buttonUpdateCandSecDesc')
+						.prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/updateTemplateCandidSecDesc/?access_token="
+								+ access_token,
+							type: 'POST',
+							success: function (data) {
+								$('#buttonUpdateCandSecDescModal').modal('hide');
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#bycCaseSync")
+			.click(
+				function () {
+					$('.bycCaseSync').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/bycCaseSync/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		$("#unrecuseddownload")
+			.click(
+				function () {
+					$('.unrecuseddownload').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					var a = document.createElement("a");
+					document.body.appendChild(a);
+					a.style = "display: none";
+					var fileName = "unrecused-admins.csv";
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/downloadUnRecusedAdmins/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								const blob = new Blob([data], {
+									type: "octet/stream"
+								}), url = window.URL
+									.createObjectURL(blob);
+								a.href = url;
+								a.download = fileName;
+								a.click();
+								window.URL.revokeObjectURL(url);
+								$('.unrecuseddownload').prop(
+									"disabled", false);
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#caseSectionsDownload")
+			.click(
+				function () {
+					$('.caseSectionsDownload').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					var a = document.createElement("a");
+					document.body.appendChild(a);
+					a.style = "display: none";
+					var fileName = "casePacketSections.csv";
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/downloadPacketSections/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								const blob = new Blob([data], {
+									type: "octet/stream"
+								}), url = window.URL
+									.createObjectURL(blob);
+								a.href = url;
+								a.download = fileName;
+								a.click();
+								window.URL.revokeObjectURL(url);
+								$('.caseSectionsDownload').prop(
+									"disabled", false);
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#templateSectionsDownload")
+			.click(
+				function () {
+					$('.templateSectionsDownload').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					var a = document.createElement("a");
+					document.body.appendChild(a);
+					a.style = "display: none";
+					var fileName = "templateSections.csv";
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/downloadTemplateSections/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								const blob = new Blob([data], {
+									type: "octet/stream"
+								}), url = window.URL
+									.createObjectURL(blob);
+								a.href = url;
+								a.download = fileName;
+								a.click();
+								window.URL.revokeObjectURL(url);
+								$('.templateSectionsDownload').prop(
+									"disabled", false);
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#toBeCompletedCasesDownload")
+			.click(
+				function () {
+					$('.toBeCompletedCasesDownload').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					var a = document.createElement("a");
+					document.body.appendChild(a);
+					a.style = "display: none";
+					var fileName = "finalizedInterfolioCases.csv";
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/downloadToBeCompletedCases/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								const blob = new Blob([data], {
+									type: "octet/stream"
+								}), url = window.URL
+									.createObjectURL(blob);
+								a.href = url;
+								a.download = fileName;
+								a.click();
+								window.URL.revokeObjectURL(url);
+								$('.toBeCompletedCasesDownload').prop(
+									"disabled", false);
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#unrecusedTemplatedownload")
+			.click(
+				function () {
+					$('.unrecusedTemplatedownload').prop("disabled",
+						true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					var a = document.createElement("a");
+					document.body.appendChild(a);
+					a.style = "display: none";
+					var fileName = "template-unrecused-admins.csv";
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/downloadTemplateUnRecusedAdmins/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								const blob = new Blob([data], {
+									type: "octet/stream"
+								}), url = window.URL
+									.createObjectURL(blob);
+								a.href = url;
+								a.download = fileName;
+								a.click();
+								window.URL.revokeObjectURL(url);
+								$('.unrecusedTemplatedownload')
+									.prop("disabled", false);
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		$("#activitytypedownload")
+			.click(
+				function () {
+					$('.activitytypedownload').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					var a = document.createElement("a");
+					document.body.appendChild(a);
+					a.style = "display: none";
+					var fileName = "activitytype.csv";
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/courses/downloadActivitytype/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								const blob = new Blob([data], {
+									type: "octet/stream"
+								}), url = window.URL
+									.createObjectURL(blob);
+								a.href = url;
+								a.download = fileName;
+								a.click();
+								window.URL.revokeObjectURL(url);
+								$('.activitytypedownload').prop(
+									"disabled", false);
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		$("#subjareadownload")
+			.click(
+				function () {
+					$('.subjareadownload').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					var a = document.createElement("a");
+					document.body.appendChild(a);
+					a.style = "display: none";
+					var fileName = "subjarea-prefix.csv";
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/courses/downloadSubjAreasPrefix/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								const blob = new Blob([data], {
+									type: "octet/stream"
+								}), url = window.URL
+									.createObjectURL(blob);
+								a.href = url;
+								a.download = fileName;
+								a.click();
+								window.URL.revokeObjectURL(url);
+								$('.subjareadownload').prop(
+									"disabled", false);
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		$("#coursesForFacultiesdownload")
+			.click(
+				function () {
+					$('.coursesForFacultiesdownload').prop("disabled",
+						true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					var a = document.createElement("a");
+					document.body.appendChild(a);
+					a.style = "display: none";
+					var fileName = "courses-for-faculties.csv";
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/courses/downloadCoursesForFaculties/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								const blob = new Blob([data], {
+									type: "octet/stream"
+								}), url = window.URL
+									.createObjectURL(blob);
+								a.href = url;
+								a.download = fileName;
+								a.click();
+								window.URL.revokeObjectURL(url);
+								$('.coursesForFacultiesdownload')
+									.prop("disabled", false);
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		$("#catalogdownload")
+			.click(
+				function () {
+					$('.catalogdownload').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					var a = document.createElement("a");
+					document.body.appendChild(a);
+					a.style = "display: none";
+					var fileName = "course-catalog.csv";
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/courses/downloadCourseCatalog/?access_token="
+								+ access_token,
+							type: 'GET',
+							success: function (data) {
+								const blob = new Blob([data], {
+									type: "octet/stream"
+								}), url = window.URL
+									.createObjectURL(blob);
+								a.href = url;
+								a.download = fileName;
+								a.click();
+								window.URL.revokeObjectURL(url);
+								$('.catalogdownload').prop(
+									"disabled", false);
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		$("#personTobyc")
+			.click(
+				function () {
+					$('#personTobyc').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/opusPersonToByC/?access_token="
+								+ access_token,
+							type: 'GET',
+							dataType: 'json',
+							contentType: 'application/json',
+							mimeType: 'application/json',
+							success: function (adminScreenData) {
+								$('#personTobycModal').modal('hide');
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#clicker")
+			.click(
+				function () {
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/eligibles/triggerEligibility/?access_token="
+								+ access_token,
+							type: 'GET',
+							dataType: 'json',
+							contentType: 'application/json',
+							mimeType: 'application/json',
+							success: function (adminScreenData) {
+								var modal = adminScreenData ? '.eligibility-success'
+									: '.eligibility-failure';
+								$(modal).modal();
+
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#byctoopus").click(
+			function () {
+				$('#byctoopus').prop("disabled", true);
+				console.log("Before call: " + new Date($.now()));
+				var SendInfo = {};
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/bycToOpus/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (adminScreenData) {
+						$('#byctoopusModal').modal('hide');
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+		$("#byctoopuspid").click(
+			function () {
+				$('#byctoopuspid').prop("disabled", true);
+				console.log("Before call: " + new Date($.now()));
+				var SendInfo = {};
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/pidToOpus/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (adminScreenData) {
+						$('#byctoopusPIDModal').modal('hide');
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('#byctoopusPIDModal').modal('hide');
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+		$("#opustorptinstitutionid").click(
+				function () {
+					$('#byctoopuspid').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$.ajax({
+						cache: false,
+						url: "/restServices/rest/wfm/opusIdToRpt/?access_token="
+							+ access_token,
+						type: 'GET',
+						dataType: 'json',
+						contentType: 'application/json',
+						mimeType: 'application/json',
+						success: function (adminScreenData) {
+							$('#opustorptinstitutionidModal').modal('hide');
+							$('.eligibility-success').modal();
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+							$('#opustorptinstitutionidModal').modal('hide');
+							$('.eligibility-failure').modal();
+						}
+					});
+				});
+		$("#deleteInactiveRPTUsers").click(
+			function () {
+				$('#byctoopuspid').prop("disabled", true);
+				console.log("Before call: " + new Date($.now()));
+				var SendInfo = {};
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/deleteInactiveRPTUsers/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (adminScreenData) {
+						$('#deleteInactiveRPTUsersModal').modal('hide');
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('#deleteInactiveRPTUsersModal').modal('hide');
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+		$("#byctoopusRPTAdmin").click(
+				function () {
+					$('#byctoopusRPTAdmin').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$.ajax({
+						cache: false,
+						url: "/restServices/rest/wfm/recordRPTAdmin/?access_token="
+							+ access_token,
+						type: 'GET',
+						dataType: 'json',
+						contentType: 'application/json',
+						mimeType: 'application/json',
+						success: function (adminScreenData) {
+							$('#byctoopusRPTAdminModal').modal('hide');
+							$('.eligibility-success').modal();
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+							$('#byctoopusRPTAdminModal').modal('hide');
+							$('.eligibility-failure').modal();
+						}
+					});
+				});
+		$("#addOneUser").click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				var SendInfo = {};
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/addAnUser/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (adminScreenData) {
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+		$("#unitTobyc").click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/loadUnits/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (adminScreenData) {
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+		$("#unitTobox").click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				$.ajax({
+					cache: false,
+					url: "/restServices/rest/wfm/loadUnitsToBox/?access_token="
+						+ access_token,
+					type: 'GET',
+					dataType: 'json',
+					contentType: 'application/json',
+					mimeType: 'application/json',
+					success: function (isLoaded) {
+						$('.eligibility-success').modal();
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						$('.eligibility-failure').modal();
+					}
+				});
+			});
+
+		$("#cmmtsTobyc")
+			.click(
+				function () {
+					console.log("Before call: " + new Date($.now()));
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/loadCommittees/?access_token="
+								+ access_token,
+							type: 'GET',
+							dataType: 'json',
+							contentType: 'application/json',
+							mimeType: 'application/json',
+							success: function (adminScreenData) {
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#grouperToOpusPersonRole")
+			.click(
+				function () {
+					console.log("Before call: " + new Date($.now()));
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/loadOpusPersonRole/?access_token="
+								+ access_token,
+							type: 'GET',
+							dataType: 'json',
+							contentType: 'application/json',
+							mimeType: 'application/json',
+							success: function (adminScreenData) {
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#syncByCUnitIdsFromRPT")
+		.click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				$
+					.ajax({
+						cache: false,
+						url: "/restServices/rest/wfm/syncByCUnitIds/?access_token="
+							+ access_token,
+						type: 'GET',
+						dataType: 'json',
+						contentType: 'application/json',
+						mimeType: 'application/json',
+						success: function (adminScreenData) {
+							$('.eligibility-success').modal();
+						},
+						error: function (jqXHR, textStatus,
+							errorThrown) {
+							$('.eligibility-failure').modal();
+						}
+					});
+			});
+		$("#syncByCUserIdsFromInter")
+			.click(
+				function () {
+					console.log("Before call: " + new Date($.now()));
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/syncByCUserIds/?access_token="
+								+ access_token,
+							type: 'GET',
+							dataType: 'json',
+							contentType: 'application/json',
+							mimeType: 'application/json',
+							success: function (adminScreenData) {
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#syncByCUnitIdsFromRPT")
+		.click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				$
+					.ajax({
+						cache: false,
+						url: "/restServices/rest/wfm/syncByCUnitIds/?access_token="
+							+ access_token,
+						type: 'GET',
+						dataType: 'json',
+						contentType: 'application/json',
+						mimeType: 'application/json',
+						success: function (adminScreenData) {
+							$('.eligibility-success').modal();
+						},
+						error: function (jqXHR, textStatus,
+							errorThrown) {
+							$('.eligibility-failure').modal();
+						}
+					});
+			});
+		$("#syncByCUserIdsAndPidFromInter")
+		.click(
+			function () {
+				console.log("Before call: " + new Date($.now()));
+				$
+					.ajax({
+						cache: false,
+						url: "/restServices/rest/wfm/pidBycUserIdToOpus/?access_token="
+							+ access_token,
+						type: 'GET',
+						dataType: 'json',
+						contentType: 'application/json',
+						mimeType: 'application/json',
+						success: function (adminScreenData) {
+							$('.eligibility-success').modal();
+						},
+						error: function (jqXHR, textStatus,
+							errorThrown) {
+							$('.eligibility-failure').modal();
+						}
+					});
+			});
+		$("#adminstobyc")
+			.click(
+				function () {
+					$('#adminstobyc').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/adminstobyc/?access_token="
+								+ access_token,
+							type: 'GET',
+							dataType: 'json',
+							contentType: 'application/json',
+							mimeType: 'application/json',
+							success: function (adminScreenData) {
+								$('#adminstobycModal').modal('hide');
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+		$("#approverstobyc")
+			.click(
+				function () {
+					$('#approverstobyc').prop("disabled", true);
+					console.log("Before call: " + new Date($.now()));
+					var SendInfo = {};
+					$
+						.ajax({
+							cache: false,
+							url: "/restServices/rest/wfm/approverstobyc/?access_token="
+								+ access_token,
+							type: 'GET',
+							dataType: 'json',
+							contentType: 'application/json',
+							mimeType: 'application/json',
+							success: function (adminScreenData) {
+								$('#approverstobycModal').modal('hide');
+								$('.eligibility-success').modal();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		// Clear fields when modal is Cancelled or Closed
+		$('#template-modal .cancel').off('click').on('click', function () {
+			clearFields();
+		});
+
+		$('#template-modal .close').off('click').on('click', function () {
+			clearFields();
+		});
+		$('#template-modal .closeButton').off('click').on('click', function () {
+			clearFields();
+		});
+		function clearFields() {
+			$('#template-modal #tempDesc').val('');
+			$('#template-modal #tempName').val('');
+			$('#template-modal #tempInst').val('');
+			$('#template-modal #packetType').val('');
+			$('#template-modal #candSec').val('');
+			$('#template-modal #internalSec').val('');
+			$('#template-modal #workFlowStep').val('');
+		}
+
+		// Clear fields when modal is Cancelled or Closed
+		$('#template-update-modal .cancel').off('click').on('click',
+			function () {
+				clearFields();
+			});
+
+		$('#template-update-modal .close').off('click').on('click', function () {
+			clearFields();
+		});
+		$('#template-update-modal .closeButton').off('click').on('click',
+			function () {
+				clearFields();
+			});
+		function clearFields() {
+			$('#template-update-modal #unit').val('');
+			$('#template-update-modal #tempName').val('');
+			$('#template-update-modal #currentStepName').val('');
+			$('#template-update-modal #packetType').val('');
+			$('#template-update-modal #newStepName').val('');
+			$('#template-update-modal #currentCommitteeName').val('');
+			$('#template-update-modal #newCommitteeName').val('');
+		}
+
+		// Clear fields when modal is Cancelled or Closed
+		$('#req-sec-order-modal .cancel').off('click').on('click', function () {
+			clearFields();
+		});
+
+		$('#req-sec-order-modal .close').off('click').on('click', function () {
+			clearFields();
+		});
+		$('#req-sec-order-modal .closeButton').off('click').on('click',
+			function () {
+				clearFields();
+			});
+		function clearFields() {
+			$('#req-sec-order-modal #unit').val('');
+			$('#req-sec-order-modal #tempName').val('');
+			$('#req-sec-order-modal #packetType').val('');
+			$('#req-sec-order-modal #candReqSec').val('');
+		}
+		$('#template-modal .save')
+			.off('click')
+			.on(
+				'click',
+				function () {
+					var templateName = $('#template-modal #tempName')
+						.val();
+					$
+						.ajax({
+							url: "/restServices/rest/wfm/createTemplate/?access_token="
+								+ access_token,
+							type: 'POST',
+							data: {
+								tempDesc: $(
+									'#template-modal #tempDesc')
+									.val(),
+								tempName: $(
+									'#template-modal #tempName')
+									.val(),
+								tempInst: $(
+									'#template-modal #tempInst')
+									.val(),
+								packetType: $(
+									'#template-modal #packetType')
+									.val(),
+								candSec: $(
+									'#template-modal #candSec')
+									.val(),
+								internalSec: $(
+									'#template-modal #internalSec')
+									.val(),
+								workFlowStep: $(
+									'#template-modal #workFlowStep')
+									.val()
+							},
+							success: function (data) {
+								if (data != null) {
+									cloneTemplate(data,
+										templateName, 0, 300);
+								}
+
+								//location.reload();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								// alert(jqXHR.responseText);
+								console.log("Error:", errorThrown);
+								console.log(jqXHR.status);
+								console.log("Text Status:",
+									textStatus);
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		function cloneTemplate(templateId, templateName, start, end) {
+			return $.ajax({
+				url: "/restServices/rest/wfm/cloneTemplate/?access_token="
+					+ access_token,
+				type: 'POST',
+				data: {
+					templateId: templateId,
+					tempName: templateName,
+					start: start,
+					end: end
+				},
+				success: function (success) {
+					if (success) {
+						$('#template-modal').modal('hide');
+						$('.eligibility-success').modal();
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					// alert(jqXHR.responseText);
+					console.log("Error:", errorThrown);
+					console.log(jqXHR.status);
+					console.log("Text Status:", textStatus);
+					$('.eligibility-failure').modal();
+				}
+			});
+		}
+
+		$('#template-update-modal .save')
+			.off('click')
+			.on(
+				'click',
+				function () {
+					var newStepName = $(
+						'#template-update-modal #newStepName')
+						.val();
+					var curComm = $(
+						'#template-update-modal #currentCommitteeName')
+						.val();
+					var newComm = $(
+						'#template-update-modal #newCommitteeName')
+						.val();
+					var nSpName = null;
+					var newCommName = null;
+					var currCommName = null;
+					if (newStepName != null) {
+						nSpName = newStepName;
+					}
+					if (curComm != null) {
+						currCommName = curComm;
+					}
+					if (newComm != null) {
+						newCommName = newComm;
+					}
+					var units = [];
+					$('#unit :selected').each(function (i, selected) {
+						units[i] = $(selected).val();
+					});
+
+					$
+						.ajax({
+							url: "/restServices/rest/wfm/updateTemplates/?access_token="
+								+ access_token,
+							type: 'POST',
+							data: {
+								packetType: $(
+									'#template-update-modal #packetType')
+									.val(),
+								unit: units,
+								tempName: $(
+									'#template-update-modal #tempName')
+									.val(),
+								currentStepName: $(
+									'#template-update-modal #currentStepName')
+									.val(),
+								newStepName: nSpName,
+								currentCommitteeName: currCommName,
+								newCommitteeName: newCommName
+							},
+							success: function (success) {
+								if (success) {
+									$('#template-update-modal')
+										.modal('hide');
+									$('.eligibility-success')
+										.modal();
+								}
+
+								//location.reload();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								// alert(jqXHR.responseText);
+								console.log("Error:", errorThrown);
+								console.log(jqXHR.status);
+								console.log("Text Status:",
+									textStatus);
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+
+		$('#req-sec-order-modal .save')
+			.off('click')
+			.on(
+				'click',
+				function () {
+					var units = [];
+					$('#unit :selected').each(function (i, selected) {
+						units[i] = $(selected).val();
+					});
+
+					$
+						.ajax({
+							url: "/restServices/rest/wfm/orderTemplateReqSec/?access_token="
+								+ access_token,
+							type: 'POST',
+							data: {
+								packetType: $(
+									'#req-sec-order-modal #packetType')
+									.val(),
+								unit: units,
+								tempName: $(
+									'#req-sec-order-modal #tempName')
+									.val(),
+								candReqSec: $(
+									'#req-sec-order-modal #candReqSec')
+									.val()
+							},
+							success: function (success) {
+								if (success) {
+									$('#req-sec-order-modal')
+										.modal('hide');
+									$('.eligibility-success')
+										.modal();
+								}
+
+								//location.reload();
+							},
+							error: function (jqXHR, textStatus,
+								errorThrown) {
+								// alert(jqXHR.responseText);
+								console.log("Error:", errorThrown);
+								console.log(jqXHR.status);
+								console.log("Text Status:",
+									textStatus);
+								$('.eligibility-failure').modal();
+							}
+						});
+				});
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+/*These are specific only to IUI. General table styling is in datatables_override------------------------------------ */
+/*left navigation & page spacing------------------------------------ */
+
+/* .iui-container {
+	padding-bottom: 20px;
+} */
+
+/* .leftnav-iui {
+	max-width: 300px !important;
+} */
+
+
+
+
+/* #iui-filters {
+	margin-top: 20px;
+}
+ */
+/* #department-select, #area-select {
+	width: 30%;
+} */
+
+/* #department-select {
+	display: inline-block;
+	margin-right: 20px;
+} */
+
+/* #area-select {
+	display: inline-block;
+}
+ */
+/*fix borders------------------------------------ */
+
+/* #faculty-info    {
+	 border-collapse: collapse !important;
+	 line-height: 1.2;
+	 white-space: nowrap;
+} */
+
+/* table#faculty-info tr  {
+	border-top: 1px solid $gray-light;
+	border-bottom: 1px solid $gray-light;
+} 
+ */
+
+/*---selected row------------------------------------ */
+
+/* #selectedRowFullName {
+	color: $ucla-blue;
+	font-size: 16px;
+	height: 20px;
+	margin-bottom: -25px;
+	margin-top: 10px;
+}
+
+.selectedRowFullNameHighlight {
+	background-color: yellow;
+	width: 500px;
+}
+ */
+/* #name-results {
+	height: 100px;
+}
+ */
+/* .name-results-message {
+	margin-left: 10px;
+	color: red;
+} */
+
+/* .fullName {
+	text-transform: capitalize;
+}
+ */
+
+
+/* #add-person #title-code { 
+	width: 25em; 
+} */
+
+/* #log {
+	height: 200px; 
+	width: 300px; 
+	overflow: auto;
+} */
+
+/* .department-list-choices {
+	margin-left: 20px;
+} */
+
+/* .selected-row {
+	border: 3px solid $ucla-blue !important;
+}
+ */
+/* .select-row-icon {
+	margin-right: 10px;
+}
+ */
+
+
+/* #page-info {
+	color: $ucla-blue;
+}
+ */
+/*** Subtable ***/
+
+/*TODO fix the !important - DT is overriding with their tr style as background-color: white */
+/* .subtable-complete {
+	color: $gray-lighter;
+	background-color: $gray-lighter !important;
+}
+ */
+/*** Validations ***/
+/* 
+.validated {
+	background-color: rgb(217, 239, 217) !important;
+}
+ */
+/*** Editing ***/
+/* .disabled-field {
+	background-color: $gray-lighter;
+}
+ */
+
+/*** hover indicator(s)
+table.dataTable tbody > tr:hover {
+  	background-color: $gray-lighter;
+}
+***/
+
+/*** style buttons***/
+/* #faculty-info input[type="button"]	{
+	@extend .btn;
+	@extend .btn-default;	
+}
+ */
+/* [value="Add New Row"]   {  // subtable button: add new row 
+	margin-top: 10px;
+	@extend .btn-sm;	
+}
+ */
+
+/*** style selects and text inputs***/
+/* #faculty-info select	{
+	@extend .form-control;
+	height: 31px; 
+}
+
+#faculty-info input[type="text"]	{
+	@extend .form-control;
+	height: 31px;
+}
+
+.subtable-complete span	{
+	color: #555555;
+}
+ */
+/*** adjust widths of text inputs ***/
+
+/* #faculty-info input[id^="appointmentPercentTime"]	{
+	width: 56px !important;
+	}
+
+#faculty-info input[title~=Date]	{
+	width: 102px !important;
+	}
+	
+#faculty-info input[id^="tenureAcademicYearCreditedServiceUnitCount"], input[id^="tenureTotalCreditedServiceUnitCount"], 
+	input[id^="tenureTotalCreditedServiceYearCount"], input[id^="tenureCreditedTimeOffTheClockYearCount"], 
+	input[id^="tenureCreditedTimeOffTheClockYearsTakenCount"], input[id^="advancementActionYearsDeferredCount"], input[id^="advancementActionYearsAcceleratedCount"]	{
+	width: 50px !important;
+}
+
+ */
+/*** remove after testing***/
+/* .adb {
+	border: 2px solid red;
+}
+
+input [value="Add New Row"]	{
+	font-size: 13px;
+}
+
+.ttip	{
+	font-weight: normal;
+}
+
+ */

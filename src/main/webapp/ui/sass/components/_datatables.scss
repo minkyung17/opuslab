@@ -1,0 +1,282 @@
+/** Error Message **/
+.error_message{
+		color:red;
+}
+
+/** Icons **/
+.no-edit{
+	background: url("../images/no-edit.png") no-repeat center left;
+}
+
+/** Button Dropdown - commented out because it interfered with the global nav dropdown **/
+.dropdown-menu .checkbox{
+	margin-left: 10px;
+}
+
+/** --------Table Filters Styling - make clickable area bigger -------------**/
+.filter-view { 
+    position:relative; 
+}
+.filter-view:after {
+    content:'';
+    position:absolute;
+    top:-10px; bottom:-10px; 
+    left:-10px; right:-10px; 
+}
+
+/** --------React Table Styling -------------**/
+
+.sorting-text {
+	display:inline;
+	font-size: .9em;
+}
+
+.export-to-excel	{
+	float:right;
+}
+/** 
+.reset-table-button	{
+	border: none;
+	color: $ucla-blue !important;
+	box-shadow: none;
+}
+**/
+
+.fixedDataTableCellGroupLayout_cellGroup > .public_fixedDataTableCell_main {
+  vertical-align: middle;
+}
+
+.fixedDataTableCellLayout_wrap3 {
+    vertical-align: top !important;
+}    
+  
+.public_fixedDataTableRow_highlighted .public_fixedDataTableCell_main .fixedDataTableCellLayout_wrap1 {
+    background-image: none;
+}
+
+.ui-widget	{
+	color: $gray-dark;
+}
+
+/** Change columns modal**/
+.change-columns .checkbox {
+  margin-top: 5px;
+  margin-bottom: 5px;
+ }
+ 
+ /**name search field **/
+/* .ui.input input	{
+	font-family: $font-family-sans-serif;
+	height: 30px;
+	/** border: 1px solid $gray; **/
+	//margin-top: 10px;
+	//border-radius: 13px;
+	//color: $gray-darker;
+	//font-size: 1em !important;
+	//font-weight: regular;
+//} */ 
+
+.search-name	{
+	//font-family: $font-family-sans-serif;
+	height: 30px;
+	/** border: 1px solid $gray; **/
+	margin-top: 10px; 
+	border-radius: 13px;
+	//color: $gray-darker;
+	font-size: 1em !important;
+	font-weight: regular;	
+}
+
+.search-profile 	{
+	font-family: $font-family-sans-serif;
+	font-size: .6em !important;
+	/** border: 1px solid $gray; **/
+	margin-top: 10px;
+	/**width: 250px;**/
+	border-radius: 13px;
+	color: $gray;
+	display: inline-block;
+}
+
+.public_fixedDataTable_header, .public_fixedDataTable_header .public_fixedDataTableCell_main .public_fixedDataTable_header:hover {
+	background-image: none !important;
+	background-color: $gray-light; 
+}
+
+.public_fixedDataTable_header, .public_fixedDataTable_header .public_fixedDataTableCell_main {
+	background-image: none !important;
+}
+
+.fixedDataTableCellLayout_main {
+    border-right-style: none; 
+}
+
+
+
+/** highlight row **/
+.fixedDataTableRowLayout_rowWrapper:hover .public_fixedDataTableCell_main {
+  background-color: $light-blue;
+}
+
+
+
+/** Jquery MultiSelect Dropdown Filters **/
+
+.ui-multiselect-menu .ui-widget {
+	margin-top: 0;
+	font-family:  $font-family-sans-serif;
+	font-weight: normal;
+	color: $gray-dark;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default .ui-widget .ui-state-active{
+	background: white;
+	color: black;
+	font-family: $font-family-sans-serif;
+	font-weight: normal;
+}
+
+.ui-state-hover, .ui-state-active {
+      border: $input-border-focus;
+}
+.ui-state-hover, .ui-state-active 	{
+	border: 1px solid #66afe9;
+}
+
+.ui-widget input	{
+	font-family: $font-family-sans-serif;
+}
+
+.ui-multiselect-filter input	{
+	border: 1px solid $gray-lightest;
+}
+
+
+.ui-widget-header {
+    border: 1px solid $gray-lightest;
+    background: $gray-lightest;
+    color: black;
+    font-weight: normal;
+    background-image: none;
+}
+
+.ui-multiselect-checkboxes label {
+	font-family: $font-family-sans-serif;
+	font-weight: normal;	
+}
+
+
+.ui-multiselect-filter input{
+	color: black;
+}
+
+.ui-multiselect.ui-widget{
+	margin-top:10px;
+}
+
+.results_legend{
+	min-height:75px;
+	font-size: .9em;
+}
+
+.ui-multiselect-checkboxes label input {
+    margin-right: 8px;
+}
+
+/** jquery ui override - use the black icons for drop down menu **/
+.ui-state-default .ui-icon {
+    background-image: url("../plugins/jquery-ui-1.11.2/images/ui-icons_222222_256x240.png");
+}
+
+/** jquery ui override - use the black icons instead of the orange **/
+.ui-widget-header .ui-icon  {
+    background-image: url("../plugins/jquery-ui-1.11.2/images/ui-icons_222222_256x240.png");
+}
+
+/** header of dropdown**/
+.ui-widget-header ui-state-active {
+    border: 1px solid;
+    background: white;
+    background-image: none;
+    color: black;
+    font-weight: normal;
+}
+
+.ui-widget-header a {
+     color: black;
+    font-weight: normal;
+}
+
+.ui-widget-content {
+    background: white;
+    background-image: none;
+    color: black;
+    font-weight: normal;
+}
+
+.ui-widget	{
+	font-size: .9em;
+	font-family: $font-family-sans-serif;
+}
+
+
+
+
+/** Sorting old Datatables **/
+.sorting_asc{
+	background: url("../images/sort_asc_ucla.png") no-repeat center left;
+}
+
+.sorting_desc {
+    background: url("../images/sort_desc_ucla.png") no-repeat center left;
+}
+
+.sorting_none {
+    background: url("../images/sort_null.png") no-repeat center left;
+}
+
+.sorting	{
+ 	background: url("../images/sort_null.png") no-repeat center left;
+ }
+
+.sort {
+	cursor: pointer;
+	text-align: left;
+    padding-left: 20px;
+}
+
+
+ul.sort_legend {
+	list-style-type: none;
+}
+
+ul.sort_legend li {
+	float: left;
+}
+
+ul.sort_legend li div {
+	width: 50px;
+}
+
+.column-header-name {
+	width:100%;
+	margin: 0 auto;
+}
+
+
+/* .full-column-input {
+	width: 100%;
+} */
+
+input.rounded {
+	/* css 3 */
+	border-radius:15px;
+	/* mozilla */
+	-moz-border-radius:15px;
+	/* webkit */
+	-webkit-border-radius:15px;
+}
+
+.row.no-padding-first-child > div[class^="col-"]:first-child{
+	/*padding-left:0;*/
+}
