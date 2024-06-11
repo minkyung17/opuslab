@@ -15,7 +15,7 @@ jobs:
     if: github.ref == 'refs/heads/Release-4.7.0' # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
     uses: ./.github/workflows/4.7.0_to_4.9.0.yml
   second-to-third:
-    if: github.ref == 'refs/heads/Release-4.9.0' # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
+    if: github.ref == 'refs/heads/Release-4.7.0' # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
     needs: first-to-second # conditioned upon previous job (merge) completing, that way third has all changes from first as well
     uses: ./.github/workflows/4.9.0_to_5.0.0.yml
 
