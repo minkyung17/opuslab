@@ -2,48 +2,32 @@ name: Branch Merge Workflow
 
 on:
   push:
-    branches:  [ Release-4.6.0 , Release-4.7.0 ]
+    branches:  [ Release-4.7.0 , Release-4.9.0 ]
     paths:
       '**' # should be same as not having a paths filter but want to make explicit
   pull_request:
-    branches: [ Release-4.6.0 , Release-4.7.0 ]
+    branches: [ Release-4.7.0 , Release-4.9.0 ]
     paths:
       '**' # should be same as not having a paths filter but want to make explicit
   
 jobs:
   first-to-second:
-    if: github.ref == 'refs/heads/Release-4.6.0' # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
+    if: github.ref == 'refs/heads/Release-4.7.0' # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: Release-4.7.0
-        fetch-depth: 0 # otherwise, you will fail to push refs to dest repo Number of commits to fetch. 0 indicates all history for all branches and tags.Default: 1.
-    - run: echo "🤖 The ${{ github.repository }} repository has been cloned to the runner."
-    - run: |
-        git config --local user.email "mkim@it.ucla.edu"
-        git config --local user.name "[github action]"
-        git merge origin/Release-4.6.0 -s ort -Xours
-        git push origin Release-4.7.0
-    - run: echo "Branch was auto-merged into another branch using Github Actions"
-  second-to-third:
-    needs: first-to-second # conditioned upon previous job (merge) completing, that way third has all changes from first as well
-    if: github.ref == 'refs/heads/Release-4.6.0' # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: Release-5.0.0
+        ref: Release-4.9.0
         fetch-depth: 0 # otherwise, you will fail to push refs to dest repo Number of commits to fetch. 0 indicates all history for all branches and tags.Default: 1.
     - run: echo "🤖 The ${{ github.repository }} repository has been cloned to the runner."
     - run: |
         git config --local user.email "mkim@it.ucla.edu"
         git config --local user.name "[github action]"
         git merge origin/Release-4.7.0 -s ort -Xours
-        git push origin Release-5.0.0
+        git push origin Release-4.9.0
     - run: echo "Branch was auto-merged into another branch using Github Actions"
-
-  second:
+  second-to-third:
+    needs: first-to-second # conditioned upon previous job (merge) completing, that way third has all changes from first as well
     if: github.ref == 'refs/heads/Release-4.7.0' # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
     runs-on: ubuntu-latest
     steps:
@@ -55,6 +39,22 @@ jobs:
     - run: |
         git config --local user.email "mkim@it.ucla.edu"
         git config --local user.name "[github action]"
-        git merge origin/Release-4.7.0 -s ort -Xours
+        git merge origin/Release-4.9.0 -s ort -Xours
+        git push origin Release-5.0.0
+    - run: echo "Branch was auto-merged into another branch using Github Actions"
+
+  second:
+    if: github.ref == 'refs/heads/Release-4.9.0' # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: Release-5.0.0
+        fetch-depth: 0 # otherwise, you will fail to push refs to dest repo Number of commits to fetch. 0 indicates all history for all branches and tags.Default: 1.
+    - run: echo "🤖 The ${{ github.repository }} repository has been cloned to the runner."
+    - run: |
+        git config --local user.email "mkim@it.ucla.edu"
+        git config --local user.name "[github action]"
+        git merge origin/Release-4.9.0 -s ort -Xours
         git push origin Release-5.0.0
     - run: echo "Branch was auto-merged into another branch using Github Actions"
