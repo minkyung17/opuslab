@@ -2,7 +2,7 @@ on:
   workflow_call:
 
 jobs:
-  first-to-second:
+  Release-470_to_Release-490:
     if: github.ref == 'refs/heads/Release-4.7.0' # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
     runs-on: ubuntu-latest
     steps:
