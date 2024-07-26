@@ -18,6 +18,7 @@ jobs:
       first_branch: R470
       second_branch: R480
   R470_R480_R500:
+    needs: R470_R470_R480
     if: ${{ github.ref == 'refs/heads/R470' }} # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
     uses: ./.github/workflows/reusable_branch_merge.yml
     with:
