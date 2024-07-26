@@ -2,18 +2,18 @@ name: Branch Merge Workflow
 
 on:
   push:
-    branches:  [ vars.BRANCH1 ]
+    branches:  [ R470 ]
     paths:
       '**' # should be same as not having a paths filter but want to make explicit
   pull_request:
-    branches: [ vars.BRANCH1 ]
+    branches: [ R470 ]
     paths:
       '**' # should be same as not having a paths filter but want to make explicit
   
 jobs:
-  Branch470_Branch500:
-    if: ${{ github.ref == 'refs/heads/vars.BRANCH1' }} # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
+  R470_R500:
+    if: ${{ github.ref == 'refs/heads/R470' }} # The fully-formed ref of the branch or tag that triggered the workflow run (GA contexts)
     uses: ./.github/workflows/reusable_branch_merge.yml
     with:
-      first_branch: ${{ vars.BRANCH1 }}
-      next_branch: ${{ vars.BRANCH2 }}
+      first_branch: R470
+      second_branch: R500
