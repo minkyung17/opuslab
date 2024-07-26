@@ -2,7 +2,7 @@ name: Branch Merge Workflow
 
 on:
   push:
-    branches:  [ R470 ]
+    branches:  [ R470, R19 ]
     paths:
       '**' # should be same as not having a paths filter but want to make explicit
   pull_request:
@@ -17,4 +17,3 @@ jobs:
     with:
       first_branch: R470
       second_branch: R500
-# 51
